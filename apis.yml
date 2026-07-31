@@ -1,7 +1,16 @@
 aid: mobly
 name: Mob.ly
-description: Mob.ly is a company surfaced as a portfolio company of uncork-capital and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Mob.ly (Mobly) is an AI-powered event marketing platform — "The Event
+  Marketer's Operating System" — that helps B2B go-to-market teams plan events,
+  capture and enrich leads in person, engage prospects, and measure pipeline
+  across trade shows and in-real-life (IRL) marketing experiences. Its product
+  suite spans lead Capture, event Host, Insights reporting, Pulse, and Scout,
+  with native integrations into HubSpot, Salesforce, Marketo, and generic
+  webhooks. As of this enrichment pass Mobly operates a customer-facing web
+  application (hub.getmobly.com) but publishes no public developer API,
+  OpenAPI specification, SDKs, or developer documentation. Backed by Uncork
+  Capital.
 url: https://raw.githubusercontent.com/api-evangelist/mobly/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -9,14 +18,50 @@ x-backed-by:
 - uncork-capital
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
+image: https://www.getmobly.com/images/webclip.png
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
+- Events
+- Event Marketing
+- Lead Capture
+- Lead Enrichment
+- B2B
+- Marketing
+- Go-To-Market
+- Artificial Intelligence
 apis: []
+common:
+- type: DomainSecurity
+  url: security/mobly-domain-security.yml
+- type: Website
+  url: https://www.getmobly.com/
+- type: PrivacyPolicy
+  url: https://www.getmobly.com/privacy-policy
+- type: TermsOfService
+  url: https://www.getmobly.com/termsofuse
+- type: Login
+  url: https://hub.getmobly.com/login
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-20'
+  status: minimal
+  artifacts_added: 1
+  pass: local-v1
