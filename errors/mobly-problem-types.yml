@@ -1,0 +1,95 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/mobly-rest-api-v0-openapi.yml
+docs: https://help.getmobly.com/documentation/rest-api/rest-api-v0
+format: bespoke
+rfc9457: false
+content_type: application/json
+envelope:
+  schema: ErrorResponse
+  shape: '{ "status": <integer>, "error": "<string>" }'
+  required:
+  - status
+  - error
+  note: >-
+    Mobly does not use application/problem+json. There is no error `code`,
+    `type` URI, `detail` string or field-level violation list — a client sees
+    only the HTTP status and a reason phrase, which is the principal
+    machine-readability gap in this API.
+problems:
+- status: 400
+  title: Bad request
+  meaning: Request body or query parameters failed validation.
+  remediation: Check required fields against the request schema in the OpenAPI.
+  operations:
+  - GET /events
+  - POST /events
+  - POST /industryEvents
+- status: 401
+  title: Unauthorized
+  meaning: API key not provided.
+  remediation: Send a valid organization key in the `x-api-key` header.
+  observed: true
+  observed_body: '{"error":"Unauthorized"}'
+  operations:
+  - GET /events
+  - POST /events
+  - GET /industryEvents
+- status: 403
+  title: Forbidden
+  meaning: API key header invalid.
+  remediation: Request a valid key from your Mobly CSM; keys are not self-serve.
+  observed: true
+  observed_body: '{"error":"Forbidden"}'
+  operations:
+  - GET /events
+- status: 404
+  title: Not found
+  meaning: The addressed resource does not exist, or is not visible to the
+    organization the API key belongs to.
+  remediation: Re-list the collection and confirm the id belongs to your organization.
+  variants:
+  - Event not found
+  - Lead not found
+  - Not found
+  operations:
+  - GET /events/{eventId}
+  - PUT /events/{eventId}
+  - DELETE /events/{eventId}
+  - GET /leads/{leadId}
+  - GET /leadActivityEvents/{leadActivityEventId}
+  - GET /activations/{activationId}
+  - GET /tagGroups/{tagGroupId}
+  - GET /industryEvents/{industryEventId}
+  - PUT /industryEvents/{industryEventId}
+  - POST /industryEvents/{industryEventId}/bookmark
+  - DELETE /industryEvents/{industryEventId}/bookmark
+- status: 429
+  title: Too Many Requests
+  meaning: The API key's token bucket is empty.
+  remediation: Wait the number of seconds in the Retry-After header, or until
+    X-RateLimit-Reset.
+  operations:
+  - GET /events
+  see_also: rate-limits/mobly-rate-limits.yml
+- status: 500
+  title: Internal server error
+  meaning: Unhandled server-side failure.
+  remediation: Retry with backoff; non-idempotent POSTs must be reconciled by
+    listing, since the API has no idempotency key.
+  operations:
+  - GET /events
+coverage:
+  operations_total: 27
+  operations_with_error_responses: 14
+  gap: >-
+    Only GET /events declares the full 400/401/403/429/500 set. 13 of 27
+    operations declare a 200 and nothing else, so the spec understates the
+    error surface the documentation describes as applying to every endpoint.
+x-evidence:
+- url: https://core-api.getmobly.com/api/v0/events
+  http_status: 401
+  note: anonymous probe 2026-08-13
+- url: https://core-api.getmobly.com/api/v0/events
+  http_status: 403
+  note: invalid-key probe 2026-08-13

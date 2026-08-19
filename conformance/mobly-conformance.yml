@@ -1,0 +1,90 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/mobly-rest-api-v0-openapi.yml
+docs: https://help.getmobly.com/documentation/rest-api/rest-api-v0
+api: Mobly REST API v0
+standards:
+- id: openapi-3.0
+  conforms: true
+  evidence: openapi/mobly-rest-api-v0-openapi.yml declares openapi 3.0.3 with 17 paths
+    and 45 component schemas
+- id: rest-json
+  conforms: true
+  evidence: all endpoints are JSON over HTTPS with resource-oriented paths and standard
+    verbs (GET/POST/PUT/PATCH/DELETE)
+- id: api-key-auth
+  conforms: true
+  evidence: components.securitySchemes.ApiKeyAuth — apiKey in header, x-api-key
+- id: oauth2
+  conforms: false
+  evidence: no oauth2 securityScheme in the spec and no OAuth flow in the docs
+- id: oidc
+  conforms: false
+- id: mutual-tls
+  conforms: false
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: errors use a bespoke {status, error} envelope with content-type
+    application/json, not application/problem+json
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: no deprecation or sunset policy or headers documented
+- id: rfc6585-429
+  conforms: true
+  evidence: 429 Too Many Requests declared in the spec and documented with Retry-After
+- id: ietf-ratelimit-headers
+  conforms: partial
+  evidence: >-
+    Mobly returns the de-facto X-RateLimit-Limit / X-RateLimit-Remaining /
+    X-RateLimit-Reset trio plus Retry-After, not the IETF draft RateLimit /
+    RateLimit-Policy fields
+- id: pagination-limit-offset
+  conforms: true
+  evidence: limit (default 20, max 50) and offset (zero-based page index) on every
+    list endpoint, with a Pagination object echoed in the response
+- id: idempotency-key-header
+  conforms: false
+  evidence: no Idempotency-Key header; idempotency is per-operation (PUT upserts)
+    only — see conventions/mobly-conventions.yml
+- id: json-schema
+  conforms: true
+  evidence: request/response bodies are described by OpenAPI 3.0 (JSON Schema draft
+    wright-00 subset) component schemas
+- id: asyncapi
+  conforms: false
+  evidence: no AsyncAPI document is published; the webhook surface is an integration
+    destination with no published payload schema
+- id: cors
+  conforms: true
+  evidence: 'live responses carry access-control-allow-origin: * (observed 2026-08-13)'
+- id: webhook-signing
+  conforms: unknown
+  evidence: >-
+    Mobly offers a WEBHOOK integration destination but publishes no signing,
+    replay-protection or payload contract for it. (Mobly does verify INBOUND
+    Stripe webhooks with Stripe's HMAC scheme in the Host product, per
+    help-center/host/security-and-payments — that is Stripe's contract, not
+    Mobly's own outbound one.)
+compliance_program:
+  published: false
+  certifications: []
+  trust_center: null
+  note: >-
+    No SOC 2, ISO 27001, PCI DSS, HIPAA, FedRAMP or GDPR compliance page, trust
+    center or certification claim was found on getmobly.com, help.getmobly.com
+    or a trust./security. subdomain. No `type: Compliance` pointer is emitted —
+    the underlying program is not published.
+regulatory_context:
+- regime: GDPR/CCPA
+  applicable: true
+  reason: the product captures, enriches and stores personal contact data of event
+    attendees
+  published_position: privacy policy only (https://www.getmobly.com/privacy-policy)
+x-evidence:
+- url: https://help.getmobly.com/documentation/rest-api/rest-api-v0
+  http_status: 200
+- url: https://trust.getmobly.com/
+  http_status: 0
+  note: host does not resolve
+- url: https://www.getmobly.com/.well-known/security.txt
+  http_status: 404

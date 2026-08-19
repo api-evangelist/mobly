@@ -1,0 +1,101 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Mobly REST API v0
+  version: 1.0.0
+extends: openapi/mobly-rest-api-v0-openapi.yml
+x-generated: '2026-08-13'
+x-method: generated
+x-source: >-
+  Derived from the provider's own documentation at
+  https://help.getmobly.com/documentation/rest-api/rest-api-v0 and
+  https://help.getmobly.com/api-reference. Every value below is stated by
+  Mobly; nothing is invented. The original spec is never mutated.
+actions:
+- target: $.info
+  description: Record the human documentation surfaces and the API Evangelist artifacts
+    derived from this spec.
+  update:
+    x-apievangelist-artifacts:
+      authentication: authentication/mobly-authentication.yml
+      conventions: conventions/mobly-conventions.yml
+      errors: errors/mobly-problem-types.yml
+      rate_limits: rate-limits/mobly-rate-limits.yml
+      data_model: data-model/mobly-data-model.yml
+      lifecycle: lifecycle/mobly-lifecycle.yml
+      changelog: changelog/mobly-changelog.yml
+      skills: skills/_index.yml
+    x-documentation: https://help.getmobly.com/documentation/rest-api/rest-api-v0
+    x-api-reference: https://help.getmobly.com/api-reference
+    x-changelog: https://help.getmobly.com/changelog
+    x-key-issuance: contact your Mobly CSM; API keys are not self-serve
+- target: $.info
+  description: Attach the published rate-limit contract to the spec, which omits it
+    entirely.
+  update:
+    x-rate-limit:
+      model: token-bucket
+      scope: per-api-key
+      default_max_tokens: 20
+      default_refill_rate_per_second: 1
+      status: 429
+      headers:
+      - X-RateLimit-Limit
+      - X-RateLimit-Remaining
+      - X-RateLimit-Reset
+      - Retry-After
+      source: https://help.getmobly.com/documentation/rest-api/rest-api-v0
+- target: $.info
+  description: Attach the published response-envelope and pagination contract, which
+    the spec's schemas imply but never state.
+  update:
+    x-response-envelope:
+      single: '{ "status": <int>, "results": { <resource> } }'
+      list: '{ "status": <int>, "pagination": { "limit", "offset" }, "results": { "<resource>":
+        [...], "total": <int> } }'
+    x-pagination:
+      style: limit-offset
+      limit_default: 20
+      limit_max: 50
+      offset_semantics: zero-based PAGE index, not a record offset
+      source: https://help.getmobly.com/documentation/rest-api/rest-api-v0
+- target: $.info
+  description: State the idempotency posture explicitly — Mobly has no
+    Idempotency-Key header, and which operations are safe to replay is otherwise
+    unknowable from the spec.
+  update:
+    x-idempotency:
+      idempotency_key_header: null
+      safe_to_replay:
+      - PUT /events/{eventId}
+      - PUT /events/{eventId}/leads
+      - PUT /industryEvents/{industryEventId}
+      - POST /industryEvents/{industryEventId}/bookmark
+      - DELETE /industryEvents/{industryEventId}/bookmark
+      - DELETE /events/{eventId}/leads/{leadId}
+      not_idempotent:
+      - POST /events
+      - POST /leads
+      - POST /industryEvents
+      artifact: conventions/mobly-conventions.yml
+- target: $.info
+  description: Record the gaps this overlay cannot fix, so the review is carried with
+    the artifact rather than lost.
+  update:
+    x-apievangelist-gaps:
+    - No operationId on any of the 27 operations — every client generator will
+      invent its own method names, and no two will agree.
+    - No tags on any operation and no top-level tags[] — the spec cannot be
+      grouped or split by resource without inference.
+    - No description on any operation (summaries only).
+    - No examples in the spec; the published examples live only in the prose docs.
+    - 13 of 27 operations declare a 200 and no error responses, though the docs
+      state 401/403/429 apply to every endpoint.
+    - Errors are a bespoke {status, error} envelope, not RFC 9457
+      application/problem+json, and carry no machine-readable error code.
+- target: $.servers
+  description: Note that the base URL is complete and production — no templating, no
+    sandbox counterpart.
+  update:
+    x-environment: production
+    x-sandbox: null
+    x-note: Mobly publishes no sandbox or test-mode host; there is one base URL.

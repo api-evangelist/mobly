@@ -1,0 +1,58 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  registry lookups against npm, PyPI, RubyGems, crates.io and GitHub, plus the
+  Mobly developer documentation at https://help.getmobly.com/documentation
+package_count: 0
+official_sdk_count: 0
+packages: []
+note: >-
+  Mobly ships no first-party client libraries. The REST API v0 documentation
+  contains no SDK section — its only quickstart is a raw HTTP example with an
+  x-api-key header. No `SDKs` pointer is emitted, because there is no SDK.
+searched:
+- registry: npm
+  queries: [mobly, getmobly, mobly-sdk, '@getmobly/sdk']
+  result: 404 on every name; no Mobly-published package
+- registry: pypi
+  queries: [mobly, getmobly, mobly-api]
+  result: >-
+    `mobly` exists (v1.13.1) but is Google's Android/telephony automation test
+    framework — an unrelated project. NOT Mobly Inc. Deliberately not recorded
+    as a package for this provider.
+  version: null
+- registry: rubygems
+  queries: [mobly]
+  result: 404
+  version: null
+- registry: crates.io
+  queries: [mobly]
+  result: 403 (registry declined the unauthenticated request); no crate found via
+    other channels
+  version: null
+- registry: github
+  queries: [github.com/getmobly, github.com/mobly]
+  result: >-
+    github.com/getmobly 404s. github.com/mobly exists but is the Brazilian
+    furniture e-commerce company Mobly S.A. (PHP repos: sellercenter-sdk,
+    boleto-flex, zf1, laravel-auditing) — a NAME COLLISION, not this company.
+    Deliberately excluded.
+  version: null
+distribution_channels:
+- name: HubSpot App Marketplace
+  url: https://ecosystem.hubspot.com/marketplace/listing/mobly-by-mobly-15384025
+  kind: certified marketplace app (not a client library)
+  official: true
+x-evidence:
+- url: https://registry.npmjs.org/mobly
+  status: 404
+- url: https://pypi.org/pypi/mobly/json
+  status: 200
+  note: wrong Mobly — Google test framework
+- url: https://github.com/getmobly
+  status: 404
+- url: https://github.com/mobly
+  status: 200
+  note: wrong Mobly — Mobly S.A. (Brazil)
+- url: https://ecosystem.hubspot.com/marketplace/listing/mobly-by-mobly-15384025
+  status: 200

@@ -1,0 +1,96 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.getmobly.com/integrations
+spec_type: none
+asyncapi_published: false
+note: >-
+  Mobly publishes NO AsyncAPI document and no webhook payload contract. What it
+  does publish is an outbound event surface described in prose: a WEBHOOK
+  integration destination (confirmed as a first-class value of the
+  `IntegrationType` enum in the REST API's Lead.remoteIds field) and a
+  notification-rule engine with three named triggers. Both are captured below.
+  Because there is no published schema, no signing scheme, no retry policy and
+  no delivery-guarantee statement, an integrator cannot write a receiver from
+  the documentation alone — this is the largest machine-readable gap in Mobly's
+  event surface.
+
+webhook_destination:
+  advertised: true
+  name: Webhook
+  description: Send real-time data to any app or service you use.
+  source: https://www.getmobly.com/integrations
+  integration_type_enum: WEBHOOK
+  enum_source: https://help.getmobly.com/api-reference/readme/models
+  enum_note: >-
+    IntegrationType is documented as a string enum whose values include
+    MARKETO, HUB_SPOT, ZOHO, SALES_FORCE, PIPE_DRIVE, ELOQUA, PARDOT and
+    WEBHOOK. A lead's `remoteIds[]` records the id it was given in each
+    connected destination, WEBHOOK among them — so a webhook destination is a
+    real, modelled sync target, not marketing copy.
+  payload_schema: null
+  signing: null
+  retries: null
+  delivery_guarantee: null
+  configuration_ui: Hub → Integrations
+  docs: https://help.getmobly.com/help-center/integrations/integrations
+
+notification_rules:
+  advertised: true
+  docs: https://help.getmobly.com/help-center/notifications/creating-notification-rules
+  delivery_channels:
+  - Slack (via the Slack integration)
+  - Mobly Email (built-in mailer)
+  triggers:
+  - name: Lead Captured
+    fires_when: a lead is captured — scanned, manually added, or photo-uploaded
+    options:
+    - scope (which events the rule applies to)
+    - filter (lead source or specific qualifier values)
+    - notify mode (every lead, or unique leads only)
+    - message template with merge variables ({{first_name}}, {{event_name}}, {{rep_name}})
+  - name: Sync Error
+    fires_when: leads fail to sync to the connected CRM
+    requires: a connected CRM integration (HubSpot, Salesforce, Pipedrive or Zoho)
+    digest_intervals: [hourly, twice daily, daily, weekly (Mondays)]
+  - name: Event Summary
+    fires_when: around the event lifecycle (daily recap during the event, wrap-up
+      after)
+    sections: [Team Members Attending, Activation Schedule, Event Logistics, My Assignments]
+
+inbound_webhooks:
+- source: Stripe
+  product: Host (event ticketing)
+  verification: HMAC signature, verified server-side with Stripe's standard scheme
+    before a registration is marked paid
+  transport: HTTPS / TLS 1.2+
+  docs: https://help.getmobly.com/help-center/host/security-and-payments
+  note: >-
+    This is Mobly CONSUMING Stripe's webhook contract, not publishing its own.
+    Recorded because it is the only signed webhook path Mobly documents.
+
+polling_alternative:
+  endpoint: GET /leadActivityEvents
+  note: >-
+    In the absence of a documented outbound event schema, the REST API's lead
+    activity event stream (LeadActivityEventV0Response, with a
+    LeadActivityEventType enum) is the closest machine-readable equivalent — an
+    agent must poll it rather than subscribe.
+  spec: openapi/mobly-rest-api-v0-openapi.yml
+
+x-evidence:
+- url: https://www.getmobly.com/integrations
+  http_status: 200
+  note: '"Webhook — Send real-time data to any app or service you use." listed among
+    the integrations'
+- url: https://help.getmobly.com/api-reference/readme/models.md
+  http_status: 200
+  note: IntegrationType enum includes WEBHOOK
+- url: https://help.getmobly.com/help-center/notifications/creating-notification-rules.md
+  http_status: 200
+- url: https://help.getmobly.com/asyncapi.yaml
+  http_status: 404
+gaps:
+- No AsyncAPI document.
+- No webhook payload schema, event-name catalog, or example delivery.
+- No signature/HMAC scheme published for outbound webhooks.
+- No retry, ordering or at-least-once delivery statement.

@@ -1,0 +1,40 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.getmobly.com/
+plan_count: 0
+pricing_page: null
+currency: null
+model: sales-gated
+note: >-
+  Mobly publishes no pricing page and no plan tiers. The marketing site's
+  sitemap (https://www.getmobly.com/sitemap-0.xml, 170 URLs) contains no
+  /pricing or /plans path, and every conversion path on the site is "Book a
+  demo" / "Get a demo" pointing at https://www.getmobly.com/request-a-demo/.
+  There is no self-serve sign-up, no free tier and no trial link — trial
+  organizations are provisioned internally from Salesforce, per the changelog
+  entry of 2026-06-19. API access is likewise sales-gated: the API reference
+  states "Getting an API key: contact your Mobly CSM", so there is no published
+  API price, quota or overage.
+plans: []
+api_access:
+  self_serve: false
+  key_issuance: contact your Mobly CSM / customer support
+  metering_published: false
+  quota_published: false
+  rate_limit_artifact: rate-limits/mobly-rate-limits.yml
+adjacent_commerce:
+- name: Host ticketing
+  note: >-
+    Mobly's Host product sells event tickets on the CUSTOMER's behalf through a
+    connected Stripe account (ticket types and prices set per event). That is
+    the customer's pricing, not Mobly's own plan pricing.
+  docs: https://help.getmobly.com/help-center/host/selling-tickets.md
+x-evidence:
+- url: https://www.getmobly.com/sitemap-0.xml
+  status: 200
+  note: no /pricing or /plans URL in the published sitemap
+- url: https://www.getmobly.com/request-a-demo/
+  status: 200
+- url: https://help.getmobly.com/api-reference/readme.md
+  status: 200
+  note: '"Getting an API key: contact your Mobly CSM"'

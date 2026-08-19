@@ -1,0 +1,4320 @@
+{
+  "item": [
+    {
+      "id": "4faabf24-234d-46f1-8383-6ed42df2c7a9",
+      "name": "List events",
+      "request": {
+        "name": "List events",
+        "description": {
+          "content": "List events for the authenticated organization.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "events"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "limit",
+              "value": "20"
+            },
+            {
+              "disabled": false,
+              "key": "offset",
+              "value": "0"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "x-api-key"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "8eb27b22-9300-4d52-bc6a-1f6d41a5917c",
+          "name": "Events list.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "offset",
+                  "value": "0"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 200,\n  \"pagination\": {\n    \"limit\": 9660,\n    \"offset\": 1533\n  },\n  \"results\": {\n    \"events\": [\n      {\n        \"id\": 8000,\n        \"name\": \"string\",\n        \"type\": \"SIDECAR\",\n        \"registrationEnabled\": true,\n        \"createdAt\": \"1966-12-13T20:43:10.611Z\",\n        \"tagGroups\": [\n          \"58140e4a-4747-a3ec-54d1-6ee6a52b9402\",\n          \"af5ef35a-8780-45ac-3cf2-a84b03ef78fa\"\n        ],\n        \"startDate\": \"1967-12-06\",\n        \"endDate\": \"1974-09-10\",\n        \"location\": {\n          \"streetAddress\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\",\n          \"country\": \"string\",\n          \"latitude\": \"string\",\n          \"longitude\": \"string\",\n          \"timeZone\": \"string\"\n        }\n      },\n      {\n        \"id\": 6146,\n        \"name\": \"string\",\n        \"type\": \"OTHER\",\n        \"registrationEnabled\": true,\n        \"createdAt\": \"1982-05-27T11:12:29.365Z\",\n        \"tagGroups\": [\n          \"369abb3b-8657-eee9-bef6-401b2b16dff5\",\n          \"7b3821ca-eb35-7d87-cce0-967f76e4e3e2\"\n        ],\n        \"startDate\": \"1974-09-20\",\n        \"endDate\": \"1953-09-30\",\n        \"location\": {\n          \"streetAddress\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\",\n          \"country\": \"string\",\n          \"latitude\": \"string\",\n          \"longitude\": \"string\",\n          \"timeZone\": \"string\"\n        }\n      }\n    ],\n    \"total\": 2829\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "4c87509d-5b86-43a5-8af4-646a05787a87",
+          "name": "Bad request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "offset",
+                  "value": "0"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 4447,\n  \"error\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "ad5e9ea5-2024-4889-98f6-3f7bc1a1b6aa",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "offset",
+                  "value": "0"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 4447,\n  \"error\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "8f566248-2f6f-43d1-8170-1a875fb30e7b",
+          "name": "Forbidden",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "offset",
+                  "value": "0"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 4447,\n  \"error\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "39fbb418-fdfb-44f6-9e31-3f9f80a56382",
+          "name": "Too Many Requests",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "offset",
+                  "value": "0"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Too Many Requests",
+          "code": 429,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 4447,\n  \"error\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "75942d7c-6548-4344-8039-0df165c32828",
+          "name": "Internal server error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "offset",
+                  "value": "0"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 4447,\n  \"error\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "6d404ab3-a748-45e2-b2cc-aaeb990d585f",
+      "name": "Create event",
+      "request": {
+        "name": "Create event",
+        "description": {
+          "content": "Create an event for the authenticated organization.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "events"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "x-api-key"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"eventName\": \"<string>\",\n  \"eventType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"createdByEmail\": \"<email>\",\n  \"registrationEnabled\": \"<boolean>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "27e42c83-ddbe-4b46-afea-0cb4d1cab151",
+          "name": "Created event.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"eventName\": \"<string>\",\n  \"eventType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"createdByEmail\": \"<email>\",\n  \"registrationEnabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 200,\n  \"results\": {\n    \"id\": 9170,\n    \"name\": \"string\",\n    \"type\": \"<string>\",\n    \"registrationEnabled\": false,\n    \"createdAt\": \"1998-12-11T12:44:14.239Z\",\n    \"tagGroups\": [\n      \"a2a5c3ac-4c1a-98dc-d39a-5506022cfcce\",\n      \"408c8f85-2b1d-afd3-8706-aeaec3d4e9e6\"\n    ],\n    \"startDate\": \"1963-06-01\",\n    \"endDate\": \"1962-05-04\",\n    \"location\": {\n      \"streetAddress\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zip\": \"string\",\n      \"country\": \"string\",\n      \"latitude\": \"string\",\n      \"longitude\": \"string\",\n      \"timeZone\": \"string\"\n    }\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "4306a386-5f31-4570-acb5-86947ce6a416",
+          "name": "Bad request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"eventName\": \"<string>\",\n  \"eventType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"createdByEmail\": \"<email>\",\n  \"registrationEnabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 4447,\n  \"error\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "5318a97c-43f2-4c28-8bf5-c613641251ca",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"eventName\": \"<string>\",\n  \"eventType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"createdByEmail\": \"<email>\",\n  \"registrationEnabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 4447,\n  \"error\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "92a3dc48-9c19-4cfe-a395-5d1408413ea7",
+      "name": "Get event",
+      "request": {
+        "name": "Get event",
+        "description": {
+          "content": "Fetch a single event by ID.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "events",
+            ":eventId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "eventId",
+              "description": "(Required) Event ID"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "x-api-key"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "5b008a8f-4fb9-405c-bfb9-c263d9983995",
+          "name": "Event.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "events",
+                ":eventId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "eventId",
+                  "description": "(Required) Event ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 200,\n  \"results\": {\n    \"id\": 9170,\n    \"name\": \"string\",\n    \"type\": \"<string>\",\n    \"registrationEnabled\": false,\n    \"createdAt\": \"1998-12-11T12:44:14.239Z\",\n    \"tagGroups\": [\n      \"a2a5c3ac-4c1a-98dc-d39a-5506022cfcce\",\n      \"408c8f85-2b1d-afd3-8706-aeaec3d4e9e6\"\n    ],\n    \"startDate\": \"1963-06-01\",\n    \"endDate\": \"1962-05-04\",\n    \"location\": {\n      \"streetAddress\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zip\": \"string\",\n      \"country\": \"string\",\n      \"latitude\": \"string\",\n      \"longitude\": \"string\",\n      \"timeZone\": \"string\"\n    }\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "ee1913ef-191b-4683-a67b-58232060b591",
+          "name": "Event not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "events",
+                ":eventId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "eventId",
+                  "description": "(Required) Event ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 4447,\n  \"error\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "802ac627-090e-482e-8013-c23cdde3c9e0",
+      "name": "Update event",
+      "request": {
+        "name": "Update event",
+        "description": {
+          "content": "Update the full event record for the authenticated organization.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "events",
+            ":eventId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "eventId",
+              "description": "(Required) Event ID"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "PUT",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "x-api-key"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"eventName\": \"<string>\",\n  \"eventType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"registrationEnabled\": \"<boolean>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "fe433082-7d84-48f5-8e00-81ea6f60407d",
+          "name": "Updated event.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "events",
+                ":eventId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "eventId",
+                  "description": "(Required) Event ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"eventName\": \"<string>\",\n  \"eventType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"registrationEnabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 200,\n  \"results\": {\n    \"id\": 9170,\n    \"name\": \"string\",\n    \"type\": \"<string>\",\n    \"registrationEnabled\": false,\n    \"createdAt\": \"1998-12-11T12:44:14.239Z\",\n    \"tagGroups\": [\n      \"a2a5c3ac-4c1a-98dc-d39a-5506022cfcce\",\n      \"408c8f85-2b1d-afd3-8706-aeaec3d4e9e6\"\n    ],\n    \"startDate\": \"1963-06-01\",\n    \"endDate\": \"1962-05-04\",\n    \"location\": {\n      \"streetAddress\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zip\": \"string\",\n      \"country\": \"string\",\n      \"latitude\": \"string\",\n      \"longitude\": \"string\",\n      \"timeZone\": \"string\"\n    }\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "f058c5ef-7282-4ede-bf05-759537965e68",
+          "name": "Event not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "events",
+                ":eventId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "eventId",
+                  "description": "(Required) Event ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"eventName\": \"<string>\",\n  \"eventType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"registrationEnabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 4447,\n  \"error\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "d7808fa5-c647-4cb0-ab3f-e7e991f0f550",
+      "name": "Delete event",
+      "request": {
+        "name": "Delete event",
+        "description": {
+          "content": "Delete an event for the authenticated organization.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "events",
+            ":eventId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "eventId",
+              "description": "(Required) Event ID"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "DELETE",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "x-api-key"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "88171a71-2f1e-4d28-83e2-3696054b03fc",
+          "name": "Event deleted.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "events",
+                ":eventId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "eventId",
+                  "description": "(Required) Event ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 200,\n  \"results\": {}\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "c2243b78-5465-41aa-a03c-2f12036ae8e4",
+          "name": "Event not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "events",
+                ":eventId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "eventId",
+                  "description": "(Required) Event ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 4447,\n  \"error\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "d908b4d5-1eee-44ab-8680-6d84dd70bb1b",
+      "name": "List event leads",
+      "request": {
+        "name": "List event leads",
+        "description": {
+          "content": "Retrieve the leads associated with a specific event, including registration and check-in status.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "events",
+            ":eventId",
+            "leads"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "limit",
+              "value": "20"
+            },
+            {
+              "disabled": false,
+              "key": "offset",
+              "value": "0"
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "eventId",
+              "description": "(Required) Event ID"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "x-api-key"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "be205348-5321-4faf-a061-d475f4ae5aae",
+          "name": "Event leads list.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "events",
+                ":eventId",
+                "leads"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "offset",
+                  "value": "0"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "eventId",
+                  "description": "(Required) Event ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 200,\n  \"pagination\": {\n    \"limit\": 1087,\n    \"offset\": 7844\n  },\n  \"results\": {\n    \"eventLeads\": [\n      {\n        \"leadId\": \"48ba72f2-319d-c15c-72d1-39018a7b2503\",\n        \"registered\": false,\n        \"checkedIn\": false\n      },\n      {\n        \"leadId\": \"9e71c77f-35e5-fa62-710f-9d43131cc53c\",\n        \"registered\": false,\n        \"checkedIn\": false\n      }\n    ],\n    \"total\": 4851\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "f2a8982f-bcee-4f6f-82ed-35fdf05b7cc6",
+      "name": "Add or update event leads",
+      "request": {
+        "name": "Add or update event leads",
+        "description": {
+          "content": "Associate existing leads with an event and optionally update their `registered` and `checkedIn` status.\n\n- Creates association if missing.\n- Updates flags if association exists.\n",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "events",
+            ":eventId",
+            "leads"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "eventId",
+              "description": "(Required) Event ID"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "PUT",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "x-api-key"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"eventLeads\": [\n    {\n      \"leadId\": \"<uuid>\",\n      \"registered\": \"<boolean>\",\n      \"checkedIn\": \"<boolean>\"\n    },\n    {\n      \"leadId\": \"<uuid>\",\n      \"registered\": \"<boolean>\",\n      \"checkedIn\": \"<boolean>\"\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "2c0f9f9a-21ba-4df0-a2da-be23df6d4691",
+          "name": "Updated event lead associations.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "events",
+                ":eventId",
+                "leads"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "eventId",
+                  "description": "(Required) Event ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"eventLeads\": [\n    {\n      \"leadId\": \"<uuid>\",\n      \"registered\": \"<boolean>\",\n      \"checkedIn\": \"<boolean>\"\n    },\n    {\n      \"leadId\": \"<uuid>\",\n      \"registered\": \"<boolean>\",\n      \"checkedIn\": \"<boolean>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 200,\n  \"results\": {\n    \"eventLeads\": [\n      {\n        \"leadId\": \"767304f6-7a63-65a2-910d-b1cc3ccb7541\",\n        \"registered\": true,\n        \"checkedIn\": true\n      },\n      {\n        \"leadId\": \"3f150717-ba5e-1c5f-a43f-35471d5d6dfa\",\n        \"registered\": true,\n        \"checkedIn\": false\n      }\n    ]\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "c2b6a1d5-d0fb-419b-a444-1e803beed15d",
+      "name": "Remove lead from event",
+      "request": {
+        "name": "Remove lead from event",
+        "description": {
+          "content": "Delete a lead's association with an event for the authenticated organization.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "events",
+            ":eventId",
+            "leads",
+            ":leadId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "eventId",
+              "description": "(Required) Event ID"
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "leadId",
+              "description": "(Required) Lead ID"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "DELETE",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "x-api-key"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "18d4bb32-e60e-4911-bc23-a638c6002c7e",
+          "name": "Association removed.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "events",
+                ":eventId",
+                "leads",
+                ":leadId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "eventId",
+                  "description": "(Required) Event ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "leadId",
+                  "description": "(Required) Lead ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 200,\n  \"results\": {}\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "0f2d7d19-61bc-4d9b-ad8a-b45b8ebd19f8",
+      "name": "List event users",
+      "request": {
+        "name": "List event users",
+        "description": {
+          "content": "Retrieve the users assigned to a specific event for the authenticated organization.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "events",
+            ":eventId",
+            "users"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "limit",
+              "value": "20"
+            },
+            {
+              "disabled": false,
+              "key": "offset",
+              "value": "0"
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "eventId",
+              "description": "(Required) Event ID"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "x-api-key"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "3c58589b-e317-435f-a0c8-7ec1ba05b480",
+          "name": "Event users list.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "events",
+                ":eventId",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "offset",
+                  "value": "0"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "eventId",
+                  "description": "(Required) Event ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 200,\n  \"pagination\": {\n    \"limit\": 6732,\n    \"offset\": 4223\n  },\n  \"results\": {\n    \"users\": [\n      {\n        \"id\": 1047,\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\"\n      },\n      {\n        \"id\": 7941,\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\"\n      }\n    ],\n    \"total\": 4379\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "106fb734-91eb-4ca8-8fd4-92645f893886",
+      "name": "List leads",
+      "request": {
+        "name": "List leads",
+        "description": {
+          "content": "List leads for the authenticated organization.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "leads"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "limit",
+              "value": "20"
+            },
+            {
+              "disabled": false,
+              "key": "offset",
+              "value": "0"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "x-api-key"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "6ab0d54f-a835-4de6-a77a-33d89b906718",
+          "name": "Leads list.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "leads"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "offset",
+                  "value": "0"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 200,\n  \"pagination\": {\n    \"limit\": 9772,\n    \"offset\": 8171\n  },\n  \"results\": {\n    \"leads\": [\n      {\n        \"id\": \"651bddc6-6935-f6b1-e8a1-41dd4337e003\",\n        \"createdAt\": \"1956-02-13T14:12:57.502Z\",\n        \"isEnriched\": true,\n        \"phoneNumbers\": {\n          \"leadProvided\": [\n            {\n              \"number\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"preferred\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"number\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"preferred\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"moblyProvided\": [\n            {\n              \"number\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"preferred\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"number\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"preferred\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        \"company\": {\n          \"name\": \"string\",\n          \"industry\": \"string\",\n          \"linkedin\": \"string\",\n          \"streetAddress\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\",\n          \"country\": \"string\"\n        },\n        \"numberOfScans\": 9162,\n        \"activations\": [\n          {\n            \"activationId\": \"c89a86c5-41a0-3969-2580-84aeda11245c\",\n            \"checkedIn\": false,\n            \"registered\": true\n          },\n          {\n            \"activationId\": \"44322f9d-d653-1e8d-0198-340e966974e2\",\n            \"checkedIn\": true,\n            \"registered\": false\n          }\n        ],\n        \"tags\": [\n          {\n            \"tagOptionId\": \"08569e47-1161-5a01-77cb-8f3e75afd911\",\n            \"value\": \"string\"\n          },\n          {\n            \"tagOptionId\": \"bd32da66-ea3e-8926-aa29-183fd68b3efd\",\n            \"value\": \"string\"\n          }\n        ],\n        \"leadActivityEvents\": [\n          \"f81e385c-5937-4d87-bdf2-c09e52e94947\",\n          \"a430f63d-2fb0-c144-00c5-d4130c04c783\"\n        ],\n        \"remoteIds\": [\n          {\n            \"id\": \"string\",\n            \"integrationType\": {\n              \"value\": \"reference #/components/schemas/IntegrationType not found in the OpenAPI spec\"\n            }\n          },\n          {\n            \"id\": \"string\",\n            \"integrationType\": {\n              \"value\": \"reference #/components/schemas/IntegrationType not found in the OpenAPI spec\"\n            }\n          }\n        ],\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"email\": \"FX1IkRHx09KL@ACVqViYhlmTSAhfs.oozk\",\n        \"description\": \"string\",\n        \"linkedin\": \"string\",\n        \"facebook\": \"string\",\n        \"twitter\": \"string\",\n        \"jobTitle\": \"string\",\n        \"address\": \"string\",\n        \"lastScannedBy\": \"HC0@QWryBrFnp.xwd\"\n      },\n      {\n        \"id\": \"3411cabc-2b8d-1f91-1d78-987c087607e6\",\n        \"createdAt\": \"1983-02-12T08:27:52.476Z\",\n        \"isEnriched\": true,\n        \"phoneNumbers\": {\n          \"leadProvided\": [\n            {\n              \"number\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"preferred\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"number\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"preferred\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"moblyProvided\": [\n            {\n              \"number\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"preferred\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"number\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"preferred\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        \"company\": {\n          \"name\": \"string\",\n          \"industry\": \"string\",\n          \"linkedin\": \"string\",\n          \"streetAddress\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\",\n          \"country\": \"string\"\n        },\n        \"numberOfScans\": 5488,\n        \"activations\": [\n          {\n            \"activationId\": \"eb7b7676-62e5-9dee-0e5d-81c17015cf6e\",\n            \"checkedIn\": false,\n            \"registered\": true\n          },\n          {\n            \"activationId\": \"b39f497c-dc56-1222-0275-9a78673ba7f2\",\n            \"checkedIn\": true,\n            \"registered\": false\n          }\n        ],\n        \"tags\": [\n          {\n            \"tagOptionId\": \"1e407be8-d333-d8a2-a314-710a66520e7b\",\n            \"value\": \"string\"\n          },\n          {\n            \"tagOptionId\": \"f1f11c89-f61c-b0bd-5fa5-4c328aa06086\",\n            \"value\": \"string\"\n          }\n        ],\n        \"leadActivityEvents\": [\n          \"7b1ae761-706d-397c-92af-f10b4ce3acb7\",\n          \"2adc4f6c-7773-3a0f-fcbf-e0141480658f\"\n        ],\n        \"remoteIds\": [\n          {\n            \"id\": \"string\",\n            \"integrationType\": {\n              \"value\": \"reference #/components/schemas/IntegrationType not found in the OpenAPI spec\"\n            }\n          },\n          {\n            \"id\": \"string\",\n            \"integrationType\": {\n              \"value\": \"reference #/components/schemas/IntegrationType not found in the OpenAPI spec\"\n            }\n          }\n        ],\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"email\": \"Y7GRL3V0XboDH@QyPOLrtgTdmyte.op\",\n        \"description\": \"string\",\n        \"linkedin\": \"string\",\n        \"facebook\": \"string\",\n        \"twitter\": \"string\",\n        \"jobTitle\": \"string\",\n        \"address\": \"string\",\n        \"lastScannedBy\": \"Oga2kzBFUapB5zr@sfkbRAKgsLBVEiIRlUPaQG.gb\"\n      }\n    ],\n    \"total\": 3646\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "8d4ccbf3-465c-4d69-9b16-4967bdbdbff1",
+      "name": "Create lead",
+      "request": {
+        "name": "Create lead",
+        "description": {
+          "content": "Create a lead for the authenticated organization.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "leads"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "x-api-key"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"createdByEmail\": \"<email>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"companyName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phoneNumbers\": [\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\",\n      \"preferred\": \"<boolean>\"\n    },\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\",\n      \"preferred\": \"<boolean>\"\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "6fac4d1c-b325-4528-9d6d-8cd58f322edf",
+          "name": "Created lead.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "leads"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"createdByEmail\": \"<email>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"companyName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phoneNumbers\": [\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\",\n      \"preferred\": \"<boolean>\"\n    },\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\",\n      \"preferred\": \"<boolean>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 200,\n  \"results\": {\n    \"id\": \"95b4e32f-b485-effd-e7e8-97526eec8317\",\n    \"createdAt\": \"1979-12-02T22:34:30.849Z\",\n    \"isEnriched\": false,\n    \"phoneNumbers\": {\n      \"leadProvided\": [\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\",\n          \"preferred\": \"<boolean>\"\n        },\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\",\n          \"preferred\": \"<boolean>\"\n        }\n      ],\n      \"moblyProvided\": [\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\",\n          \"preferred\": \"<boolean>\"\n        },\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\",\n          \"preferred\": \"<boolean>\"\n        }\n      ]\n    },\n    \"company\": {\n      \"name\": \"string\",\n      \"industry\": \"string\",\n      \"linkedin\": \"string\",\n      \"streetAddress\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zip\": \"string\",\n      \"country\": \"string\"\n    },\n    \"numberOfScans\": 2223,\n    \"activations\": [\n      {\n        \"activationId\": \"57347157-85a4-a22a-5d0f-800a246da760\",\n        \"checkedIn\": false,\n        \"registered\": true\n      },\n      {\n        \"activationId\": \"1a082ea5-b1aa-68b4-83f7-5f5db89148f0\",\n        \"checkedIn\": true,\n        \"registered\": true\n      }\n    ],\n    \"tags\": [\n      {\n        \"tagOptionId\": \"ffb61142-f184-82fb-f33c-8b903d4178ce\",\n        \"value\": \"string\"\n      },\n      {\n        \"tagOptionId\": \"772ffbdb-5e8b-21e9-4b3b-5f1861fb7331\",\n        \"value\": \"string\"\n      }\n    ],\n    \"leadActivityEvents\": [\n      \"ee0269b3-2e88-3842-c9e5-5a9263170b9f\",\n      \"78726fa7-76f7-faca-5022-8d76808f043f\"\n    ],\n    \"remoteIds\": [\n      {\n        \"id\": \"string\",\n        \"integrationType\": {\n          \"value\": \"reference #/components/schemas/IntegrationType not found in the OpenAPI spec\"\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"integrationType\": {\n          \"value\": \"reference #/components/schemas/IntegrationType not found in the OpenAPI spec\"\n        }\n      }\n    ],\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"email\": \"X-9oh@BbdCEyxHlvUmtjuQhZ.phu\",\n    \"description\": \"string\",\n    \"linkedin\": \"string\",\n    \"facebook\": \"string\",\n    \"twitter\": \"string\",\n    \"jobTitle\": \"string\",\n    \"address\": \"string\",\n    \"lastScannedBy\": \"KGXVfO4k@HNVNUFKXP.wxi\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "b4c74c4b-0a99-4ce7-b79d-c462fd0c7b3e",
+      "name": "Get lead",
+      "request": {
+        "name": "Get lead",
+        "description": {
+          "content": "Fetch a single lead by ID.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "leads",
+            ":leadId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "leadId",
+              "description": "(Required) Lead ID"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "x-api-key"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "96bac15a-a7cc-4b4a-9efe-7e09a19e7844",
+          "name": "Lead.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "leads",
+                ":leadId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "leadId",
+                  "description": "(Required) Lead ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 200,\n  \"results\": {\n    \"id\": \"95b4e32f-b485-effd-e7e8-97526eec8317\",\n    \"createdAt\": \"1979-12-02T22:34:30.849Z\",\n    \"isEnriched\": false,\n    \"phoneNumbers\": {\n      \"leadProvided\": [\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\",\n          \"preferred\": \"<boolean>\"\n        },\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\",\n          \"preferred\": \"<boolean>\"\n        }\n      ],\n      \"moblyProvided\": [\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\",\n          \"preferred\": \"<boolean>\"\n        },\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\",\n          \"preferred\": \"<boolean>\"\n        }\n      ]\n    },\n    \"company\": {\n      \"name\": \"string\",\n      \"industry\": \"string\",\n      \"linkedin\": \"string\",\n      \"streetAddress\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zip\": \"string\",\n      \"country\": \"string\"\n    },\n    \"numberOfScans\": 2223,\n    \"activations\": [\n      {\n        \"activationId\": \"57347157-85a4-a22a-5d0f-800a246da760\",\n        \"checkedIn\": false,\n        \"registered\": true\n      },\n      {\n        \"activationId\": \"1a082ea5-b1aa-68b4-83f7-5f5db89148f0\",\n        \"checkedIn\": true,\n        \"registered\": true\n      }\n    ],\n    \"tags\": [\n      {\n        \"tagOptionId\": \"ffb61142-f184-82fb-f33c-8b903d4178ce\",\n        \"value\": \"string\"\n      },\n      {\n        \"tagOptionId\": \"772ffbdb-5e8b-21e9-4b3b-5f1861fb7331\",\n        \"value\": \"string\"\n      }\n    ],\n    \"leadActivityEvents\": [\n      \"ee0269b3-2e88-3842-c9e5-5a9263170b9f\",\n      \"78726fa7-76f7-faca-5022-8d76808f043f\"\n    ],\n    \"remoteIds\": [\n      {\n        \"id\": \"string\",\n        \"integrationType\": {\n          \"value\": \"reference #/components/schemas/IntegrationType not found in the OpenAPI spec\"\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"integrationType\": {\n          \"value\": \"reference #/components/schemas/IntegrationType not found in the OpenAPI spec\"\n        }\n      }\n    ],\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"email\": \"X-9oh@BbdCEyxHlvUmtjuQhZ.phu\",\n    \"description\": \"string\",\n    \"linkedin\": \"string\",\n    \"facebook\": \"string\",\n    \"twitter\": \"string\",\n    \"jobTitle\": \"string\",\n    \"address\": \"string\",\n    \"lastScannedBy\": \"KGXVfO4k@HNVNUFKXP.wxi\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "41f01581-393a-4009-80ab-966d8a7b0139",
+          "name": "Lead not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "leads",
+                ":leadId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "leadId",
+                  "description": "(Required) Lead ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 4447,\n  \"error\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "779c9f56-ced3-44f7-9670-08d3bc8c85b8",
+      "name": "Patch lead",
+      "request": {
+        "name": "Patch lead",
+        "description": {
+          "content": "Partially update a lead and its associated persona record.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "leads",
+            ":leadId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "leadId",
+              "description": "(Required) Lead ID"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "PATCH",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "x-api-key"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"address\": \"<string>\",\n  \"linkedin\": \"<string>\",\n  \"facebook\": \"<string>\",\n  \"twitter\": \"<string>\",\n  \"profilePicture\": \"<string>\",\n  \"description\": \"<string>\",\n  \"jobTitle\": \"<string>\",\n  \"phoneNumbers\": [\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\",\n      \"preferred\": \"<boolean>\"\n    },\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\",\n      \"preferred\": \"<boolean>\"\n    }\n  ],\n  \"remoteId\": {\n    \"id\": \"<string>\",\n    \"integrationType\": {\n      \"value\": \"reference #/components/schemas/IntegrationType not found in the OpenAPI spec\"\n    }\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "99d15bb9-e63b-456a-94cf-f252dfbd736e",
+          "name": "Updated lead.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "leads",
+                ":leadId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "leadId",
+                  "description": "(Required) Lead ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"address\": \"<string>\",\n  \"linkedin\": \"<string>\",\n  \"facebook\": \"<string>\",\n  \"twitter\": \"<string>\",\n  \"profilePicture\": \"<string>\",\n  \"description\": \"<string>\",\n  \"jobTitle\": \"<string>\",\n  \"phoneNumbers\": [\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\",\n      \"preferred\": \"<boolean>\"\n    },\n    {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\",\n      \"preferred\": \"<boolean>\"\n    }\n  ],\n  \"remoteId\": {\n    \"id\": \"<string>\",\n    \"integrationType\": {\n      \"value\": \"reference #/components/schemas/IntegrationType not found in the OpenAPI spec\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 200,\n  \"results\": {\n    \"id\": \"95b4e32f-b485-effd-e7e8-97526eec8317\",\n    \"createdAt\": \"1979-12-02T22:34:30.849Z\",\n    \"isEnriched\": false,\n    \"phoneNumbers\": {\n      \"leadProvided\": [\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\",\n          \"preferred\": \"<boolean>\"\n        },\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\",\n          \"preferred\": \"<boolean>\"\n        }\n      ],\n      \"moblyProvided\": [\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\",\n          \"preferred\": \"<boolean>\"\n        },\n        {\n          \"number\": \"<string>\",\n          \"type\": \"<string>\",\n          \"preferred\": \"<boolean>\"\n        }\n      ]\n    },\n    \"company\": {\n      \"name\": \"string\",\n      \"industry\": \"string\",\n      \"linkedin\": \"string\",\n      \"streetAddress\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zip\": \"string\",\n      \"country\": \"string\"\n    },\n    \"numberOfScans\": 2223,\n    \"activations\": [\n      {\n        \"activationId\": \"57347157-85a4-a22a-5d0f-800a246da760\",\n        \"checkedIn\": false,\n        \"registered\": true\n      },\n      {\n        \"activationId\": \"1a082ea5-b1aa-68b4-83f7-5f5db89148f0\",\n        \"checkedIn\": true,\n        \"registered\": true\n      }\n    ],\n    \"tags\": [\n      {\n        \"tagOptionId\": \"ffb61142-f184-82fb-f33c-8b903d4178ce\",\n        \"value\": \"string\"\n      },\n      {\n        \"tagOptionId\": \"772ffbdb-5e8b-21e9-4b3b-5f1861fb7331\",\n        \"value\": \"string\"\n      }\n    ],\n    \"leadActivityEvents\": [\n      \"ee0269b3-2e88-3842-c9e5-5a9263170b9f\",\n      \"78726fa7-76f7-faca-5022-8d76808f043f\"\n    ],\n    \"remoteIds\": [\n      {\n        \"id\": \"string\",\n        \"integrationType\": {\n          \"value\": \"reference #/components/schemas/IntegrationType not found in the OpenAPI spec\"\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"integrationType\": {\n          \"value\": \"reference #/components/schemas/IntegrationType not found in the OpenAPI spec\"\n        }\n      }\n    ],\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"email\": \"X-9oh@BbdCEyxHlvUmtjuQhZ.phu\",\n    \"description\": \"string\",\n    \"linkedin\": \"string\",\n    \"facebook\": \"string\",\n    \"twitter\": \"string\",\n    \"jobTitle\": \"string\",\n    \"address\": \"string\",\n    \"lastScannedBy\": \"KGXVfO4k@HNVNUFKXP.wxi\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "e15dcb0f-c3ac-4ea2-b3c0-f5e9507c7dad",
+      "name": "Delete lead",
+      "request": {
+        "name": "Delete lead",
+        "description": {
+          "content": "Delete a lead for the authenticated organization.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "leads",
+            ":leadId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "leadId",
+              "description": "(Required) Lead ID"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "DELETE",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "x-api-key"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "553518c4-1a34-4af0-90cf-5e457dad8bf3",
+          "name": "Lead deleted.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "leads",
+                ":leadId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "leadId",
+                  "description": "(Required) Lead ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 200,\n  \"results\": {}\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "fe2ad9d4-cf38-4d65-bcf6-5603b970e97c",
+      "name": "List lead activity events",
+      "request": {
+        "name": "List lead activity events",
+        "description": {
+          "content": "List lead activity events for the authenticated organization.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "leadActivityEvents"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "limit",
+              "value": "20"
+            },
+            {
+              "disabled": false,
+              "key": "offset",
+              "value": "0"
+            },
+            {
+              "disabled": false,
+              "key": "leadId",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "eventType",
+              "value": "<string>"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "x-api-key"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "5d6e6b04-d74e-443f-8778-f8bd4b77d811",
+          "name": "Lead activity events list.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "leadActivityEvents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "key": "leadId",
+                  "value": "<string>"
+                },
+                {
+                  "key": "eventType",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 200,\n  \"pagination\": {\n    \"limit\": 5444,\n    \"offset\": 3736\n  },\n  \"results\": {\n    \"leadActivityEvents\": [\n      {\n        \"id\": \"9ea218da-9918-419a-26a8-3c3cc84fc1a3\",\n        \"createdAt\": \"1972-06-18T02:54:32.063Z\",\n        \"eventType\": \"<string>\",\n        \"associatedLead\": \"a41f46bf-2652-e8a6-cb32-3bc536f6cfd7\",\n        \"createdBy\": \"IwvwS8JWZR5@QOCvbdztUrOMYzGNoCCpAWeblFMyOOf.prf\",\n        \"eventNotes\": \"string\",\n        \"associatedCampaign\": \"21302785-784f-7ef5-c680-f008bebd627e\",\n        \"associatedEvent\": 2474,\n        \"associatedActivation\": \"2ebae1a6-9c73-0fec-7a2b-c0239441a807\",\n        \"associatedTagOption\": \"4141896a-1b92-7bfa-6f34-7dd6eedcee63\"\n      },\n      {\n        \"id\": \"0368c546-d359-961d-b9fc-58e5e849fa8e\",\n        \"createdAt\": \"1948-02-26T21:58:46.660Z\",\n        \"eventType\": \"<string>\",\n        \"associatedLead\": \"78da66ac-e1c6-1be0-9dd3-7ca9c46a2414\",\n        \"createdBy\": \"fSvR5ZnWe8@VrAwiSJhryEthvzEYrOtZfXEp.wj\",\n        \"eventNotes\": \"string\",\n        \"associatedCampaign\": \"c341defc-9126-1987-00b3-6c6f3ba4c590\",\n        \"associatedEvent\": 5744,\n        \"associatedActivation\": \"5084459c-3804-4d57-0edb-fe0cc540a8bb\",\n        \"associatedTagOption\": \"ffbb4978-3a9c-eadb-1d63-25d8bb04f137\"\n      }\n    ],\n    \"total\": 6140\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "44f88bb5-3337-46ba-b6af-bc876f450357",
+      "name": "Get lead activity event",
+      "request": {
+        "name": "Get lead activity event",
+        "description": {
+          "content": "Fetch a single lead activity event by ID.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "leadActivityEvents",
+            ":leadActivityEventId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "leadActivityEventId",
+              "description": "(Required) Lead activity event ID"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "x-api-key"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "cbb4c41f-c1bd-417d-82e7-4880443ee30a",
+          "name": "Lead activity event.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "leadActivityEvents",
+                ":leadActivityEventId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "leadActivityEventId",
+                  "description": "(Required) Lead activity event ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 200,\n  \"results\": {\n    \"id\": \"eaa416bf-5442-3a49-7e90-7bfd5285d399\",\n    \"createdAt\": \"1946-12-11T15:12:58.576Z\",\n    \"eventType\": \"<string>\",\n    \"associatedLead\": \"050b25f5-4353-9b7c-2ef4-864da8d3eccd\",\n    \"createdBy\": \"LicpCHeTGMas@wZOfCYMwqDCkVVyWZpVZSulbnsItzodZ.ehx\",\n    \"eventNotes\": \"string\",\n    \"associatedCampaign\": \"351fa397-005f-e1b3-6a53-3315a039b52f\",\n    \"associatedEvent\": 2376,\n    \"associatedActivation\": \"da4d9981-110b-9ffd-6848-66ca99002551\",\n    \"associatedTagOption\": \"d144a3eb-636c-ae9d-96f4-aa7fda449d0b\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "d17d5dd6-6c6b-4d19-9f8b-3a09173d826c",
+          "name": "Not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "leadActivityEvents",
+                ":leadActivityEventId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "leadActivityEventId",
+                  "description": "(Required) Lead activity event ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 4447,\n  \"error\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "574a1700-0c1a-41ef-bc24-54ded8124e94",
+      "name": "List activations",
+      "request": {
+        "name": "List activations",
+        "description": {
+          "content": "List activations for the organization.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "activations"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "limit",
+              "value": "20"
+            },
+            {
+              "disabled": false,
+              "key": "offset",
+              "value": "0"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "x-api-key"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "b705f20d-e4c8-43df-ba1d-657e6d44b4da",
+          "name": "Activations list.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "activations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "offset",
+                  "value": "0"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 200,\n  \"pagination\": {\n    \"limit\": 2562,\n    \"offset\": 4298\n  },\n  \"results\": {\n    \"activations\": [\n      {\n        \"id\": \"f892f904-9904-8351-d617-4e7c16670099\",\n        \"eventId\": 9805,\n        \"name\": \"string\",\n        \"createdAt\": \"2012-10-09T12:26:50.910Z\",\n        \"type\": \"DEMO\",\n        \"startDate\": \"2000-03-08\",\n        \"endDate\": \"1996-12-05\",\n        \"startTime\": \"09:00:00\",\n        \"endTime\": \"12:00:00\",\n        \"users\": [\n          \"ZX8bYSTKPwj1Icz@YrxtOoFNdPzuWjwLC.qqs\",\n          \"ZM3yx9xE@XgxRoWgZkliaRGhXxPWK.kqqp\"\n        ],\n        \"numberOfScans\": 7630,\n        \"createdBy\": \"nhl@QlXxHAhpyZRIlfeREGtNXeXLzUQzzO.yt\",\n        \"location\": {\n          \"streetAddress\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\",\n          \"country\": \"string\",\n          \"latitude\": \"string\",\n          \"longitude\": \"string\",\n          \"timeZone\": \"string\"\n        }\n      },\n      {\n        \"id\": \"e7a58aca-5b93-974d-f182-99840d2069b9\",\n        \"eventId\": 2703,\n        \"name\": \"string\",\n        \"createdAt\": \"1998-05-28T07:12:49.225Z\",\n        \"type\": \"BOOTH\",\n        \"startDate\": \"1983-12-02\",\n        \"endDate\": \"2014-04-11\",\n        \"startTime\": \"09:00:00\",\n        \"endTime\": \"12:00:00\",\n        \"users\": [\n          \"JHTlH978u@PWzEW.uo\",\n          \"UdEj@icHqDNrsJwAntjsdMj.fjdp\"\n        ],\n        \"numberOfScans\": 5300,\n        \"createdBy\": \"llC@lZCjDiVInBRsVxWcLX.xly\",\n        \"location\": {\n          \"streetAddress\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\",\n          \"country\": \"string\",\n          \"latitude\": \"string\",\n          \"longitude\": \"string\",\n          \"timeZone\": \"string\"\n        }\n      }\n    ],\n    \"total\": 7796\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "0ef9a63f-9443-43d3-b86a-385c1e75f9bc",
+      "name": "Get activation",
+      "request": {
+        "name": "Get activation",
+        "description": {
+          "content": "Fetch a single activation by ID.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "activations",
+            ":activationId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "activationId",
+              "description": "(Required) Activation ID"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "x-api-key"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "e1d1a4eb-533a-42f1-8f9e-ca12d7d65c4f",
+          "name": "Activation.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "activations",
+                ":activationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "activationId",
+                  "description": "(Required) Activation ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 200,\n  \"results\": {\n    \"id\": \"b1d94336-b21e-de4a-0faa-6ab767a7ad80\",\n    \"eventId\": 1961,\n    \"name\": \"string\",\n    \"createdAt\": \"1984-12-13T01:22:01.674Z\",\n    \"type\": \"WORKSHOP\",\n    \"startDate\": \"1970-04-03\",\n    \"endDate\": \"2024-09-13\",\n    \"startTime\": \"09:00:00\",\n    \"endTime\": \"12:00:00\",\n    \"users\": [\n      \"xBWwOVWwnrmx@NOfMEGHWKA.ox\",\n      \"c2xmGyEuai@zgEEuvSKYtrsJedF.lnoz\"\n    ],\n    \"numberOfScans\": 217,\n    \"createdBy\": \"ruWM0aQrzX25z@TPCjBixlqJMKh.ty\",\n    \"location\": {\n      \"streetAddress\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zip\": \"string\",\n      \"country\": \"string\",\n      \"latitude\": \"string\",\n      \"longitude\": \"string\",\n      \"timeZone\": \"string\"\n    }\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "fa4f9c93-1bf7-485d-90d7-69dde414ae67",
+          "name": "Not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "activations",
+                ":activationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "activationId",
+                  "description": "(Required) Activation ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 4447,\n  \"error\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "b8a0e7fe-845b-4cee-b661-20d1167c64a4",
+      "name": "List tag groups",
+      "request": {
+        "name": "List tag groups",
+        "description": {
+          "content": "List tag groups defined for the organization, including tag options.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "tagGroups"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "limit",
+              "value": "20"
+            },
+            {
+              "disabled": false,
+              "key": "offset",
+              "value": "0"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "x-api-key"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "343f03f7-d3e6-41f2-9013-a70fe93dac3a",
+          "name": "Tag groups list.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "tagGroups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "offset",
+                  "value": "0"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 200,\n  \"pagination\": {\n    \"limit\": 5090,\n    \"offset\": 9379\n  },\n  \"results\": {\n    \"tagGroups\": [\n      {\n        \"id\": \"127e6d46-53cd-58bb-0fda-41eb841c2c4d\",\n        \"name\": \"string\",\n        \"status\": \"PUBLISHED\",\n        \"allowsMultipleSelection\": true,\n        \"displayOrder\": 7362,\n        \"required\": true,\n        \"allEvents\": false,\n        \"tagOptions\": [\n          {\n            \"id\": \"e653779b-0804-e4ba-e1c0-3028b8d6cd13\",\n            \"displayOrder\": 6710,\n            \"value\": \"string\"\n          },\n          {\n            \"id\": \"2e54453d-a6ab-3176-7433-c4e31d76b5bb\",\n            \"displayOrder\": 9489,\n            \"value\": \"string\"\n          }\n        ],\n        \"usageInstructions\": \"string\"\n      },\n      {\n        \"id\": \"d1295521-c271-a32e-a4f1-527cf91d4f2e\",\n        \"name\": \"string\",\n        \"status\": \"ARCHIVED\",\n        \"allowsMultipleSelection\": true,\n        \"displayOrder\": 2202,\n        \"required\": true,\n        \"allEvents\": false,\n        \"tagOptions\": [\n          {\n            \"id\": \"443dcfc2-2dc5-c04a-9ee9-55375d2a4187\",\n            \"displayOrder\": 5934,\n            \"value\": \"string\"\n          },\n          {\n            \"id\": \"d5fcea9a-7346-f2af-ce69-ce8771fd9515\",\n            \"displayOrder\": 2760,\n            \"value\": \"string\"\n          }\n        ],\n        \"usageInstructions\": \"string\"\n      }\n    ],\n    \"total\": 5137\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "a7324f1c-099c-4d15-8b62-222a95d47981",
+      "name": "Get tag group",
+      "request": {
+        "name": "Get tag group",
+        "description": {
+          "content": "Fetch a single tag group by ID.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "tagGroups",
+            ":tagGroupId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "tagGroupId",
+              "description": "(Required) Tag group ID"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "x-api-key"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "c807e636-c1f0-4ee7-916e-173e9faa8ff1",
+          "name": "Tag group.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "tagGroups",
+                ":tagGroupId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tagGroupId",
+                  "description": "(Required) Tag group ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 200,\n  \"results\": {\n    \"id\": \"5760b595-4388-f3b3-af73-ec711f4b48aa\",\n    \"name\": \"string\",\n    \"status\": \"ARCHIVED\",\n    \"allowsMultipleSelection\": true,\n    \"displayOrder\": 9922,\n    \"required\": false,\n    \"allEvents\": false,\n    \"tagOptions\": [\n      {\n        \"id\": \"efe11fc9-028f-79b0-dcaf-16d5262338f2\",\n        \"displayOrder\": 5528,\n        \"value\": \"string\"\n      },\n      {\n        \"id\": \"cdce743e-affc-5eec-dc84-cde16ec3d4ba\",\n        \"displayOrder\": 7116,\n        \"value\": \"string\"\n      }\n    ],\n    \"usageInstructions\": \"string\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "34aba0fc-420f-4de8-964e-12e0813eac1b",
+          "name": "Not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "tagGroups",
+                ":tagGroupId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tagGroupId",
+                  "description": "(Required) Tag group ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 4447,\n  \"error\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "7ab2c4d7-99f0-4e6e-a354-b84d5860babf",
+      "name": "List industry events",
+      "request": {
+        "name": "List industry events",
+        "description": {
+          "content": "List industry events. Supports filtering by URL or full-text search.\n\n- `eventUrl` — return only the event matching this exact URL\n- `q` — full-text search across name, venueCity, venueState, venueCountry, description, keywords, industries, personas\n\nIf `eventUrl` is provided, `q` is ignored. If neither is provided, all industry events are returned (paginated).\n",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "industryEvents"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "limit",
+              "value": "20"
+            },
+            {
+              "disabled": false,
+              "key": "offset",
+              "value": "0"
+            },
+            {
+              "disabled": false,
+              "key": "eventUrl",
+              "value": "<string>",
+              "description": "Filter by exact event URL"
+            },
+            {
+              "disabled": false,
+              "key": "q",
+              "value": "<string>",
+              "description": "Full-text search query"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "x-api-key"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "3e93d9dd-c2e6-4e6d-983f-51e50464d9cf",
+          "name": "Industry events list.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "industryEvents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "key": "eventUrl",
+                  "value": "<string>"
+                },
+                {
+                  "key": "q",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 200,\n  \"pagination\": {\n    \"limit\": 8693,\n    \"offset\": 8605\n  },\n  \"results\": {\n    \"industryEvents\": [\n      {\n        \"id\": \"c1b3d6ec-3f3a-8987-ac87-ebcc416e9e28\",\n        \"createdAt\": \"1980-05-03T10:31:25.559Z\",\n        \"updatedAt\": \"2014-05-21T05:55:34.359Z\",\n        \"name\": \"string\",\n        \"startDate\": \"2012-09-07T07:51:17.227Z\",\n        \"endDate\": \"1991-08-06T07:06:07.132Z\",\n        \"sourceType\": \"string\",\n        \"sourceId\": \"string\",\n        \"eventType\": \"string\",\n        \"venueCity\": \"string\",\n        \"venueState\": \"string\",\n        \"venueCountry\": \"string\",\n        \"venueName\": \"string\",\n        \"venueFullAddress\": \"string\",\n        \"venueCoordinates\": \"string\",\n        \"numberOfAttendees\": 1414,\n        \"numberOfExhibitors\": 5156,\n        \"attendeeCost\": \"string\",\n        \"boothCost\": \"string\",\n        \"exhibitorIndustries\": [\n          \"string\",\n          \"string\"\n        ],\n        \"attendeePersonas\": [\n          \"string\",\n          \"string\"\n        ],\n        \"keywords\": [\n          \"string\",\n          \"string\"\n        ],\n        \"website\": \"string\",\n        \"description\": \"string\",\n        \"eventUrl\": \"string\",\n        \"isBookmarked\": false\n      },\n      {\n        \"id\": \"2a092ea5-762e-9d5b-18a1-b55609673186\",\n        \"createdAt\": \"2019-07-03T07:12:25.200Z\",\n        \"updatedAt\": \"2008-01-31T19:47:24.929Z\",\n        \"name\": \"string\",\n        \"startDate\": \"2008-02-23T07:00:58.111Z\",\n        \"endDate\": \"1990-04-11T18:49:02.549Z\",\n        \"sourceType\": \"string\",\n        \"sourceId\": \"string\",\n        \"eventType\": \"string\",\n        \"venueCity\": \"string\",\n        \"venueState\": \"string\",\n        \"venueCountry\": \"string\",\n        \"venueName\": \"string\",\n        \"venueFullAddress\": \"string\",\n        \"venueCoordinates\": \"string\",\n        \"numberOfAttendees\": 5208,\n        \"numberOfExhibitors\": 7775,\n        \"attendeeCost\": \"string\",\n        \"boothCost\": \"string\",\n        \"exhibitorIndustries\": [\n          \"string\",\n          \"string\"\n        ],\n        \"attendeePersonas\": [\n          \"string\",\n          \"string\"\n        ],\n        \"keywords\": [\n          \"string\",\n          \"string\"\n        ],\n        \"website\": \"string\",\n        \"description\": \"string\",\n        \"eventUrl\": \"string\",\n        \"isBookmarked\": false\n      }\n    ],\n    \"total\": 9089\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "425b39ef-2834-45e6-a668-b171f31c2441",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "industryEvents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "key": "eventUrl",
+                  "value": "<string>"
+                },
+                {
+                  "key": "q",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 4447,\n  \"error\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "f71e2385-ca0d-4b0e-8db8-340843a02411",
+      "name": "Create industry event",
+      "request": {
+        "name": "Create industry event",
+        "description": {
+          "content": "Create an industry event with automatic deduplication:\n\n1. If an event with the same `eventUrl` already exists, the existing record is returned (`created: false`).\n2. If no URL match but `name` and `startDate` match, the event is still created but `potentialDuplicates` are returned.\n",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "industryEvents"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "x-api-key"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"<string>\",\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"sourceType\": \"<string>\",\n  \"sourceId\": \"<string>\",\n  \"eventType\": \"<string>\",\n  \"venueCity\": \"<string>\",\n  \"venueState\": \"<string>\",\n  \"venueCountry\": \"<string>\",\n  \"venueName\": \"<string>\",\n  \"venueFullAddress\": \"<string>\",\n  \"venueCoordinates\": \"<string>\",\n  \"numberOfAttendees\": \"<integer>\",\n  \"numberOfExhibitors\": \"<integer>\",\n  \"attendeeCost\": \"<string>\",\n  \"boothCost\": \"<string>\",\n  \"exhibitorIndustries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"attendeePersonas\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"website\": \"<string>\",\n  \"description\": \"<string>\",\n  \"eventUrl\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "6d68589d-85da-495f-a1bd-1c5a67f4bede",
+          "name": "Created or existing industry event.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "industryEvents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"sourceType\": \"<string>\",\n  \"sourceId\": \"<string>\",\n  \"eventType\": \"<string>\",\n  \"venueCity\": \"<string>\",\n  \"venueState\": \"<string>\",\n  \"venueCountry\": \"<string>\",\n  \"venueName\": \"<string>\",\n  \"venueFullAddress\": \"<string>\",\n  \"venueCoordinates\": \"<string>\",\n  \"numberOfAttendees\": \"<integer>\",\n  \"numberOfExhibitors\": \"<integer>\",\n  \"attendeeCost\": \"<string>\",\n  \"boothCost\": \"<string>\",\n  \"exhibitorIndustries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"attendeePersonas\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"website\": \"<string>\",\n  \"description\": \"<string>\",\n  \"eventUrl\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 200,\n  \"results\": {\n    \"industryEvent\": {\n      \"id\": \"171ea86c-283d-ec85-1812-7dcbbdf48ba8\",\n      \"createdAt\": \"2004-12-04T13:25:16.096Z\",\n      \"updatedAt\": \"2003-11-07T18:04:01.126Z\",\n      \"name\": \"string\",\n      \"startDate\": \"1986-01-30T12:55:45.605Z\",\n      \"endDate\": \"1975-09-10T03:00:27.776Z\",\n      \"sourceType\": \"string\",\n      \"sourceId\": \"string\",\n      \"eventType\": \"string\",\n      \"venueCity\": \"string\",\n      \"venueState\": \"string\",\n      \"venueCountry\": \"string\",\n      \"venueName\": \"string\",\n      \"venueFullAddress\": \"string\",\n      \"venueCoordinates\": \"string\",\n      \"numberOfAttendees\": 2658,\n      \"numberOfExhibitors\": 921,\n      \"attendeeCost\": \"string\",\n      \"boothCost\": \"string\",\n      \"exhibitorIndustries\": [\n        \"string\",\n        \"string\"\n      ],\n      \"attendeePersonas\": [\n        \"string\",\n        \"string\"\n      ],\n      \"keywords\": [\n        \"string\",\n        \"string\"\n      ],\n      \"website\": \"string\",\n      \"description\": \"string\",\n      \"eventUrl\": \"string\",\n      \"isBookmarked\": false\n    },\n    \"created\": false,\n    \"potentialDuplicates\": [\n      {\n        \"id\": \"c516d6aa-d1fc-34a1-9e99-37f8cbb58da4\",\n        \"createdAt\": \"1977-08-06T19:14:59.891Z\",\n        \"updatedAt\": \"1998-07-03T13:02:10.294Z\",\n        \"name\": \"string\",\n        \"startDate\": \"1987-11-12T14:21:32.045Z\",\n        \"endDate\": \"1975-07-30T20:09:03.351Z\",\n        \"sourceType\": \"string\",\n        \"sourceId\": \"string\",\n        \"eventType\": \"string\",\n        \"venueCity\": \"string\",\n        \"venueState\": \"string\",\n        \"venueCountry\": \"string\",\n        \"venueName\": \"string\",\n        \"venueFullAddress\": \"string\",\n        \"venueCoordinates\": \"string\",\n        \"numberOfAttendees\": 2029,\n        \"numberOfExhibitors\": 1582,\n        \"attendeeCost\": \"string\",\n        \"boothCost\": \"string\",\n        \"exhibitorIndustries\": [\n          \"string\",\n          \"string\"\n        ],\n        \"attendeePersonas\": [\n          \"string\",\n          \"string\"\n        ],\n        \"keywords\": [\n          \"string\",\n          \"string\"\n        ],\n        \"website\": \"string\",\n        \"description\": \"string\",\n        \"eventUrl\": \"string\",\n        \"isBookmarked\": false\n      },\n      {\n        \"id\": \"eef1b52f-aa77-d14e-2707-2d0364601fe9\",\n        \"createdAt\": \"1977-07-21T12:21:37.552Z\",\n        \"updatedAt\": \"1963-11-11T21:20:24.933Z\",\n        \"name\": \"string\",\n        \"startDate\": \"1990-03-14T03:42:06.016Z\",\n        \"endDate\": \"1965-11-23T10:32:47.789Z\",\n        \"sourceType\": \"string\",\n        \"sourceId\": \"string\",\n        \"eventType\": \"string\",\n        \"venueCity\": \"string\",\n        \"venueState\": \"string\",\n        \"venueCountry\": \"string\",\n        \"venueName\": \"string\",\n        \"venueFullAddress\": \"string\",\n        \"venueCoordinates\": \"string\",\n        \"numberOfAttendees\": 9210,\n        \"numberOfExhibitors\": 1016,\n        \"attendeeCost\": \"string\",\n        \"boothCost\": \"string\",\n        \"exhibitorIndustries\": [\n          \"string\",\n          \"string\"\n        ],\n        \"attendeePersonas\": [\n          \"string\",\n          \"string\"\n        ],\n        \"keywords\": [\n          \"string\",\n          \"string\"\n        ],\n        \"website\": \"string\",\n        \"description\": \"string\",\n        \"eventUrl\": \"string\",\n        \"isBookmarked\": false\n      }\n    ]\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "da478208-0c6a-4312-86b2-2b71c401e1c5",
+          "name": "Bad request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "industryEvents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"sourceType\": \"<string>\",\n  \"sourceId\": \"<string>\",\n  \"eventType\": \"<string>\",\n  \"venueCity\": \"<string>\",\n  \"venueState\": \"<string>\",\n  \"venueCountry\": \"<string>\",\n  \"venueName\": \"<string>\",\n  \"venueFullAddress\": \"<string>\",\n  \"venueCoordinates\": \"<string>\",\n  \"numberOfAttendees\": \"<integer>\",\n  \"numberOfExhibitors\": \"<integer>\",\n  \"attendeeCost\": \"<string>\",\n  \"boothCost\": \"<string>\",\n  \"exhibitorIndustries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"attendeePersonas\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"website\": \"<string>\",\n  \"description\": \"<string>\",\n  \"eventUrl\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 4447,\n  \"error\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "4207b5c5-967c-449d-95e4-2977a26ebf4b",
+      "name": "List bookmarked industry events",
+      "request": {
+        "name": "List bookmarked industry events",
+        "description": {
+          "content": "List industry events bookmarked by the authenticated organization.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "industryEvents",
+            "bookmarks"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "x-api-key"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "c07a2db8-f230-4a26-a02f-2646b6867837",
+          "name": "Bookmarked industry events.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "industryEvents",
+                "bookmarks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 200,\n  \"results\": {\n    \"industryEvents\": [\n      {\n        \"id\": \"bd0e1876-73cf-b1a2-b63f-9982739f98b1\",\n        \"createdAt\": \"1963-09-27T08:14:24.673Z\",\n        \"updatedAt\": \"1952-08-12T14:39:22.632Z\",\n        \"name\": \"string\",\n        \"startDate\": \"1954-08-23T05:50:59.549Z\",\n        \"endDate\": \"1955-02-01T21:28:24.976Z\",\n        \"sourceType\": \"string\",\n        \"sourceId\": \"string\",\n        \"eventType\": \"string\",\n        \"venueCity\": \"string\",\n        \"venueState\": \"string\",\n        \"venueCountry\": \"string\",\n        \"venueName\": \"string\",\n        \"venueFullAddress\": \"string\",\n        \"venueCoordinates\": \"string\",\n        \"numberOfAttendees\": 2370,\n        \"numberOfExhibitors\": 7314,\n        \"attendeeCost\": \"string\",\n        \"boothCost\": \"string\",\n        \"exhibitorIndustries\": [\n          \"string\",\n          \"string\"\n        ],\n        \"attendeePersonas\": [\n          \"string\",\n          \"string\"\n        ],\n        \"keywords\": [\n          \"string\",\n          \"string\"\n        ],\n        \"website\": \"string\",\n        \"description\": \"string\",\n        \"eventUrl\": \"string\",\n        \"isBookmarked\": true\n      },\n      {\n        \"id\": \"904e11d8-6091-38a0-3783-133b3b05adb4\",\n        \"createdAt\": \"1954-06-07T00:07:51.613Z\",\n        \"updatedAt\": \"1983-08-15T13:51:11.329Z\",\n        \"name\": \"string\",\n        \"startDate\": \"1963-06-19T15:31:32.968Z\",\n        \"endDate\": \"1956-08-12T00:09:51.879Z\",\n        \"sourceType\": \"string\",\n        \"sourceId\": \"string\",\n        \"eventType\": \"string\",\n        \"venueCity\": \"string\",\n        \"venueState\": \"string\",\n        \"venueCountry\": \"string\",\n        \"venueName\": \"string\",\n        \"venueFullAddress\": \"string\",\n        \"venueCoordinates\": \"string\",\n        \"numberOfAttendees\": 4570,\n        \"numberOfExhibitors\": 1362,\n        \"attendeeCost\": \"string\",\n        \"boothCost\": \"string\",\n        \"exhibitorIndustries\": [\n          \"string\",\n          \"string\"\n        ],\n        \"attendeePersonas\": [\n          \"string\",\n          \"string\"\n        ],\n        \"keywords\": [\n          \"string\",\n          \"string\"\n        ],\n        \"website\": \"string\",\n        \"description\": \"string\",\n        \"eventUrl\": \"string\",\n        \"isBookmarked\": false\n      }\n    ]\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "e5434ebc-3c71-4afc-a7b7-c00cb0e6bd82",
+      "name": "Get industry event",
+      "request": {
+        "name": "Get industry event",
+        "description": {
+          "content": "Fetch a single industry event by ID. Includes `isBookmarked` for the authenticated organization.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "industryEvents",
+            ":industryEventId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<uuid>",
+              "key": "industryEventId",
+              "description": "(Required) Industry event ID"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "x-api-key"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "07f046b5-a4a4-4486-b5f8-1995fe84707f",
+          "name": "Industry event.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "industryEvents",
+                ":industryEventId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "industryEventId",
+                  "description": "(Required) Industry event ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 200,\n  \"results\": {\n    \"industryEvent\": {\n      \"id\": \"8b6ef6d7-a045-9caf-90e7-002f1d55ae50\",\n      \"createdAt\": \"1993-07-30T08:51:25.198Z\",\n      \"updatedAt\": \"1981-12-22T04:15:32.118Z\",\n      \"name\": \"string\",\n      \"startDate\": \"1947-07-02T02:21:30.298Z\",\n      \"endDate\": \"2013-11-20T05:02:16.417Z\",\n      \"sourceType\": \"string\",\n      \"sourceId\": \"string\",\n      \"eventType\": \"string\",\n      \"venueCity\": \"string\",\n      \"venueState\": \"string\",\n      \"venueCountry\": \"string\",\n      \"venueName\": \"string\",\n      \"venueFullAddress\": \"string\",\n      \"venueCoordinates\": \"string\",\n      \"numberOfAttendees\": 4576,\n      \"numberOfExhibitors\": 3098,\n      \"attendeeCost\": \"string\",\n      \"boothCost\": \"string\",\n      \"exhibitorIndustries\": [\n        \"string\",\n        \"string\"\n      ],\n      \"attendeePersonas\": [\n        \"string\",\n        \"string\"\n      ],\n      \"keywords\": [\n        \"string\",\n        \"string\"\n      ],\n      \"website\": \"string\",\n      \"description\": \"string\",\n      \"eventUrl\": \"string\",\n      \"isBookmarked\": false\n    }\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "5049d6ff-b55c-4e33-98db-f4d6002fc188",
+          "name": "Not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "industryEvents",
+                ":industryEventId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "industryEventId",
+                  "description": "(Required) Industry event ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 4447,\n  \"error\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "4f8df8bb-13f8-489e-aa3c-f6d397bf081f",
+      "name": "Update industry event",
+      "request": {
+        "name": "Update industry event",
+        "description": {
+          "content": "Partially update an industry event. Only fields included in the body are modified.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "industryEvents",
+            ":industryEventId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<uuid>",
+              "key": "industryEventId",
+              "description": "(Required) Industry event ID"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "PUT",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "x-api-key"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"<string>\",\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"sourceType\": \"<string>\",\n  \"sourceId\": \"<string>\",\n  \"eventType\": \"<string>\",\n  \"venueCity\": \"<string>\",\n  \"venueState\": \"<string>\",\n  \"venueCountry\": \"<string>\",\n  \"venueName\": \"<string>\",\n  \"venueFullAddress\": \"<string>\",\n  \"venueCoordinates\": \"<string>\",\n  \"numberOfAttendees\": \"<integer>\",\n  \"numberOfExhibitors\": \"<integer>\",\n  \"attendeeCost\": \"<string>\",\n  \"boothCost\": \"<string>\",\n  \"exhibitorIndustries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"attendeePersonas\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"website\": \"<string>\",\n  \"description\": \"<string>\",\n  \"eventUrl\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "a288bdb4-3256-4aa1-ad20-cf32721c7537",
+          "name": "Updated industry event.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "industryEvents",
+                ":industryEventId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "industryEventId",
+                  "description": "(Required) Industry event ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"sourceType\": \"<string>\",\n  \"sourceId\": \"<string>\",\n  \"eventType\": \"<string>\",\n  \"venueCity\": \"<string>\",\n  \"venueState\": \"<string>\",\n  \"venueCountry\": \"<string>\",\n  \"venueName\": \"<string>\",\n  \"venueFullAddress\": \"<string>\",\n  \"venueCoordinates\": \"<string>\",\n  \"numberOfAttendees\": \"<integer>\",\n  \"numberOfExhibitors\": \"<integer>\",\n  \"attendeeCost\": \"<string>\",\n  \"boothCost\": \"<string>\",\n  \"exhibitorIndustries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"attendeePersonas\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"website\": \"<string>\",\n  \"description\": \"<string>\",\n  \"eventUrl\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 200,\n  \"results\": {\n    \"industryEvent\": {\n      \"id\": \"8b6ef6d7-a045-9caf-90e7-002f1d55ae50\",\n      \"createdAt\": \"1993-07-30T08:51:25.198Z\",\n      \"updatedAt\": \"1981-12-22T04:15:32.118Z\",\n      \"name\": \"string\",\n      \"startDate\": \"1947-07-02T02:21:30.298Z\",\n      \"endDate\": \"2013-11-20T05:02:16.417Z\",\n      \"sourceType\": \"string\",\n      \"sourceId\": \"string\",\n      \"eventType\": \"string\",\n      \"venueCity\": \"string\",\n      \"venueState\": \"string\",\n      \"venueCountry\": \"string\",\n      \"venueName\": \"string\",\n      \"venueFullAddress\": \"string\",\n      \"venueCoordinates\": \"string\",\n      \"numberOfAttendees\": 4576,\n      \"numberOfExhibitors\": 3098,\n      \"attendeeCost\": \"string\",\n      \"boothCost\": \"string\",\n      \"exhibitorIndustries\": [\n        \"string\",\n        \"string\"\n      ],\n      \"attendeePersonas\": [\n        \"string\",\n        \"string\"\n      ],\n      \"keywords\": [\n        \"string\",\n        \"string\"\n      ],\n      \"website\": \"string\",\n      \"description\": \"string\",\n      \"eventUrl\": \"string\",\n      \"isBookmarked\": false\n    }\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "16660501-b84d-4a91-af02-3f1d79e9007d",
+          "name": "Not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "industryEvents",
+                ":industryEventId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "industryEventId",
+                  "description": "(Required) Industry event ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"sourceType\": \"<string>\",\n  \"sourceId\": \"<string>\",\n  \"eventType\": \"<string>\",\n  \"venueCity\": \"<string>\",\n  \"venueState\": \"<string>\",\n  \"venueCountry\": \"<string>\",\n  \"venueName\": \"<string>\",\n  \"venueFullAddress\": \"<string>\",\n  \"venueCoordinates\": \"<string>\",\n  \"numberOfAttendees\": \"<integer>\",\n  \"numberOfExhibitors\": \"<integer>\",\n  \"attendeeCost\": \"<string>\",\n  \"boothCost\": \"<string>\",\n  \"exhibitorIndustries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"attendeePersonas\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"website\": \"<string>\",\n  \"description\": \"<string>\",\n  \"eventUrl\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 4447,\n  \"error\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "7d856248-c441-4c19-ae3c-0bbe154f1774",
+      "name": "Bookmark industry event",
+      "request": {
+        "name": "Bookmark industry event",
+        "description": {
+          "content": "Add an industry event to the authenticated organization's bookmarks.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "industryEvents",
+            ":industryEventId",
+            "bookmark"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<uuid>",
+              "key": "industryEventId",
+              "description": "(Required) Industry event ID"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "x-api-key"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "a6365366-237a-4616-bc1e-10fae20e9d23",
+          "name": "Bookmarked.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "industryEvents",
+                ":industryEventId",
+                "bookmark"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "industryEventId",
+                  "description": "(Required) Industry event ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 200,\n  \"results\": {\n    \"success\": true\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "2a40ad6f-14ac-47de-bf70-579958933a09",
+          "name": "Not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "industryEvents",
+                ":industryEventId",
+                "bookmark"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "industryEventId",
+                  "description": "(Required) Industry event ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 4447,\n  \"error\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "e52d8c73-7e26-4e0d-a5c5-4d4e225c4a6f",
+      "name": "Unbookmark industry event",
+      "request": {
+        "name": "Unbookmark industry event",
+        "description": {
+          "content": "Remove an industry event from the authenticated organization's bookmarks.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "industryEvents",
+            ":industryEventId",
+            "bookmark"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<uuid>",
+              "key": "industryEventId",
+              "description": "(Required) Industry event ID"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "DELETE",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "x-api-key"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "d07f5882-3508-44fc-9621-67a54e30fe7d",
+          "name": "Unbookmarked.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "industryEvents",
+                ":industryEventId",
+                "bookmark"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "industryEventId",
+                  "description": "(Required) Industry event ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 200,\n  \"results\": {\n    \"success\": true\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "ea54ce03-65bd-481a-9fe9-da73242c0501",
+          "name": "Not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "industryEvents",
+                ":industryEventId",
+                "bookmark"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "industryEventId",
+                  "description": "(Required) Industry event ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "x-api-key",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": 4447,\n  \"error\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://core-api.getmobly.com/api/v0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "18975561-38a9-457e-bef8-7de4f5ffb601",
+    "name": "Mobly REST API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Mobly REST API (version v0).\n\n- JSON-based\n- Authenticated via API key\n- Versioned under `/v0`\n",
+      "type": "text/plain"
+    }
+  }
+}

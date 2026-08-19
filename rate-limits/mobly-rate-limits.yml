@@ -1,0 +1,51 @@
+generated: '2026-08-13'
+method: searched
+source: https://help.getmobly.com/documentation/rest-api/rest-api-v0
+api: Mobly REST API v0
+limit_count: 1
+model: token-bucket
+scope: per-api-key
+status_on_exhaustion: 429
+limits:
+- scope: per-api-key
+  window: continuous (token bucket)
+  limit: 1 request/second sustained
+  burst: 20 requests
+  parameters:
+    maxTokens: 20
+    refillRate: 1 token/second
+  note: >-
+    Published as the DEFAULT usage rate — Mobly states each API key has its own
+    maxTokens and refillRate, so per-customer values may differ. Each request
+    consumes one token; when the bucket is empty the API returns 429.
+headers:
+- name: X-RateLimit-Limit
+  meaning: maximum burst capacity (maxTokens) for the API key
+  on: all successful responses and all 429 responses
+- name: X-RateLimit-Remaining
+  meaning: tokens remaining after this request
+  on: all successful responses and all 429 responses
+- name: X-RateLimit-Reset
+  meaning: Unix timestamp (seconds) when the bucket will fully refill
+  on: all successful responses and all 429 responses
+- name: Retry-After
+  meaning: seconds to wait before retrying
+  on: 429 responses only
+runtime_fields:
+- tokensRemaining
+- retryAt
+x-evidence:
+- url: https://help.getmobly.com/documentation/rest-api/rest-api-v0
+  http_status: 200
+  note: '"Rate Limiting" section — token bucket model, default maxTokens=20,
+    refillRate=1/second, and the four response headers'
+- url: https://core-api.getmobly.com/api/v0/events
+  http_status: 401
+  note: >-
+    Anonymous probe 2026-08-13 returned no X-RateLimit-* headers; the documented
+    headers are described as present on successful and 429 responses, and could
+    not be observed without a key.
+notes:
+- Limits could not be observed live — an organization API key is issued only by
+  Mobly customer success, so every anonymous request fails auth before the
+  limiter reports.

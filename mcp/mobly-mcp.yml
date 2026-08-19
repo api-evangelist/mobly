@@ -1,0 +1,161 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/mobly-rest-api-v0-openapi.yml
+status: candidate
+published_by_provider: false
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: api-key
+  verified: probed
+note: >-
+  Mobly ships NO MCP server. This file is an API Evangelist candidate tool list
+  derived from the 27 published REST operations — it is a design sketch, not a
+  Mobly product. Deliberately NO `type: MCPServer` pointer is wired into
+  apis.yml: that pointer asserts the provider operates an agent surface, and
+  crediting a derived candidate would be false credit. Wire it only if and when
+  Mobly publishes a real endpoint or package.
+probes:
+- url: https://core-api.getmobly.com/mcp
+  method: POST tools/list
+  status: 404
+- url: https://help.getmobly.com/mcp
+  method: POST tools/list
+  status: 405
+  note: GitBook Next.js host rejecting the method; no MCP server behind it
+- url: https://www.getmobly.com/mcp
+  method: POST tools/list
+  status: 404
+- url: https://api.getmobly.com/mcp
+  method: POST tools/list
+  status: 404
+- url: https://mcp.getmobly.com/
+  status: 0
+  note: host does not resolve
+server:
+  name: mobly
+  transport: http
+  url: null
+  auth:
+    type: apiKey
+    header: x-api-key
+    note: an organization API key issued by Mobly customer success would be required
+      by any future server
+tools:
+- name: list_events
+  description: List events for the authenticated organization.
+  source_operation: openapi/mobly-rest-api-v0-openapi.yml#GET /events
+  read_only: true
+- name: create_event
+  description: Create an event.
+  source_operation: openapi/mobly-rest-api-v0-openapi.yml#POST /events
+  read_only: false
+- name: get_event
+  description: Get a single event by id.
+  source_operation: openapi/mobly-rest-api-v0-openapi.yml#GET /events/{eventId}
+  read_only: true
+- name: update_event
+  description: Replace an event.
+  source_operation: openapi/mobly-rest-api-v0-openapi.yml#PUT /events/{eventId}
+  read_only: false
+- name: delete_event
+  description: Delete an event.
+  source_operation: openapi/mobly-rest-api-v0-openapi.yml#DELETE /events/{eventId}
+  read_only: false
+- name: list_event_leads
+  description: List the leads associated with an event.
+  source_operation: openapi/mobly-rest-api-v0-openapi.yml#GET /events/{eventId}/leads
+  read_only: true
+- name: upsert_event_leads
+  description: Add or update leads on an event (idempotent upsert).
+  source_operation: openapi/mobly-rest-api-v0-openapi.yml#PUT /events/{eventId}/leads
+  read_only: false
+- name: remove_event_lead
+  description: Remove a lead from an event.
+  source_operation: openapi/mobly-rest-api-v0-openapi.yml#DELETE /events/{eventId}/leads/{leadId}
+  read_only: false
+- name: list_event_users
+  description: List the Mobly users assigned to an event.
+  source_operation: openapi/mobly-rest-api-v0-openapi.yml#GET /events/{eventId}/users
+  read_only: true
+- name: list_leads
+  description: List leads for the authenticated organization.
+  source_operation: openapi/mobly-rest-api-v0-openapi.yml#GET /leads
+  read_only: true
+- name: create_lead
+  description: Create a lead.
+  source_operation: openapi/mobly-rest-api-v0-openapi.yml#POST /leads
+  read_only: false
+- name: get_lead
+  description: Get a single lead by id.
+  source_operation: openapi/mobly-rest-api-v0-openapi.yml#GET /leads/{leadId}
+  read_only: true
+- name: patch_lead
+  description: Partially update a lead.
+  source_operation: openapi/mobly-rest-api-v0-openapi.yml#PATCH /leads/{leadId}
+  read_only: false
+- name: delete_lead
+  description: Delete a lead.
+  source_operation: openapi/mobly-rest-api-v0-openapi.yml#DELETE /leads/{leadId}
+  read_only: false
+- name: list_lead_activity_events
+  description: List lead activity events (the lead timeline).
+  source_operation: openapi/mobly-rest-api-v0-openapi.yml#GET /leadActivityEvents
+  read_only: true
+- name: get_lead_activity_event
+  description: Get a single lead activity event.
+  source_operation: openapi/mobly-rest-api-v0-openapi.yml#GET /leadActivityEvents/{leadActivityEventId}
+  read_only: true
+- name: list_activations
+  description: List activations.
+  source_operation: openapi/mobly-rest-api-v0-openapi.yml#GET /activations
+  read_only: true
+- name: get_activation
+  description: Get a single activation.
+  source_operation: openapi/mobly-rest-api-v0-openapi.yml#GET /activations/{activationId}
+  read_only: true
+- name: list_tag_groups
+  description: List qualifier / tag groups.
+  source_operation: openapi/mobly-rest-api-v0-openapi.yml#GET /tagGroups
+  read_only: true
+- name: get_tag_group
+  description: Get a single tag group with its options.
+  source_operation: openapi/mobly-rest-api-v0-openapi.yml#GET /tagGroups/{tagGroupId}
+  read_only: true
+- name: list_industry_events
+  description: Search the Scout industry-event database.
+  source_operation: openapi/mobly-rest-api-v0-openapi.yml#GET /industryEvents
+  read_only: true
+- name: create_industry_event
+  description: Add an industry event to the Scout database.
+  source_operation: openapi/mobly-rest-api-v0-openapi.yml#POST /industryEvents
+  read_only: false
+- name: list_bookmarked_industry_events
+  description: List bookmarked industry events.
+  source_operation: openapi/mobly-rest-api-v0-openapi.yml#GET /industryEvents/bookmarks
+  read_only: true
+- name: get_industry_event
+  description: Get a single industry event.
+  source_operation: openapi/mobly-rest-api-v0-openapi.yml#GET /industryEvents/{industryEventId}
+  read_only: true
+- name: update_industry_event
+  description: Update an industry event.
+  source_operation: openapi/mobly-rest-api-v0-openapi.yml#PUT /industryEvents/{industryEventId}
+  read_only: false
+- name: bookmark_industry_event
+  description: Bookmark an industry event.
+  source_operation: openapi/mobly-rest-api-v0-openapi.yml#POST /industryEvents/{industryEventId}/bookmark
+  read_only: false
+- name: unbookmark_industry_event
+  description: Remove an industry-event bookmark.
+  source_operation: openapi/mobly-rest-api-v0-openapi.yml#DELETE /industryEvents/{industryEventId}/bookmark
+  read_only: false
+coverage:
+  rest_operations: 27
+  candidate_tools: 27
+  bound: 27
+caveat: >-
+  The source spec declares no operationIds, so each candidate tool is bound to
+  its METHOD + PATH, which are real, rather than to an invented operationId.

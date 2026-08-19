@@ -1,0 +1,52 @@
+generated: '2026-08-13'
+method: searched
+source: openapi/mobly-rest-api-v0-openapi.yml
+docs: https://help.getmobly.com/documentation/rest-api/rest-api-v0
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+  oauth2_flows: []
+  self_serve_key: false
+  key_issuance: >-
+    API keys are not self-serve. The API reference states "Getting an API key:
+    contact your Mobly CSM"; the REST API v0 doc says "You can request an API
+    key by contacting customer support."
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: x-api-key
+  scope: organization
+  description: >-
+    Every request must carry a valid organization API key in the `x-api-key`
+    header. The key scopes the request to the authenticated organization — all
+    list endpoints return only that organization's records.
+  sources:
+  - openapi/mobly-rest-api-v0-openapi.yml
+  - https://help.getmobly.com/documentation/rest-api/rest-api-v0
+errors:
+- condition: Missing API key
+  status: 401
+  body: '{"status": 401, "error": "Unauthorized"}'
+  observed: true
+- condition: Invalid API key
+  status: 403
+  body: '{"status": 403, "error": "Forbidden"}'
+  observed: true
+x-evidence:
+- url: https://help.getmobly.com/documentation/rest-api/rest-api-v0
+  http_status: 200
+  note: documented authentication section, header name and error table
+- url: https://core-api.getmobly.com/api/v0/events
+  http_status: 401
+  note: anonymous GET returned {"error":"Unauthorized"} on 2026-08-13
+- url: https://core-api.getmobly.com/api/v0/events
+  http_status: 403
+  note: GET with an invalid x-api-key returned {"error":"Forbidden"} on 2026-08-13
+notes:
+- No OAuth 2.0, OIDC, mTLS or JWT surface is published; the REST API v0 is API-key only.
+- No scope or permission model is documented, so no scopes/ artifact is emitted.
+- The customer web app (hub.getmobly.com) authenticates end users with Firebase Auth, which is
+  a separate, non-public surface from the documented REST API.

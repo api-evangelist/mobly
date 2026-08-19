@@ -1,0 +1,76 @@
+generated: '2026-08-13'
+method: probed
+source: live GET probes of every Mobly host, 2026-08-13
+result: no-hits
+summary: >-
+  No .well-known document is served by any Mobly host. www.getmobly.com and
+  api.getmobly.com return a real 404 for every path. hub.getmobly.com is a
+  Firebase-hosted single-page app whose catch-all answers HTTP 200 with the
+  same 963-byte HTML shell for EVERY path including /llms.txt and
+  /.well-known/agent-card.json — those 200s are not documents and are recorded
+  as misses. No WellKnown, SecurityTxt, APICatalog or AgentCard pointer is
+  emitted.
+hosts:
+- host: https://www.getmobly.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+  - {path: /llms.txt, status: 404}
+  - {path: /robots.txt, status: 200, note: 'served, but not a .well-known document'}
+- host: https://core-api.getmobly.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+- host: https://api.getmobly.com
+  note: >-
+    A Next.js console (routes /login, /organizations, /organizations/[id],
+    /enrich-contacts) — an internal operations UI, not the REST API. The
+    documented API base is core-api.getmobly.com.
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+  - {path: /llms.txt, status: 404}
+- host: https://hub.getmobly.com
+  spa_catch_all: true
+  note: >-
+    FALSE POSITIVE GUARD — every path below returned HTTP 200 with the
+    identical 963-byte SPA index.html (title "Mobly Hub App"). None is a
+    document; all are recorded as misses.
+  documents:
+  - {path: /.well-known/security.txt, status: 200, document: false}
+  - {path: /.well-known/openid-configuration, status: 200, document: false}
+  - {path: /.well-known/oauth-authorization-server, status: 200, document: false}
+  - {path: /.well-known/oauth-protected-resource, status: 200, document: false}
+  - {path: /.well-known/api-catalog, status: 200, document: false}
+  - {path: /.well-known/ai-plugin.json, status: 200, document: false}
+  - {path: /.well-known/agent-card.json, status: 200, document: false}
+  - {path: /.well-known/agent.json, status: 200, document: false}
+  - {path: /llms.txt, status: 200, document: false}
+- host: https://help.getmobly.com
+  note: GitBook docs host — serves /llms.txt (captured to llms/mobly-llms.txt) but no
+    .well-known documents.
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+  - {path: /llms.txt, status: 200, document: true, file: ../llms/mobly-llms.txt}

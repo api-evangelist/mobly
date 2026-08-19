@@ -1,0 +1,207 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/mobly-rest-api-v0-openapi.yml
+docs: https://help.getmobly.com/api-reference/readme/models
+api: Mobly REST API v0
+summary:
+  entities: 9
+  schemas_in_spec: 45
+  id_style: >-
+    MIXED and undocumented — Event.id is an int64 integer (path param typed
+    integer), while Lead.id, Activation.id, TagGroup.id, IndustryEvent.id and
+    LeadActivityEvent.id are all string UUIDs. No typed id prefixes are
+    published, so an id is only meaningful together with its collection, and a
+    client cannot assume one id type across the API.
+  tenancy: >-
+    Every collection is implicitly scoped to the organization that owns the
+    API key; there is no organization resource or organizationId field on the
+    public v0 surface.
+entities:
+- name: Event
+  schema: Event
+  description: A Mobly event (conference, trade show, activation host) owned by the
+    organization.
+  path: /events
+  key: id
+  fields: [id, name, type, registrationEnabled, createdByEmail, createdAt, startDate,
+    endDate, location, tagGroups]
+  enums:
+    type: EventType
+- name: Lead
+  schema: LeadV0Response
+  description: A captured and (optionally) enriched person, the core record of the
+    platform.
+  path: /leads
+  key: id
+  fields: [id, createdAt, isEnriched, firstName, lastName, email, description, linkedin,
+    facebook, twitter, jobTitle, address, phoneNumbers, company, numberOfScans, lastScannedBy,
+    activations, tags, leadActivityEvents, remoteIds]
+- name: EventLead
+  schema: EventLeadV0Response
+  description: The association of a Lead to an Event, carrying registration and
+    check-in state.
+  path: /events/{eventId}/leads
+  key: leadId
+  fields: [leadId, registered, checkedIn]
+  join_of: [Event, Lead]
+- name: User
+  schema: UserV0Response
+  description: A Mobly user in the organization, returned as an event roster.
+  path: /events/{eventId}/users
+  key: id
+  fields: [id, email, firstName, lastName]
+- name: Activation
+  schema: ActivationV0Response
+  description: A sub-experience inside an event (booth, side event, giveaway,
+    session) with its own roster and scan count.
+  path: /activations
+  key: id
+  fields: [id, eventId, name, createdAt, type, startDate, endDate, startTime, endTime,
+    createdBy, location, users, numberOfScans]
+  enums:
+    type: ActivationType
+- name: TagGroup
+  schema: TagGroupV0Response
+  description: A qualifier group — the configurable classification applied to leads
+    (single or multi select, required, per-event or all-events).
+  path: /tagGroups
+  key: id
+  fields: [id, name, status, allowsMultipleSelection, displayOrder, usageInstructions,
+    required, allEvents, tagOptions]
+  enums:
+    status: TagGroupStatus
+- name: TagOption
+  schema: TagOption
+  description: One selectable value inside a TagGroup.
+  key: id
+  fields: [id, displayOrder, value]
+- name: LeadActivityEvent
+  schema: LeadActivityEventV0Response
+  description: A timeline entry against a lead — the activity/audit stream that
+    joins leads to events, activations, campaigns and qualifiers.
+  path: /leadActivityEvents
+  key: id
+  fields: [id, createdAt, createdBy, eventType, eventNotes, associatedLead, associatedCampaign,
+    associatedEvent, associatedActivation, associatedTagOption]
+  enums:
+    eventType: LeadActivityEventType
+- name: IndustryEvent
+  schema: IndustryEvent
+  description: An event in Mobly's Scout market database (not owned by the
+    organization) that can be bookmarked and promoted into a Mobly Event.
+  path: /industryEvents
+  key: id
+  fields: [id, createdAt, updatedAt, name, startDate, endDate, sourceType, sourceId,
+    eventType, venueCity, venueState, venueCountry, venueName, venueFullAddress, venueCoordinates,
+    numberOfAttendees, numberOfExhibitors, attendeeCost, boothCost, exhibitorIndustries,
+    attendeePersonas, keywords, website, description, eventUrl, isBookmarked]
+value_objects:
+- name: Location
+  used_by: [Event, Activation]
+- name: PhoneNumber
+  used_by: [LeadPhoneNumbers]
+- name: LeadPhoneNumbers
+  used_by: [Lead]
+- name: LeadCompany
+  used_by: [Lead]
+  note: The enrichment payload — company name, industry, LinkedIn and postal address.
+- name: LeadTag
+  used_by: [Lead]
+  via: tagOptionId
+- name: LeadActivationSummary
+  used_by: [Lead]
+  via: activationId
+- name: Pagination
+  used_by: all list responses
+relationships:
+- from: Event
+  to: TagGroup
+  type: has_many
+  via: tagGroups
+  evidence: Event.tagGroups
+- from: Event
+  to: Lead
+  type: has_many
+  via: /events/{eventId}/leads
+  through: EventLead
+  evidence: EventLeadsListResponse
+- from: Event
+  to: User
+  type: has_many
+  via: /events/{eventId}/users
+  evidence: EventUsersListResponse
+- from: Activation
+  to: Event
+  type: belongs_to
+  via: eventId
+  evidence: ActivationV0Response.eventId
+- from: Activation
+  to: User
+  type: has_many
+  via: users
+  evidence: ActivationV0Response.users
+- from: Lead
+  to: LeadCompany
+  type: has_one
+  via: company
+  evidence: LeadV0Response.company
+- from: Lead
+  to: LeadTag
+  type: has_many
+  via: tags
+  evidence: LeadV0Response.tags -> LeadTag.tagOptionId -> TagOption.id
+- from: Lead
+  to: Activation
+  type: has_many
+  via: activations
+  through: LeadActivationSummary
+  evidence: LeadActivationSummary.activationId
+- from: Lead
+  to: LeadActivityEvent
+  type: has_many
+  via: leadActivityEvents
+  evidence: LeadV0Response.leadActivityEvents
+- from: Lead
+  to: PhoneNumber
+  type: has_many
+  via: phoneNumbers
+  evidence: LeadPhoneNumbers
+- from: LeadActivityEvent
+  to: Lead
+  type: belongs_to
+  via: associatedLead
+- from: LeadActivityEvent
+  to: Event
+  type: belongs_to
+  via: associatedEvent
+- from: LeadActivityEvent
+  to: Activation
+  type: belongs_to
+  via: associatedActivation
+- from: LeadActivityEvent
+  to: TagOption
+  type: belongs_to
+  via: associatedTagOption
+- from: TagGroup
+  to: TagOption
+  type: has_many
+  via: tagOptions
+- from: EventLead
+  to: Lead
+  type: belongs_to
+  via: leadId
+external_references:
+- field: Lead.remoteIds
+  meaning: >-
+    Identifiers of the same person in the customer's connected CRM or marketing
+    automation system (HubSpot, Salesforce, Pardot, Marketo, Pipedrive, Zoho,
+    Eloqua) or webhook destination. This is the join key between the Mobly
+    graph and the customer's system of record.
+  docs: https://help.getmobly.com/help-center/integrations/crm/field-mapping
+- field: IndustryEvent.sourceType / sourceId
+  meaning: Provenance of a Scout market-database event record.
+notes:
+- No organization/account entity is exposed in v0; tenancy is carried entirely by the
+  API key.
+- Event uses an integer id while every other entity uses a string UUID; the API
+  publishes no note about this asymmetry.

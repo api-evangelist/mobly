@@ -1,0 +1,170 @@
+generated: '2026-08-13'
+method: searched
+source: https://help.getmobly.com/documentation/rest-api/rest-api-v0
+derived_from: openapi/mobly-rest-api-v0-openapi.yml
+api: Mobly REST API v0
+base_url: https://core-api.getmobly.com/api/v0
+
+authentication:
+  style: api-key-header
+  header: x-api-key
+  scope: organization
+  docs: https://help.getmobly.com/documentation/rest-api/rest-api-v0
+  artifact: authentication/mobly-authentication.yml
+
+versioning:
+  scheme: uri-path
+  current: v0
+  path_segment: /api/v0
+  docs: https://help.getmobly.com/documentation/rest-api/rest-api-v0
+  note: >-
+    v0 is the only published version. No version header, date-pinning or
+    version train is documented.
+
+idempotency:
+  supported: true
+  mechanism: idempotent-upsert-by-natural-key
+  header: null
+  documented: true
+  docs: https://help.getmobly.com/api-reference/readme/mobly-rest-api
+  detail: >-
+    Mobly publishes no Idempotency-Key header. Idempotency is instead a
+    property of specific operations: PUT /events/{eventId}/leads is documented
+    as "Add or update event leads" (an upsert — replaying the same body does
+    not create duplicate associations), PUT /events/{eventId} and
+    PUT /industryEvents/{industryEventId} are full replacements, and
+    POST /industryEvents/{industryEventId}/bookmark plus its DELETE counterpart
+    are set-membership toggles that converge on repeat. POST /events,
+    POST /leads and POST /industryEvents are NOT idempotent — a retried create
+    produces a second record, and the API offers no client-supplied request key
+    to deduplicate it.
+  safe_to_retry:
+  - PUT /events/{eventId}
+  - PUT /events/{eventId}/leads
+  - PUT /industryEvents/{industryEventId}
+  - POST /industryEvents/{industryEventId}/bookmark
+  - DELETE /industryEvents/{industryEventId}/bookmark
+  - DELETE /events/{eventId}/leads/{leadId}
+  not_idempotent:
+  - POST /events
+  - POST /leads
+  - POST /industryEvents
+  gap: >-
+    No request-level idempotency key. An agent retrying a POST after a timeout
+    or a 429 must reconcile by listing and matching, not by replaying.
+  rating_note: >-
+    Deliberately NO `type: Idempotency` pointer is wired into apis.yml. What
+    Mobly documents is HTTP method semantics — PUT replaces, DELETE removes —
+    which every REST API has by definition, plus one named upsert
+    (PUT /events/{eventId}/leads). That is not an idempotency contract in the
+    sense the agent-readiness dimension scores: there is no client-supplied
+    request key, and the provider's own creates are explicitly not replayable.
+    Emitting the pointer would tell an agent it can safely retry writes that it
+    cannot.
+
+pagination:
+  style: limit-offset
+  params:
+  - name: limit
+    in: query
+    type: number
+    default: 20
+    max: 50
+    note: values greater than 50 are clamped
+  - name: offset
+    in: query
+    type: number
+    default: 0
+    note: zero-based PAGE index, not a record cursor
+  response_fields:
+  - pagination.limit
+  - pagination.offset
+  - results.total
+  docs: https://help.getmobly.com/documentation/rest-api/rest-api-v0
+  gotcha: >-
+    offset is a page index, not a record offset — `?limit=25&offset=2` returns
+    the THIRD page of 25, per the published example. Treating it as a record
+    offset silently skips records.
+
+response_envelope:
+  single: '{ "status": <int>, "results": { <resource> } }'
+  list: '{ "status": <int>, "pagination": {"limit","offset"}, "results": { "<resource>": [...], "total": <int> } }'
+  note: >-
+    The HTTP status is echoed inside the JSON body as `status`. The collection
+    key inside `results` is the pluralized resource name (events, leads,
+    activations, tagGroups, industryEvents).
+
+error_envelope:
+  shape: '{ "status": <int>, "error": "<string>" }'
+  format: bespoke
+  rfc9457: false
+  content_type: application/json
+  schema: ErrorResponse
+  artifact: errors/mobly-problem-types.yml
+  note: >-
+    Not RFC 9457 problem+json. There is no machine-readable error `code`,
+    `type` URI, or field-level detail — only the HTTP status and a reason
+    phrase, so a client cannot programmatically distinguish two different 400s.
+
+rate_limiting:
+  model: token-bucket
+  scope: per-api-key
+  default_burst: 20
+  default_refill: 1 token/second
+  status_on_exhaustion: 429
+  headers:
+  - X-RateLimit-Limit
+  - X-RateLimit-Remaining
+  - X-RateLimit-Reset
+  - Retry-After
+  artifact: rate-limits/mobly-rate-limits.yml
+  docs: https://help.getmobly.com/documentation/rest-api/rest-api-v0
+
+field_expansion:
+  supported: false
+  note: >-
+    No expand/fields/include parameters are documented. Related objects are
+    embedded inline where the schema nests them (e.g. Lead carries
+    LeadCompany, LeadPhoneNumbers, LeadTag[] and LeadActivationSummary[]).
+
+filtering_and_sorting:
+  supported: partial
+  note: >-
+    Almost every list endpoint accepts only limit and offset — no filter, sort,
+    or since/updated_after parameter. The single exception is
+    GET /industryEvents, which additionally accepts `q` (full-text search) and
+    `eventUrl` (exact match). There is no way to page leads or events
+    incrementally by modification time, so an agent syncing Mobly must re-walk
+    the whole collection.
+  filterable_endpoints:
+  - path: /industryEvents
+    params: [q, eventUrl]
+
+metadata:
+  supported: false
+  note: No customer-defined metadata bag on any resource. Customer-configurable
+    classification is modeled as tag groups / qualifiers instead.
+
+request_tracing:
+  request_id_header: null
+  note: No request-id / correlation-id header is documented, and none was observed on
+    live 401/403 responses probed 2026-08-13.
+
+content_negotiation:
+  request: application/json
+  response: application/json
+  note: JSON only. No CSV, XML or protobuf representation is published.
+
+cors:
+  observed: true
+  note: >-
+    Live responses from core-api.getmobly.com carry
+    `access-control-allow-origin: *` with
+    `access-control-allow-methods: OPTIONS, GET`, observed 2026-08-13.
+
+cross_links:
+  errors: errors/mobly-problem-types.yml
+  lifecycle: lifecycle/mobly-lifecycle.yml
+  authentication: authentication/mobly-authentication.yml
+  rate_limits: rate-limits/mobly-rate-limits.yml
+  data_model: data-model/mobly-data-model.yml

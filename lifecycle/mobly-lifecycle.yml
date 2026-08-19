@@ -1,0 +1,66 @@
+generated: '2026-08-13'
+method: searched
+source: https://help.getmobly.com/documentation/rest-api/rest-api-v0
+api: Mobly REST API v0
+versioning:
+  scheme: uri-path
+  current: v0
+  docs: https://help.getmobly.com/documentation/rest-api/rest-api-v0
+  note: >-
+    The API is versioned under /v0 in the path. v0 is the only published
+    version and the spec's info.version is "v0". No stability guarantee is
+    published for a v0 surface, and no version-negotiation header or date
+    pinning is documented.
+changelog:
+  url: https://help.getmobly.com/changelog
+  artifact: changelog/mobly-changelog.yml
+  cadence: weekly, dated to the Friday of the shipping week
+  latest_entry: '2026-08-07'
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  note: >-
+    No deprecation or sunset policy is published, and RFC 8594 Sunset /
+    Deprecation headers are not documented. The help center does document a
+    LEGACY vs current generation of the CRM and marketing-automation
+    integrations, with migration guides — an actual deprecation in progress
+    with no policy behind it.
+  observed_deprecations:
+  - name: Legacy CRM integration
+    docs: https://help.getmobly.com/help-center/integrations/crm/legacy
+    migration: https://help.getmobly.com/help-center/integrations/crm/migrating-from-legacy.md
+  - name: Legacy marketing-automation integration
+    migration: https://help.getmobly.com/help-center/integrations/marketing-automation/migrating-from-legacy.md
+  - name: Salesforce legacy integration
+    docs: https://help.getmobly.com/help-center/integrations/crm/legacy/salesforce-legacy.md
+  - name: HubSpot private-app integration (legacy)
+    docs: https://help.getmobly.com/help-center/integrations/crm/legacy/hubspot-private-app-legacy.md
+deprecated_operations: []
+sla:
+  url: null
+  uptime_target: null
+  published: false
+status_page:
+  url: null
+  published: false
+  probed:
+  - url: https://status.getmobly.com/
+    result: no DNS / no response
+support:
+  help_center: https://help.getmobly.com/help-center
+  live_training: https://help.getmobly.com/welcome
+  csm: named Customer Success Managers with public booking links on the docs welcome page
+x-evidence:
+- url: https://help.getmobly.com/documentation/rest-api/rest-api-v0
+  http_status: 200
+- url: https://help.getmobly.com/changelog/2026.md
+  http_status: 200
+- url: https://status.getmobly.com/
+  http_status: 0
+  note: host does not resolve
+gaps:
+- No published deprecation policy despite an in-flight legacy-integration migration.
+- No status page and no published SLA or uptime target.
+- v0 versioning with no documented stability commitment or breaking-change notice channel.

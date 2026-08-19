@@ -1,0 +1,131 @@
+generated: '2026-08-13'
+method: searched
+source: https://help.getmobly.com/changelog
+docs: https://help.getmobly.com/changelog
+scheme: weekly-dated (no semantic version numbers)
+current_version: REST API v0
+cadence: >-
+  Mobly ships continuously rather than on a release train. The changelog groups
+  updates by week, dated to the Friday of the week in which the change shipped.
+  Entries are tagged by surface (Hub, Mobile App, Integrations, Pulse, Scout)
+  and by kind (New, Improvement, Fix).
+archives:
+- year: 2026
+  url: https://help.getmobly.com/changelog/2026
+- year: 2025
+  url: https://help.getmobly.com/changelog/2025
+- year: 2024
+  url: https://help.getmobly.com/changelog/2024
+latest_entry: '2026-08-07'
+entries:
+- date: '2026-08-07'
+  title: Week of August 3, 2026
+  tags: [Hub, Integrations, Mobile App, New, Improvement, Fix]
+  summary: Multi-integration support, mobile SSO, and voice transcripts push through
+    to CRMs.
+  breaking: false
+  api_affecting: false
+  highlights:
+  - Multi-integration support (Salesforce foundation) — a secondary integration
+    alongside the primary CRM
+  - Mobile SSO (SAML) via a hosted bridge; SSO customers must add auth.getmobly.com
+    as an approved domain
+  - Voice-recording transcripts pushed through to the CRM lead activity record
+  - Company Size added to enriched lead data
+  - Improved badge OCR accuracy and lead deduplication
+- date: '2026-07-31'
+  title: Week of July 27, 2026
+  tags: [Hub, Mobile App, Integrations, New]
+  summary: 'The two biggest product changes of the year land the same week:
+    multi-type qualifiers and the Labels rename.'
+  breaking: true
+  breaking_note: >-
+    "Campaigns" was renamed to "Labels" across the Hub, mobile app and help
+    center. A rename of a customer-facing concept; the published REST API v0
+    surface still exposes the tagGroups/qualifier vocabulary.
+  highlights:
+  - Multi-type qualifiers — picklist, open text, numeric, boolean, note activity
+  - Three-way Required control (Off / Important / Require)
+  - Auto Create from CRM wizard for Salesforce, HubSpot, Zoho CRM and Marketo
+  - Campaigns renamed to Labels
+- date: '2026-07-24'
+  title: Week of July 20, 2026
+  tags: [Hub, Integrations, Improvement, New]
+  summary: Data Requirements ships for orgs that need enrichment-side guarantees on
+    core contact fields.
+  breaking: false
+  highlights:
+  - Data Requirements tab (feature-flag gated) for state, country, phone, email and
+    personal address
+  - Enrichment portal now persists cleared company fields on save
+- date: '2026-07-17'
+  title: Week of July 13, 2026
+  tags: [Hub, Mobile App, Fix]
+  summary: Notification search fix and a mobile app update.
+  breaking: false
+- date: '2026-07-10'
+  title: Week of July 6, 2026
+  tags: [Hub, Integrations, New, Improvement, Fix]
+  summary: Per-field CRM write behavior lands, plus dashboard count fixes.
+  breaking: false
+  highlights:
+  - CRM Write Behavior — per-field Overwrite vs. Write if Blank
+  - Enrichment guardrails and photo handling
+- date: '2026-07-03'
+  title: Week of June 29, 2026
+  tags: [Hub, Mobile App, Integrations, New, Improvement, Fix]
+  summary: Refreshed mobile app rolls out, Giveaways ship on activations, and the
+    in-product help embed points at the help center.
+  breaking: false
+- date: '2026-06-26'
+  title: Week of June 22, 2026
+  tags: [Hub, Integrations, Mobile App, New, Improvement, Fix]
+  summary: Host lands as an embedded registration experience inside the Hub, plus
+    Auto Enrichment on by default for new orgs.
+  breaking: false
+- date: '2026-06-19'
+  title: Week of June 15, 2026
+  tags: [Hub, Integrations, New]
+  summary: Trial Organizations can now be provisioned directly from Salesforce.
+  breaking: false
+- date: '2026-06-12'
+  title: Week of June 8, 2026
+  tags: [Hub, Integrations, Mobile App, New, Improvement, Fix]
+  summary: REST API gets new customer-requested fields, CRM source shows up on
+    account summaries, and CSV uploads unstick.
+  breaking: false
+  api_affecting: true
+  highlights:
+  - 'REST API — new fields on the Event and Lead objects (additive)'
+- date: '2026-06-05'
+  title: Week of June 1, 2026
+  tags: [Hub, Integrations, Mobile App, Improvement, Fix]
+  summary: Quick-enrichment tweaks, a new event/users REST endpoint, and
+    Marketo/Zoho program mapping fixes.
+  breaking: false
+  api_affecting: true
+  highlights:
+  - 'New REST endpoint: GET /events/:eventId/users (additive)'
+api_change_history:
+  note: >-
+    The changelog is product-wide, not API-specific, but it does record REST API
+    changes inline. Both API changes in the captured window were additive (a new
+    endpoint and new response fields); no removals or breaking API changes were
+    announced, and no deprecation notices appear.
+other_surfaces:
+- url: https://www.getmobly.com/releases/
+  name: Release Notes (marketing site)
+  note: >-
+    A separate "Mobly Release Notes" page exists on the marketing site, but its
+    entries are unedited template placeholder content ("This release focuses on
+    enhancing user experience"), last dated 2024-05-15. The GitBook changelog at
+    help.getmobly.com/changelog is the live source of truth.
+x-evidence:
+- url: https://help.getmobly.com/changelog
+  http_status: 200
+- url: https://help.getmobly.com/changelog/2026.md
+  http_status: 200
+  note: 25 dated weekly entries for 2026, most recent 2026-08-07
+- url: https://www.getmobly.com/releases/
+  http_status: 200
+  note: placeholder content, stale since 2024

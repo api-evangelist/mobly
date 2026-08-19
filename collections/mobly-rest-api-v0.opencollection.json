@@ -1,0 +1,761 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mobly REST API",
+    "version": "v0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "List events",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://core-api.getmobly.com/api/v0/events",
+        "params": [
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query"
+          }
+        ],
+        "auth": {
+          "type": "apikey",
+          "key": "x-api-key",
+          "value": "{{x-api-key}}",
+          "placement": "header"
+        }
+      },
+      "docs": "List events for the authenticated organization."
+    },
+    {
+      "info": {
+        "name": "Create event",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://core-api.getmobly.com/api/v0/events",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "apikey",
+          "key": "x-api-key",
+          "value": "{{x-api-key}}",
+          "placement": "header"
+        }
+      },
+      "docs": "Create an event for the authenticated organization."
+    },
+    {
+      "info": {
+        "name": "Get event",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://core-api.getmobly.com/api/v0/events/:eventId",
+        "params": [
+          {
+            "name": "eventId",
+            "value": "",
+            "type": "path",
+            "description": "Event ID"
+          }
+        ],
+        "auth": {
+          "type": "apikey",
+          "key": "x-api-key",
+          "value": "{{x-api-key}}",
+          "placement": "header"
+        }
+      },
+      "docs": "Fetch a single event by ID."
+    },
+    {
+      "info": {
+        "name": "Update event",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://core-api.getmobly.com/api/v0/events/:eventId",
+        "params": [
+          {
+            "name": "eventId",
+            "value": "",
+            "type": "path",
+            "description": "Event ID"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "apikey",
+          "key": "x-api-key",
+          "value": "{{x-api-key}}",
+          "placement": "header"
+        }
+      },
+      "docs": "Update the full event record for the authenticated organization."
+    },
+    {
+      "info": {
+        "name": "Delete event",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://core-api.getmobly.com/api/v0/events/:eventId",
+        "params": [
+          {
+            "name": "eventId",
+            "value": "",
+            "type": "path",
+            "description": "Event ID"
+          }
+        ],
+        "auth": {
+          "type": "apikey",
+          "key": "x-api-key",
+          "value": "{{x-api-key}}",
+          "placement": "header"
+        }
+      },
+      "docs": "Delete an event for the authenticated organization."
+    },
+    {
+      "info": {
+        "name": "List event leads",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://core-api.getmobly.com/api/v0/events/:eventId/leads",
+        "params": [
+          {
+            "name": "eventId",
+            "value": "",
+            "type": "path",
+            "description": "Event ID"
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query"
+          }
+        ],
+        "auth": {
+          "type": "apikey",
+          "key": "x-api-key",
+          "value": "{{x-api-key}}",
+          "placement": "header"
+        }
+      },
+      "docs": "Retrieve the leads associated with a specific event, including registration and check-in status."
+    },
+    {
+      "info": {
+        "name": "Add or update event leads",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://core-api.getmobly.com/api/v0/events/:eventId/leads",
+        "params": [
+          {
+            "name": "eventId",
+            "value": "",
+            "type": "path",
+            "description": "Event ID"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "apikey",
+          "key": "x-api-key",
+          "value": "{{x-api-key}}",
+          "placement": "header"
+        }
+      },
+      "docs": "Associate existing leads with an event and optionally update their `registered` and `checkedIn` status.\n\n- Creates association if missing.\n- Updates flags if association exists.\n"
+    },
+    {
+      "info": {
+        "name": "Remove lead from event",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://core-api.getmobly.com/api/v0/events/:eventId/leads/:leadId",
+        "params": [
+          {
+            "name": "eventId",
+            "value": "",
+            "type": "path",
+            "description": "Event ID"
+          },
+          {
+            "name": "leadId",
+            "value": "",
+            "type": "path",
+            "description": "Lead ID"
+          }
+        ],
+        "auth": {
+          "type": "apikey",
+          "key": "x-api-key",
+          "value": "{{x-api-key}}",
+          "placement": "header"
+        }
+      },
+      "docs": "Delete a lead's association with an event for the authenticated organization."
+    },
+    {
+      "info": {
+        "name": "List event users",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://core-api.getmobly.com/api/v0/events/:eventId/users",
+        "params": [
+          {
+            "name": "eventId",
+            "value": "",
+            "type": "path",
+            "description": "Event ID"
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query"
+          }
+        ],
+        "auth": {
+          "type": "apikey",
+          "key": "x-api-key",
+          "value": "{{x-api-key}}",
+          "placement": "header"
+        }
+      },
+      "docs": "Retrieve the users assigned to a specific event for the authenticated organization."
+    },
+    {
+      "info": {
+        "name": "List leads",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://core-api.getmobly.com/api/v0/leads",
+        "params": [
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query"
+          }
+        ],
+        "auth": {
+          "type": "apikey",
+          "key": "x-api-key",
+          "value": "{{x-api-key}}",
+          "placement": "header"
+        }
+      },
+      "docs": "List leads for the authenticated organization."
+    },
+    {
+      "info": {
+        "name": "Create lead",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://core-api.getmobly.com/api/v0/leads",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "apikey",
+          "key": "x-api-key",
+          "value": "{{x-api-key}}",
+          "placement": "header"
+        }
+      },
+      "docs": "Create a lead for the authenticated organization."
+    },
+    {
+      "info": {
+        "name": "Get lead",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://core-api.getmobly.com/api/v0/leads/:leadId",
+        "params": [
+          {
+            "name": "leadId",
+            "value": "",
+            "type": "path",
+            "description": "Lead ID"
+          }
+        ],
+        "auth": {
+          "type": "apikey",
+          "key": "x-api-key",
+          "value": "{{x-api-key}}",
+          "placement": "header"
+        }
+      },
+      "docs": "Fetch a single lead by ID."
+    },
+    {
+      "info": {
+        "name": "Patch lead",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "https://core-api.getmobly.com/api/v0/leads/:leadId",
+        "params": [
+          {
+            "name": "leadId",
+            "value": "",
+            "type": "path",
+            "description": "Lead ID"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "apikey",
+          "key": "x-api-key",
+          "value": "{{x-api-key}}",
+          "placement": "header"
+        }
+      },
+      "docs": "Partially update a lead and its associated persona record."
+    },
+    {
+      "info": {
+        "name": "Delete lead",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://core-api.getmobly.com/api/v0/leads/:leadId",
+        "params": [
+          {
+            "name": "leadId",
+            "value": "",
+            "type": "path",
+            "description": "Lead ID"
+          }
+        ],
+        "auth": {
+          "type": "apikey",
+          "key": "x-api-key",
+          "value": "{{x-api-key}}",
+          "placement": "header"
+        }
+      },
+      "docs": "Delete a lead for the authenticated organization."
+    },
+    {
+      "info": {
+        "name": "List lead activity events",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://core-api.getmobly.com/api/v0/leadActivityEvents",
+        "params": [
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "leadId",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "eventType",
+            "value": "",
+            "type": "query"
+          }
+        ],
+        "auth": {
+          "type": "apikey",
+          "key": "x-api-key",
+          "value": "{{x-api-key}}",
+          "placement": "header"
+        }
+      },
+      "docs": "List lead activity events for the authenticated organization."
+    },
+    {
+      "info": {
+        "name": "Get lead activity event",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://core-api.getmobly.com/api/v0/leadActivityEvents/:leadActivityEventId",
+        "params": [
+          {
+            "name": "leadActivityEventId",
+            "value": "",
+            "type": "path",
+            "description": "Lead activity event ID"
+          }
+        ],
+        "auth": {
+          "type": "apikey",
+          "key": "x-api-key",
+          "value": "{{x-api-key}}",
+          "placement": "header"
+        }
+      },
+      "docs": "Fetch a single lead activity event by ID."
+    },
+    {
+      "info": {
+        "name": "List activations",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://core-api.getmobly.com/api/v0/activations",
+        "params": [
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query"
+          }
+        ],
+        "auth": {
+          "type": "apikey",
+          "key": "x-api-key",
+          "value": "{{x-api-key}}",
+          "placement": "header"
+        }
+      },
+      "docs": "List activations for the organization."
+    },
+    {
+      "info": {
+        "name": "Get activation",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://core-api.getmobly.com/api/v0/activations/:activationId",
+        "params": [
+          {
+            "name": "activationId",
+            "value": "",
+            "type": "path",
+            "description": "Activation ID"
+          }
+        ],
+        "auth": {
+          "type": "apikey",
+          "key": "x-api-key",
+          "value": "{{x-api-key}}",
+          "placement": "header"
+        }
+      },
+      "docs": "Fetch a single activation by ID."
+    },
+    {
+      "info": {
+        "name": "List tag groups",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://core-api.getmobly.com/api/v0/tagGroups",
+        "params": [
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query"
+          }
+        ],
+        "auth": {
+          "type": "apikey",
+          "key": "x-api-key",
+          "value": "{{x-api-key}}",
+          "placement": "header"
+        }
+      },
+      "docs": "List tag groups defined for the organization, including tag options."
+    },
+    {
+      "info": {
+        "name": "Get tag group",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://core-api.getmobly.com/api/v0/tagGroups/:tagGroupId",
+        "params": [
+          {
+            "name": "tagGroupId",
+            "value": "",
+            "type": "path",
+            "description": "Tag group ID"
+          }
+        ],
+        "auth": {
+          "type": "apikey",
+          "key": "x-api-key",
+          "value": "{{x-api-key}}",
+          "placement": "header"
+        }
+      },
+      "docs": "Fetch a single tag group by ID."
+    },
+    {
+      "info": {
+        "name": "List industry events",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://core-api.getmobly.com/api/v0/industryEvents",
+        "params": [
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "eventUrl",
+            "value": "",
+            "type": "query",
+            "description": "Filter by exact event URL"
+          },
+          {
+            "name": "q",
+            "value": "",
+            "type": "query",
+            "description": "Full-text search query"
+          }
+        ],
+        "auth": {
+          "type": "apikey",
+          "key": "x-api-key",
+          "value": "{{x-api-key}}",
+          "placement": "header"
+        }
+      },
+      "docs": "List industry events. Supports filtering by URL or full-text search.\n\n- `eventUrl` — return only the event matching this exact URL\n- `q` — full-text search across name, venueCity, venueState, venueCountry, description, keywords, industries, personas\n\nIf `eventUrl` is provided, `q` is ignored. If neither is provided, all industry events are returned (paginated).\n"
+    },
+    {
+      "info": {
+        "name": "Create industry event",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://core-api.getmobly.com/api/v0/industryEvents",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "apikey",
+          "key": "x-api-key",
+          "value": "{{x-api-key}}",
+          "placement": "header"
+        }
+      },
+      "docs": "Create an industry event with automatic deduplication:\n\n1. If an event with the same `eventUrl` already exists, the existing record is returned (`created: false`).\n2. If no URL match but `name` and `startDate` match, the event is still created but `potentialDuplicates` are returned.\n"
+    },
+    {
+      "info": {
+        "name": "List bookmarked industry events",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://core-api.getmobly.com/api/v0/industryEvents/bookmarks",
+        "auth": {
+          "type": "apikey",
+          "key": "x-api-key",
+          "value": "{{x-api-key}}",
+          "placement": "header"
+        }
+      },
+      "docs": "List industry events bookmarked by the authenticated organization."
+    },
+    {
+      "info": {
+        "name": "Get industry event",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://core-api.getmobly.com/api/v0/industryEvents/:industryEventId",
+        "params": [
+          {
+            "name": "industryEventId",
+            "value": "",
+            "type": "path",
+            "description": "Industry event ID"
+          }
+        ],
+        "auth": {
+          "type": "apikey",
+          "key": "x-api-key",
+          "value": "{{x-api-key}}",
+          "placement": "header"
+        }
+      },
+      "docs": "Fetch a single industry event by ID. Includes `isBookmarked` for the authenticated organization."
+    },
+    {
+      "info": {
+        "name": "Update industry event",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://core-api.getmobly.com/api/v0/industryEvents/:industryEventId",
+        "params": [
+          {
+            "name": "industryEventId",
+            "value": "",
+            "type": "path",
+            "description": "Industry event ID"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "apikey",
+          "key": "x-api-key",
+          "value": "{{x-api-key}}",
+          "placement": "header"
+        }
+      },
+      "docs": "Partially update an industry event. Only fields included in the body are modified."
+    },
+    {
+      "info": {
+        "name": "Bookmark industry event",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://core-api.getmobly.com/api/v0/industryEvents/:industryEventId/bookmark",
+        "params": [
+          {
+            "name": "industryEventId",
+            "value": "",
+            "type": "path",
+            "description": "Industry event ID"
+          }
+        ],
+        "auth": {
+          "type": "apikey",
+          "key": "x-api-key",
+          "value": "{{x-api-key}}",
+          "placement": "header"
+        }
+      },
+      "docs": "Add an industry event to the authenticated organization's bookmarks."
+    },
+    {
+      "info": {
+        "name": "Unbookmark industry event",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://core-api.getmobly.com/api/v0/industryEvents/:industryEventId/bookmark",
+        "params": [
+          {
+            "name": "industryEventId",
+            "value": "",
+            "type": "path",
+            "description": "Industry event ID"
+          }
+        ],
+        "auth": {
+          "type": "apikey",
+          "key": "x-api-key",
+          "value": "{{x-api-key}}",
+          "placement": "header"
+        }
+      },
+      "docs": "Remove an industry event from the authenticated organization's bookmarks."
+    }
+  ],
+  "bundled": true
+}

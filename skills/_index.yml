@@ -1,0 +1,50 @@
+generated: '2026-08-13'
+method: generated
+source: >-
+  openapi/mobly-rest-api-v0-openapi.yml plus the provider's REST API v0
+  documentation at https://help.getmobly.com/documentation/rest-api/rest-api-v0
+api: Mobly REST API v0
+base_url: https://core-api.getmobly.com/api/v0
+note: >-
+  Mobly publishes no AGENTS.md or skill files of its own; these are API
+  Evangelist-authored operating instructions. Every step is grounded in a real
+  path, parameter or schema in the published OpenAPI — the spec declares no
+  operationIds, so steps reference METHOD + PATH, which are real, rather than
+  invented ids.
+skills:
+- file: mobly-sync-event-leads.md
+  name: Sync event leads out of Mobly
+  description: Poll an event's leads, hydrate and reconcile them against an external
+    system of record via remoteIds.
+  api: openapi/mobly-rest-api-v0-openapi.yml
+  operations:
+  - GET /events
+  - GET /events/{eventId}/leads
+  - GET /leads
+  - GET /leads/{leadId}
+  - GET /leadActivityEvents
+- file: mobly-capture-and-qualify-lead.md
+  name: Create a lead and attach it to an event
+  description: Create a lead from an external capture source, upsert it onto an event,
+    apply qualifiers and write back a remote id — safely, without an idempotency key.
+  api: openapi/mobly-rest-api-v0-openapi.yml
+  operations:
+  - GET /tagGroups
+  - GET /tagGroups/{tagGroupId}
+  - POST /leads
+  - PUT /events/{eventId}/leads
+  - PATCH /leads/{leadId}
+  - GET /leads
+- file: mobly-scout-industry-events.md
+  name: Search and shortlist industry events with Scout
+  description: Full-text search the Scout industry-event database, read booth cost and
+    attendee counts, bookmark a shortlist and promote a chosen show into a Mobly event.
+  api: openapi/mobly-rest-api-v0-openapi.yml
+  operations:
+  - GET /industryEvents
+  - GET /industryEvents/{industryEventId}
+  - POST /industryEvents
+  - POST /industryEvents/{industryEventId}/bookmark
+  - DELETE /industryEvents/{industryEventId}/bookmark
+  - GET /industryEvents/bookmarks
+  - POST /events
