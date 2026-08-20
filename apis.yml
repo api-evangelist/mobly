@@ -41,6 +41,19 @@ created: '2026-07-17'
 modified: '2026-08-13'
 tags:
 - Company
+- Event
+- Event Marketing
+- Lead Capture
+- Lead Enrichment
+- B2B
+- Marketing
+- Go-To-Market
+- Artificial Intelligence
+- CRM
+- Marketing Automation
+- Trade Shows
+tags_raw:
+- Company
 - Events
 - Event Marketing
 - Lead Capture
@@ -65,6 +78,12 @@ apis:
   humanURL: https://help.getmobly.com/api-reference
   baseURL: https://core-api.getmobly.com/api/v0
   tags:
+  - Event
+  - Leads
+  - Lead Capture
+  - Activations
+  - Event Marketing
+  tags_raw:
   - Events
   - Leads
   - Lead Capture
