@@ -66,32 +66,16 @@ tags_raw:
 - Marketing Automation
 - Trade Shows
 apis:
-- aid: mobly-rest-api-v0
-  name: Mobly REST API v0
-  description: >-
-    The Mobly REST API (v0) gives programmatic access to events, leads, lead
-    activity events, activations, qualifier/tag groups and industry events for
-    the authenticated organization. All endpoints are JSON, versioned under
-    /v0, authenticated with an `x-api-key` header, paginated with limit/offset,
-    and rate limited per API key with a token bucket that returns
-    X-RateLimit-* headers on every response.
+- aid: mobly:mobly-activations-api
+  name: Mob.ly Activations API
+  description: The Activations API from Mob.ly — 2 operation(s) for activations.
   humanURL: https://help.getmobly.com/api-reference
   baseURL: https://core-api.getmobly.com/api/v0
   tags:
-  - Event
-  - Leads
-  - Lead Capture
   - Activations
-  - Event Marketing
-  tags_raw:
-  - Events
-  - Leads
-  - Lead Capture
-  - Activations
-  - Event Marketing
   properties:
   - type: OpenAPI
-    url: openapi/mobly-rest-api-v0-openapi.yml
+    url: openapi/mobly-activations-api-openapi.yml
   - type: Documentation
     url: https://help.getmobly.com/documentation/rest-api/rest-api-v0
   - type: APIReference
@@ -106,9 +90,129 @@ apis:
     url: conventions/mobly-conventions.yml
   - type: DataModel
     url: data-model/mobly-data-model.yml
-  - type: Overlay
-    url: overlays/mobly-rest-api-v0-overlay.yaml
+- aid: mobly:mobly-events-api
+  name: Mob.ly Events API
+  description: The Events API from Mob.ly — 5 operation(s) for events.
+  humanURL: https://help.getmobly.com/api-reference
+  baseURL: https://core-api.getmobly.com/api/v0
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/mobly-events-api-openapi.yml
+  - type: Documentation
+    url: https://help.getmobly.com/documentation/rest-api/rest-api-v0
+  - type: APIReference
+    url: https://help.getmobly.com/api-reference
+  - type: Authentication
+    url: authentication/mobly-authentication.yml
+  - type: RateLimits
+    url: rate-limits/mobly-rate-limits.yml
+  - type: ErrorCatalog
+    url: errors/mobly-problem-types.yml
+  - type: Conventions
+    url: conventions/mobly-conventions.yml
+  - type: DataModel
+    url: data-model/mobly-data-model.yml
+- aid: mobly:mobly-industryevents-api
+  name: Mob.ly Industry Events API
+  description: The IndustryEvents API from Mob.ly — 4 operation(s) for industryevents.
+  humanURL: https://help.getmobly.com/api-reference
+  baseURL: https://core-api.getmobly.com/api/v0
+  tags:
+  - IndustryEvents
+  properties:
+  - type: OpenAPI
+    url: openapi/mobly-industryevents-api-openapi.yml
+  - type: Documentation
+    url: https://help.getmobly.com/documentation/rest-api/rest-api-v0
+  - type: APIReference
+    url: https://help.getmobly.com/api-reference
+  - type: Authentication
+    url: authentication/mobly-authentication.yml
+  - type: RateLimits
+    url: rate-limits/mobly-rate-limits.yml
+  - type: ErrorCatalog
+    url: errors/mobly-problem-types.yml
+  - type: Conventions
+    url: conventions/mobly-conventions.yml
+  - type: DataModel
+    url: data-model/mobly-data-model.yml
+- aid: mobly:mobly-leadactivityevents-api
+  name: Mob.ly Lead Activity Events API
+  description: The LeadActivityEvents API from Mob.ly — 2 operation(s) for leadactivityevents.
+  humanURL: https://help.getmobly.com/api-reference
+  baseURL: https://core-api.getmobly.com/api/v0
+  tags:
+  - LeadActivityEvents
+  properties:
+  - type: OpenAPI
+    url: openapi/mobly-leadactivityevents-api-openapi.yml
+  - type: Documentation
+    url: https://help.getmobly.com/documentation/rest-api/rest-api-v0
+  - type: APIReference
+    url: https://help.getmobly.com/api-reference
+  - type: Authentication
+    url: authentication/mobly-authentication.yml
+  - type: RateLimits
+    url: rate-limits/mobly-rate-limits.yml
+  - type: ErrorCatalog
+    url: errors/mobly-problem-types.yml
+  - type: Conventions
+    url: conventions/mobly-conventions.yml
+  - type: DataModel
+    url: data-model/mobly-data-model.yml
+- aid: mobly:mobly-leads-api
+  name: Mob.ly Leads API
+  description: The Leads API from Mob.ly — 2 operation(s) for leads.
+  humanURL: https://help.getmobly.com/api-reference
+  baseURL: https://core-api.getmobly.com/api/v0
+  tags:
+  - Leads
+  properties:
+  - type: OpenAPI
+    url: openapi/mobly-leads-api-openapi.yml
+  - type: Documentation
+    url: https://help.getmobly.com/documentation/rest-api/rest-api-v0
+  - type: APIReference
+    url: https://help.getmobly.com/api-reference
+  - type: Authentication
+    url: authentication/mobly-authentication.yml
+  - type: RateLimits
+    url: rate-limits/mobly-rate-limits.yml
+  - type: ErrorCatalog
+    url: errors/mobly-problem-types.yml
+  - type: Conventions
+    url: conventions/mobly-conventions.yml
+  - type: DataModel
+    url: data-model/mobly-data-model.yml
+- aid: mobly:mobly-taggroups-api
+  name: Mob.ly Tag Groups API
+  description: The TagGroups API from Mob.ly — 2 operation(s) for taggroups.
+  humanURL: https://help.getmobly.com/api-reference
+  baseURL: https://core-api.getmobly.com/api/v0
+  tags:
+  - TagGroups
+  properties:
+  - type: OpenAPI
+    url: openapi/mobly-taggroups-api-openapi.yml
+  - type: Documentation
+    url: https://help.getmobly.com/documentation/rest-api/rest-api-v0
+  - type: APIReference
+    url: https://help.getmobly.com/api-reference
+  - type: Authentication
+    url: authentication/mobly-authentication.yml
+  - type: RateLimits
+    url: rate-limits/mobly-rate-limits.yml
+  - type: ErrorCatalog
+    url: errors/mobly-problem-types.yml
+  - type: Conventions
+    url: conventions/mobly-conventions.yml
+  - type: DataModel
+    url: data-model/mobly-data-model.yml
 common:
+- type: Overlay
+  url: overlays/mobly-rest-api-v0-overlay.yaml
 - type: AgenticAccess
   url: agentic-access/mobly-agentic-access.yml
 - type: Website
