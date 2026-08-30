@@ -108,6 +108,8 @@ apis:
   humanURL: https://help.getmobly.com/api-reference
   baseURL: https://core-api.getmobly.com/api/v0
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -204,6 +206,8 @@ apis:
   humanURL: https://help.getmobly.com/api-reference
   baseURL: https://core-api.getmobly.com/api/v0
   tags:
+  - Tag Groups
+  tags_raw:
   - TagGroups
   properties:
   - type: OpenAPI
