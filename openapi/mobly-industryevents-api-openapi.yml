@@ -1,0 +1,667 @@
+openapi: 3.2.0
+info:
+  title: Mobly REST Industry Events API
+  version: v0
+  description: 'Mobly REST API (version v0).
+
+
+    - JSON-based
+
+    - Authenticated via API key
+
+    - Versioned under `/v0`
+
+    '
+servers:
+- url: https://core-api.getmobly.com/api/v0
+security:
+- ApiKeyAuth: []
+tags:
+- name: IndustryEvents
+paths:
+  /industryEvents:
+    get:
+      summary: List industry events
+      description: 'List industry events. Supports filtering by URL or full-text search.
+
+
+        - `eventUrl` — return only the event matching this exact URL
+
+        - `q` — full-text search across name, venueCity, venueState, venueCountry, description, keywords, industries, personas
+
+
+        If `eventUrl` is provided, `q` is ignored. If neither is provided, all industry events are returned (paginated).
+
+        '
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - in: query
+        name: limit
+        schema:
+          type: integer
+          default: 20
+          maximum: 50
+      - in: query
+        name: offset
+        schema:
+          type: integer
+          default: 0
+      - in: query
+        name: eventUrl
+        schema:
+          type: string
+        description: Filter by exact event URL
+      - in: query
+        name: q
+        schema:
+          type: string
+        description: Full-text search query
+      responses:
+        '200':
+          description: Industry events list.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndustryEventListResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - IndustryEvents
+    post:
+      summary: Create industry event
+      description: 'Create an industry event with automatic deduplication:
+
+
+        1. If an event with the same `eventUrl` already exists, the existing record is returned (`created: false`).
+
+        2. If no URL match but `name` and `startDate` match, the event is still created but `potentialDuplicates` are returned.
+
+        '
+      security:
+      - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IndustryEventCreateV0Input'
+      responses:
+        '200':
+          description: Created or existing industry event.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndustryEventCreateResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - IndustryEvents
+  /industryEvents/bookmarks:
+    get:
+      summary: List bookmarked industry events
+      description: List industry events bookmarked by the authenticated organization.
+      security:
+      - ApiKeyAuth: []
+      responses:
+        '200':
+          description: Bookmarked industry events.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  results:
+                    type: object
+                    properties:
+                      industryEvents:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/IndustryEvent'
+      tags:
+      - IndustryEvents
+  /industryEvents/{industryEventId}:
+    get:
+      summary: Get industry event
+      description: Fetch a single industry event by ID. Includes `isBookmarked` for the authenticated organization.
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - in: path
+        name: industryEventId
+        schema:
+          type: string
+          format: uuid
+        required: true
+        description: Industry event ID
+      responses:
+        '200':
+          description: Industry event.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndustryEventSingleResponse'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - IndustryEvents
+    put:
+      summary: Update industry event
+      description: Partially update an industry event. Only fields included in the body are modified.
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - in: path
+        name: industryEventId
+        schema:
+          type: string
+          format: uuid
+        required: true
+        description: Industry event ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IndustryEventUpdateV0Input'
+      responses:
+        '200':
+          description: Updated industry event.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndustryEventSingleResponse'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - IndustryEvents
+  /industryEvents/{industryEventId}/bookmark:
+    post:
+      summary: Bookmark industry event
+      description: Add an industry event to the authenticated organization's bookmarks.
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - in: path
+        name: industryEventId
+        schema:
+          type: string
+          format: uuid
+        required: true
+        description: Industry event ID
+      responses:
+        '200':
+          description: Bookmarked.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  results:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - IndustryEvents
+    delete:
+      summary: Unbookmark industry event
+      description: Remove an industry event from the authenticated organization's bookmarks.
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - in: path
+        name: industryEventId
+        schema:
+          type: string
+          format: uuid
+        required: true
+        description: Industry event ID
+      responses:
+        '200':
+          description: Unbookmarked.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  results:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - IndustryEvents
+components:
+  schemas:
+    IndustryEventCreateResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        results:
+          type: object
+          properties:
+            industryEvent:
+              $ref: '#/components/schemas/IndustryEvent'
+            created:
+              type: boolean
+              description: Whether a new record was created (false if matched by eventUrl).
+            potentialDuplicates:
+              type: array
+              description: Existing events with matching name + startDate.
+              items:
+                $ref: '#/components/schemas/IndustryEvent'
+      required:
+      - status
+      - results
+    IndustryEventUpdateV0Input:
+      type: object
+      properties:
+        name:
+          type: string
+        startDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        endDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        sourceType:
+          type:
+          - string
+          - 'null'
+        sourceId:
+          type:
+          - string
+          - 'null'
+        eventType:
+          type:
+          - string
+          - 'null'
+        venueCity:
+          type:
+          - string
+          - 'null'
+        venueState:
+          type:
+          - string
+          - 'null'
+        venueCountry:
+          type:
+          - string
+          - 'null'
+        venueName:
+          type:
+          - string
+          - 'null'
+        venueFullAddress:
+          type:
+          - string
+          - 'null'
+        venueCoordinates:
+          type:
+          - string
+          - 'null'
+        numberOfAttendees:
+          type:
+          - integer
+          - 'null'
+        numberOfExhibitors:
+          type:
+          - integer
+          - 'null'
+        attendeeCost:
+          type:
+          - string
+          - 'null'
+        boothCost:
+          type:
+          - string
+          - 'null'
+        exhibitorIndustries:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        attendeePersonas:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        keywords:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        website:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        eventUrl:
+          type:
+          - string
+          - 'null'
+    IndustryEventListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        results:
+          type: object
+          properties:
+            industryEvents:
+              type: array
+              items:
+                $ref: '#/components/schemas/IndustryEvent'
+            total:
+              type: integer
+      required:
+      - status
+      - pagination
+      - results
+    IndustryEvent:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        name:
+          type: string
+        startDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        endDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        sourceType:
+          type:
+          - string
+          - 'null'
+        sourceId:
+          type:
+          - string
+          - 'null'
+        eventType:
+          type:
+          - string
+          - 'null'
+        venueCity:
+          type:
+          - string
+          - 'null'
+        venueState:
+          type:
+          - string
+          - 'null'
+        venueCountry:
+          type:
+          - string
+          - 'null'
+        venueName:
+          type:
+          - string
+          - 'null'
+        venueFullAddress:
+          type:
+          - string
+          - 'null'
+        venueCoordinates:
+          type:
+          - string
+          - 'null'
+        numberOfAttendees:
+          type:
+          - integer
+          - 'null'
+        numberOfExhibitors:
+          type:
+          - integer
+          - 'null'
+        attendeeCost:
+          type:
+          - string
+          - 'null'
+        boothCost:
+          type:
+          - string
+          - 'null'
+        exhibitorIndustries:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        attendeePersonas:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        keywords:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        website:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        eventUrl:
+          type:
+          - string
+          - 'null'
+        isBookmarked:
+          type: boolean
+          description: Present only on single-resource endpoint.
+      required:
+      - id
+      - createdAt
+      - updatedAt
+      - name
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+      required:
+      - status
+      - error
+    IndustryEventCreateV0Input:
+      type: object
+      properties:
+        name:
+          type: string
+        startDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        endDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        sourceType:
+          type:
+          - string
+          - 'null'
+        sourceId:
+          type:
+          - string
+          - 'null'
+        eventType:
+          type:
+          - string
+          - 'null'
+        venueCity:
+          type:
+          - string
+          - 'null'
+        venueState:
+          type:
+          - string
+          - 'null'
+        venueCountry:
+          type:
+          - string
+          - 'null'
+        venueName:
+          type:
+          - string
+          - 'null'
+        venueFullAddress:
+          type:
+          - string
+          - 'null'
+        venueCoordinates:
+          type:
+          - string
+          - 'null'
+        numberOfAttendees:
+          type:
+          - integer
+          - 'null'
+        numberOfExhibitors:
+          type:
+          - integer
+          - 'null'
+        attendeeCost:
+          type:
+          - string
+          - 'null'
+        boothCost:
+          type:
+          - string
+          - 'null'
+        exhibitorIndustries:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        attendeePersonas:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        keywords:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        website:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        eventUrl:
+          type:
+          - string
+          - 'null'
+      required:
+      - name
+    IndustryEventSingleResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        results:
+          type: object
+          properties:
+            industryEvent:
+              $ref: '#/components/schemas/IndustryEvent'
+      required:
+      - status
+      - results
+    Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+          format: int32
+        offset:
+          type: integer
+          format: int32
+      required:
+      - limit
+      - offset
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key

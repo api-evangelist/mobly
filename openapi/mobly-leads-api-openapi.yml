@@ -1,0 +1,495 @@
+openapi: 3.2.0
+info:
+  title: Mobly REST Leads API
+  version: v0
+  description: 'Mobly REST API (version v0).
+
+
+    - JSON-based
+
+    - Authenticated via API key
+
+    - Versioned under `/v0`
+
+    '
+servers:
+- url: https://core-api.getmobly.com/api/v0
+security:
+- ApiKeyAuth: []
+tags:
+- name: Leads
+paths:
+  /leads:
+    get:
+      summary: List leads
+      description: List leads for the authenticated organization.
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - in: query
+        name: limit
+        schema:
+          type: integer
+          default: 20
+          maximum: 50
+      - in: query
+        name: offset
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: Leads list.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeadsListResponse'
+      tags:
+      - Leads
+    post:
+      summary: Create lead
+      description: Create a lead for the authenticated organization.
+      security:
+      - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LeadCreateV0Input'
+      responses:
+        '200':
+          description: Created lead.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeadSingleResponse'
+      tags:
+      - Leads
+  /leads/{leadId}:
+    get:
+      summary: Get lead
+      description: Fetch a single lead by ID.
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - in: path
+        name: leadId
+        schema:
+          type: string
+        required: true
+        description: Lead ID
+      responses:
+        '200':
+          description: Lead.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeadSingleResponse'
+        '404':
+          description: Lead not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Leads
+    patch:
+      summary: Patch lead
+      description: Partially update a lead and its associated persona record.
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - in: path
+        name: leadId
+        schema:
+          type: string
+        required: true
+        description: Lead ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LeadPatchV0Input'
+      responses:
+        '200':
+          description: Updated lead.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeadSingleResponse'
+      tags:
+      - Leads
+    delete:
+      summary: Delete lead
+      description: Delete a lead for the authenticated organization.
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - in: path
+        name: leadId
+        schema:
+          type: string
+        required: true
+        description: Lead ID
+      responses:
+        '200':
+          description: Lead deleted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  results:
+                    type: object
+                required:
+                - status
+                - results
+      tags:
+      - Leads
+components:
+  schemas:
+    LeadPhoneNumbers:
+      type: object
+      properties:
+        leadProvided:
+          type: array
+          items:
+            $ref: '#/components/schemas/PhoneNumber'
+        moblyProvided:
+          type: array
+          items:
+            $ref: '#/components/schemas/PhoneNumber'
+      required:
+      - leadProvided
+      - moblyProvided
+    PhoneNumberTypeEnum:
+      type: string
+      description: Phone number type.
+      enum:
+      - MOBILE
+      - LANDLINE
+      - DIRECT
+      - OFFICE
+      - HQ
+      - UNKNOWN
+    LeadSingleResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        results:
+          $ref: '#/components/schemas/LeadV0Response'
+      required:
+      - status
+      - results
+    LeadCreateV0Input:
+      type: object
+      properties:
+        createdByEmail:
+          type: string
+          format: email
+        firstName:
+          type: string
+        lastName:
+          type: string
+        companyName:
+          type: string
+        email:
+          type: string
+          format: email
+        phoneNumbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PhoneNumber'
+      required:
+      - createdByEmail
+      - firstName
+      - lastName
+      - companyName
+    LeadTag:
+      type: object
+      properties:
+        tagOptionId:
+          type: string
+          format: uuid
+        value:
+          type: string
+      required:
+      - tagOptionId
+      - value
+    LeadCompany:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        industry:
+          type:
+          - string
+          - 'null'
+        linkedin:
+          type:
+          - string
+          - 'null'
+        streetAddress:
+          type:
+          - string
+          - 'null'
+        city:
+          type:
+          - string
+          - 'null'
+        state:
+          type:
+          - string
+          - 'null'
+        zip:
+          type:
+          - string
+          - 'null'
+        country:
+          type:
+          - string
+          - 'null'
+    LeadPatchV0Input:
+      type: object
+      properties:
+        firstName:
+          type:
+          - string
+          - 'null'
+        lastName:
+          type:
+          - string
+          - 'null'
+        email:
+          type:
+          - string
+          - 'null'
+          format: email
+        address:
+          type:
+          - string
+          - 'null'
+        linkedin:
+          type:
+          - string
+          - 'null'
+        facebook:
+          type:
+          - string
+          - 'null'
+        twitter:
+          type:
+          - string
+          - 'null'
+        profilePicture:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        jobTitle:
+          type:
+          - string
+          - 'null'
+        phoneNumbers:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PhoneNumber'
+        remoteId:
+          type: object
+          description: Remote ID to set/clear for a specific integration. If omitted, existing remote IDs remain unchanged.
+          properties:
+            id:
+              type:
+              - string
+              - 'null'
+              description: Remote ID value. Set to null to clear.
+            integrationType:
+              $ref: '#/components/schemas/IntegrationType'
+          required:
+          - id
+          - integrationType
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+      required:
+      - status
+      - error
+    LeadV0Response:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        createdAt:
+          type: string
+          format: date-time
+        isEnriched:
+          type: boolean
+        firstName:
+          type:
+          - string
+          - 'null'
+        lastName:
+          type:
+          - string
+          - 'null'
+        email:
+          type:
+          - string
+          - 'null'
+          format: email
+        description:
+          type:
+          - string
+          - 'null'
+        linkedin:
+          type:
+          - string
+          - 'null'
+        facebook:
+          type:
+          - string
+          - 'null'
+        twitter:
+          type:
+          - string
+          - 'null'
+        jobTitle:
+          type:
+          - string
+          - 'null'
+        address:
+          type:
+          - string
+          - 'null'
+        phoneNumbers:
+          $ref: '#/components/schemas/LeadPhoneNumbers'
+        company:
+          $ref: '#/components/schemas/LeadCompany'
+        numberOfScans:
+          type: integer
+        lastScannedBy:
+          type:
+          - string
+          - 'null'
+          format: email
+        activations:
+          type: array
+          items:
+            $ref: '#/components/schemas/LeadActivationSummary'
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/LeadTag'
+        leadActivityEvents:
+          type: array
+          items:
+            type: string
+            format: uuid
+        remoteIds:
+          type: array
+          description: Remote IDs for this lead in external integrations.
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              integrationType:
+                $ref: '#/components/schemas/IntegrationType'
+            required:
+            - id
+            - integrationType
+      required:
+      - id
+      - createdAt
+      - isEnriched
+      - phoneNumbers
+      - company
+      - numberOfScans
+      - activations
+      - tags
+      - leadActivityEvents
+      - remoteIds
+    LeadActivationSummary:
+      type: object
+      properties:
+        activationId:
+          type: string
+          format: uuid
+        checkedIn:
+          type: boolean
+        registered:
+          type: boolean
+      required:
+      - activationId
+      - checkedIn
+      - registered
+    PhoneNumber:
+      type: object
+      properties:
+        number:
+          type: string
+        type:
+          $ref: '#/components/schemas/PhoneNumberTypeEnum'
+        preferred:
+          type: boolean
+      required:
+      - number
+      - type
+      - preferred
+    LeadsListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        results:
+          type: object
+          properties:
+            leads:
+              type: array
+              items:
+                $ref: '#/components/schemas/LeadV0Response'
+            total:
+              type: integer
+      required:
+      - status
+      - pagination
+      - results
+    Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+          format: int32
+        offset:
+          type: integer
+          format: int32
+      required:
+      - limit
+      - offset
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key

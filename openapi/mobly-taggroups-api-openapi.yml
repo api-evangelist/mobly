@@ -1,0 +1,193 @@
+openapi: 3.2.0
+info:
+  title: Mobly REST Tag Groups API
+  version: v0
+  description: 'Mobly REST API (version v0).
+
+
+    - JSON-based
+
+    - Authenticated via API key
+
+    - Versioned under `/v0`
+
+    '
+servers:
+- url: https://core-api.getmobly.com/api/v0
+security:
+- ApiKeyAuth: []
+tags:
+- name: TagGroups
+paths:
+  /tagGroups:
+    get:
+      summary: List tag groups
+      description: List tag groups defined for the organization, including tag options.
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - in: query
+        name: limit
+        schema:
+          type: integer
+          default: 20
+          maximum: 50
+      - in: query
+        name: offset
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: Tag groups list.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagGroupsListResponse'
+      tags:
+      - TagGroups
+  /tagGroups/{tagGroupId}:
+    get:
+      summary: Get tag group
+      description: Fetch a single tag group by ID.
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - in: path
+        name: tagGroupId
+        schema:
+          type: string
+        required: true
+        description: Tag group ID
+      responses:
+        '200':
+          description: Tag group.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagGroupSingleResponse'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - TagGroups
+components:
+  schemas:
+    TagGroupV0Response:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        status:
+          $ref: '#/components/schemas/TagGroupStatus'
+        allowsMultipleSelection:
+          type: boolean
+        displayOrder:
+          type: integer
+        usageInstructions:
+          type:
+          - string
+          - 'null'
+        required:
+          type: boolean
+        allEvents:
+          type: boolean
+        tagOptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagOption'
+      required:
+      - id
+      - name
+      - status
+      - allowsMultipleSelection
+      - displayOrder
+      - required
+      - allEvents
+      - tagOptions
+    Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+          format: int32
+        offset:
+          type: integer
+          format: int32
+      required:
+      - limit
+      - offset
+    TagGroupSingleResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        results:
+          $ref: '#/components/schemas/TagGroupV0Response'
+      required:
+      - status
+      - results
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+      required:
+      - status
+      - error
+    TagGroupStatus:
+      type: string
+      description: Tag group publication status.
+      enum:
+      - ARCHIVED
+      - DRAFT
+      - PUBLISHED
+    TagGroupsListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        results:
+          type: object
+          properties:
+            tagGroups:
+              type: array
+              items:
+                $ref: '#/components/schemas/TagGroupV0Response'
+            total:
+              type: integer
+      required:
+      - status
+      - pagination
+      - results
+    TagOption:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        displayOrder:
+          type: integer
+        value:
+          type: string
+      required:
+      - id
+      - displayOrder
+      - value
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key

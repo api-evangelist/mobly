@@ -1,0 +1,212 @@
+openapi: 3.2.0
+info:
+  title: Mobly REST Lead Activity Events API
+  version: v0
+  description: 'Mobly REST API (version v0).
+
+
+    - JSON-based
+
+    - Authenticated via API key
+
+    - Versioned under `/v0`
+
+    '
+servers:
+- url: https://core-api.getmobly.com/api/v0
+security:
+- ApiKeyAuth: []
+tags:
+- name: LeadActivityEvents
+paths:
+  /leadActivityEvents:
+    get:
+      summary: List lead activity events
+      description: List lead activity events for the authenticated organization.
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - in: query
+        name: limit
+        schema:
+          type: integer
+          default: 20
+          maximum: 50
+      - in: query
+        name: offset
+        schema:
+          type: integer
+          default: 0
+      - in: query
+        name: leadId
+        schema:
+          type: string
+          description: Filter by associated lead ID
+      - in: query
+        name: eventType
+        schema:
+          $ref: '#/components/schemas/LeadActivityEventType'
+      responses:
+        '200':
+          description: Lead activity events list.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeadActivityEventsListResponse'
+      tags:
+      - LeadActivityEvents
+  /leadActivityEvents/{leadActivityEventId}:
+    get:
+      summary: Get lead activity event
+      description: Fetch a single lead activity event by ID.
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - in: path
+        name: leadActivityEventId
+        schema:
+          type: string
+        required: true
+        description: Lead activity event ID
+      responses:
+        '200':
+          description: Lead activity event.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeadActivityEventSingleResponse'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - LeadActivityEvents
+components:
+  schemas:
+    LeadActivityEventSingleResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        results:
+          $ref: '#/components/schemas/LeadActivityEventV0Response'
+      required:
+      - status
+      - results
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+      required:
+      - status
+      - error
+    LeadActivityEventType:
+      type: string
+      description: Lead activity event type.
+      enum:
+      - NOTE
+      - FACEBOOK
+      - LINKEDIN
+      - TWITTER
+      - CALENDAR
+      - PHONE
+      - EMAIL
+      - SMS
+      - CAMPAIGN_ASSOCIATION
+      - CSV_UPLOAD
+      - MOBLY_API
+      - EMAIL_CONTENT
+      - SMS_CONTENT
+      - OTHER_CONTENT
+    LeadActivityEventsListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        results:
+          type: object
+          properties:
+            leadActivityEvents:
+              type: array
+              items:
+                $ref: '#/components/schemas/LeadActivityEventV0Response'
+            total:
+              type: integer
+      required:
+      - status
+      - pagination
+      - results
+    LeadActivityEventV0Response:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type:
+          - string
+          - 'null'
+          format: email
+        eventType:
+          $ref: '#/components/schemas/LeadActivityEventType'
+        eventNotes:
+          type:
+          - string
+          - 'null'
+        associatedLead:
+          type: string
+          format: uuid
+        associatedCampaign:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        associatedEvent:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        associatedActivation:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        associatedTagOption:
+          type:
+          - string
+          - 'null'
+          format: uuid
+      required:
+      - id
+      - createdAt
+      - eventType
+      - associatedLead
+    Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+          format: int32
+        offset:
+          type: integer
+          format: int32
+      required:
+      - limit
+      - offset
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key

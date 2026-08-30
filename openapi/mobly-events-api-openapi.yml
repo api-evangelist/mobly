@@ -1,0 +1,648 @@
+openapi: 3.2.0
+info:
+  title: Mobly REST Events API
+  version: v0
+  description: 'Mobly REST API (version v0).
+
+
+    - JSON-based
+
+    - Authenticated via API key
+
+    - Versioned under `/v0`
+
+    '
+servers:
+- url: https://core-api.getmobly.com/api/v0
+security:
+- ApiKeyAuth: []
+tags:
+- name: Events
+paths:
+  /events:
+    get:
+      summary: List events
+      description: List events for the authenticated organization.
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - in: query
+        name: limit
+        schema:
+          type: integer
+          default: 20
+          maximum: 50
+      - in: query
+        name: offset
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: Events list.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventListResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Events
+    post:
+      summary: Create event
+      description: Create an event for the authenticated organization.
+      security:
+      - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventCreateV0Input'
+      responses:
+        '200':
+          description: Created event.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventSingleResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Events
+  /events/{eventId}:
+    get:
+      summary: Get event
+      description: Fetch a single event by ID.
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - in: path
+        name: eventId
+        schema:
+          type: integer
+        required: true
+        description: Event ID
+      responses:
+        '200':
+          description: Event.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventSingleResponse'
+        '404':
+          description: Event not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Events
+    put:
+      summary: Update event
+      description: Update the full event record for the authenticated organization.
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - in: path
+        name: eventId
+        schema:
+          type: integer
+        required: true
+        description: Event ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventUpdateV0Input'
+      responses:
+        '200':
+          description: Updated event.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventSingleResponse'
+        '404':
+          description: Event not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Events
+    delete:
+      summary: Delete event
+      description: Delete an event for the authenticated organization.
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - in: path
+        name: eventId
+        schema:
+          type: integer
+        required: true
+        description: Event ID
+      responses:
+        '200':
+          description: Event deleted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  results:
+                    type: object
+                required:
+                - status
+                - results
+        '404':
+          description: Event not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Events
+  /events/{eventId}/leads:
+    get:
+      summary: List event leads
+      description: Retrieve the leads associated with a specific event, including registration and check-in status.
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - in: path
+        name: eventId
+        schema:
+          type: integer
+        required: true
+        description: Event ID
+      - in: query
+        name: limit
+        schema:
+          type: integer
+          default: 20
+          maximum: 50
+      - in: query
+        name: offset
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: Event leads list.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventLeadsListResponse'
+      tags:
+      - Events
+    put:
+      summary: Add or update event leads
+      description: 'Associate existing leads with an event and optionally update their `registered` and `checkedIn` status.
+
+
+        - Creates association if missing.
+
+        - Updates flags if association exists.
+
+        '
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - in: path
+        name: eventId
+        schema:
+          type: integer
+        required: true
+        description: Event ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventAddLeadsV0Input'
+      responses:
+        '200':
+          description: Updated event lead associations.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventLeadsUpdateResponse'
+      tags:
+      - Events
+  /events/{eventId}/leads/{leadId}:
+    delete:
+      summary: Remove lead from event
+      description: Delete a lead's association with an event for the authenticated organization.
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - in: path
+        name: eventId
+        schema:
+          type: integer
+        required: true
+        description: Event ID
+      - in: path
+        name: leadId
+        schema:
+          type: string
+        required: true
+        description: Lead ID
+      responses:
+        '200':
+          description: Association removed.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  results:
+                    type: object
+                required:
+                - status
+                - results
+      tags:
+      - Events
+  /events/{eventId}/users:
+    get:
+      summary: List event users
+      description: Retrieve the users assigned to a specific event for the authenticated organization.
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - in: path
+        name: eventId
+        schema:
+          type: integer
+        required: true
+        description: Event ID
+      - in: query
+        name: limit
+        schema:
+          type: integer
+          default: 20
+          maximum: 50
+      - in: query
+        name: offset
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: Event users list.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventUsersListResponse'
+      tags:
+      - Events
+components:
+  schemas:
+    EventLeadV0Response:
+      type: object
+      properties:
+        leadId:
+          type: string
+          format: uuid
+        registered:
+          type: boolean
+        checkedIn:
+          type: boolean
+      required:
+      - leadId
+      - registered
+      - checkedIn
+    UserV0Response:
+      type: object
+      properties:
+        id:
+          type: integer
+        email:
+          type:
+          - string
+          - 'null'
+        firstName:
+          type:
+          - string
+          - 'null'
+        lastName:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - email
+      - firstName
+      - lastName
+    EventUsersListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        results:
+          type: object
+          properties:
+            users:
+              type: array
+              items:
+                $ref: '#/components/schemas/UserV0Response'
+            total:
+              type: integer
+      required:
+      - status
+      - pagination
+      - results
+    EventUpdateV0Input:
+      type: object
+      properties:
+        eventName:
+          type: string
+        eventType:
+          $ref: '#/components/schemas/EventType'
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        registrationEnabled:
+          type: boolean
+      required:
+      - eventName
+      - eventType
+      - startDate
+      - endDate
+    EventListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        results:
+          type: object
+          properties:
+            events:
+              type: array
+              items:
+                $ref: '#/components/schemas/Event'
+            total:
+              type: integer
+      required:
+      - status
+      - pagination
+      - results
+    Location:
+      type: object
+      properties:
+        streetAddress:
+          type:
+          - string
+          - 'null'
+        city:
+          type:
+          - string
+          - 'null'
+        state:
+          type:
+          - string
+          - 'null'
+        zip:
+          type:
+          - string
+          - 'null'
+        country:
+          type:
+          - string
+          - 'null'
+        latitude:
+          type:
+          - string
+          - 'null'
+        longitude:
+          type:
+          - string
+          - 'null'
+        timeZone:
+          type:
+          - string
+          - 'null'
+    EventSingleResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        results:
+          $ref: '#/components/schemas/Event'
+      required:
+      - status
+      - results
+    EventType:
+      type: string
+      description: Event type classification.
+      enum:
+      - CONFERENCE
+      - TRADE_SHOW
+      - EVENT
+      - SIDECAR
+      - DINNER_MEAL
+      - HAPPY_HOUR
+      - OTHER
+    EventLeadsListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        results:
+          type: object
+          properties:
+            eventLeads:
+              type: array
+              items:
+                $ref: '#/components/schemas/EventLeadV0Response'
+            total:
+              type: integer
+      required:
+      - status
+      - pagination
+      - results
+    EventAddLeadsV0Input:
+      type: object
+      properties:
+        eventLeads:
+          type: array
+          items:
+            type: object
+            properties:
+              leadId:
+                type: string
+                format: uuid
+              registered:
+                type: boolean
+              checkedIn:
+                type: boolean
+            required:
+            - leadId
+      required:
+      - eventLeads
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+      required:
+      - status
+      - error
+    EventLeadsUpdateResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        results:
+          type: object
+          properties:
+            eventLeads:
+              type: array
+              items:
+                $ref: '#/components/schemas/EventLeadV0Response'
+      required:
+      - status
+      - results
+    EventCreateV0Input:
+      type: object
+      properties:
+        eventName:
+          type: string
+        eventType:
+          $ref: '#/components/schemas/EventType'
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        createdByEmail:
+          type: string
+          format: email
+        registrationEnabled:
+          type: boolean
+      required:
+      - eventName
+      - eventType
+      - startDate
+      - endDate
+      - createdByEmail
+    Event:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        type:
+          $ref: '#/components/schemas/EventType'
+        registrationEnabled:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+        startDate:
+          type:
+          - string
+          - 'null'
+          format: date
+        endDate:
+          type:
+          - string
+          - 'null'
+          format: date
+        location:
+          allOf:
+          - $ref: '#/components/schemas/Location'
+        tagGroups:
+          type: array
+          items:
+            type: string
+            format: uuid
+      required:
+      - id
+      - name
+      - type
+      - registrationEnabled
+      - createdAt
+      - tagGroups
+    Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+          format: int32
+        offset:
+          type: integer
+          format: int32
+      required:
+      - limit
+      - offset
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key

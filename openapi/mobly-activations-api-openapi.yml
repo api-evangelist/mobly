@@ -1,0 +1,252 @@
+openapi: 3.2.0
+info:
+  title: Mobly REST Activations API
+  version: v0
+  description: 'Mobly REST API (version v0).
+
+
+    - JSON-based
+
+    - Authenticated via API key
+
+    - Versioned under `/v0`
+
+    '
+servers:
+- url: https://core-api.getmobly.com/api/v0
+security:
+- ApiKeyAuth: []
+tags:
+- name: Activations
+paths:
+  /activations:
+    get:
+      summary: List activations
+      description: List activations for the organization.
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - in: query
+        name: limit
+        schema:
+          type: integer
+          default: 20
+          maximum: 50
+      - in: query
+        name: offset
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: Activations list.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivationsListResponse'
+      tags:
+      - Activations
+  /activations/{activationId}:
+    get:
+      summary: Get activation
+      description: Fetch a single activation by ID.
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - in: path
+        name: activationId
+        schema:
+          type: string
+        required: true
+        description: Activation ID
+      responses:
+        '200':
+          description: Activation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivationSingleResponse'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Activations
+components:
+  schemas:
+    ActivationType:
+      type: string
+      description: Activation type.
+      enum:
+      - CONFERENCE
+      - TRADE_SHOW
+      - EVENT
+      - SIDECAR
+      - DINNER_MEAL
+      - HAPPY_HOUR
+      - BREAKFAST
+      - LUNCH
+      - COFFEE_CHAT
+      - RECEPTION
+      - SPEAKING_SESSION
+      - PANEL_DISCUSSION
+      - WORKSHOP
+      - DEMO
+      - SPORTS_GAME
+      - PARTY
+      - BOOTH
+      - GIVEAWAY
+      - NETWORKING_MIXER
+      - ONSITE_OFFICE_VISIT
+      - OTHER
+    ActivationV0Response:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        eventId:
+          type: integer
+          format: int64
+        name:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        type:
+          $ref: '#/components/schemas/ActivationType'
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        startTime:
+          type: string
+          example: 09:00:00
+        endTime:
+          type: string
+          example: '12:00:00'
+        createdBy:
+          type:
+          - string
+          - 'null'
+          format: email
+        location:
+          allOf:
+          - $ref: '#/components/schemas/Location'
+        users:
+          type: array
+          items:
+            type: string
+            format: email
+        numberOfScans:
+          type: integer
+      required:
+      - id
+      - eventId
+      - name
+      - createdAt
+      - type
+      - startDate
+      - endDate
+      - startTime
+      - endTime
+      - users
+      - numberOfScans
+    Location:
+      type: object
+      properties:
+        streetAddress:
+          type:
+          - string
+          - 'null'
+        city:
+          type:
+          - string
+          - 'null'
+        state:
+          type:
+          - string
+          - 'null'
+        zip:
+          type:
+          - string
+          - 'null'
+        country:
+          type:
+          - string
+          - 'null'
+        latitude:
+          type:
+          - string
+          - 'null'
+        longitude:
+          type:
+          - string
+          - 'null'
+        timeZone:
+          type:
+          - string
+          - 'null'
+    ActivationSingleResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        results:
+          $ref: '#/components/schemas/ActivationV0Response'
+      required:
+      - status
+      - results
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+      required:
+      - status
+      - error
+    ActivationsListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        results:
+          type: object
+          properties:
+            activations:
+              type: array
+              items:
+                $ref: '#/components/schemas/ActivationV0Response'
+            total:
+              type: integer
+      required:
+      - status
+      - pagination
+      - results
+    Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+          format: int32
+        offset:
+          type: integer
+          format: int32
+      required:
+      - limit
+      - offset
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
