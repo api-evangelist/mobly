@@ -200,18 +200,16 @@ apis:
     url: conventions/mobly-conventions.yml
   - type: DataModel
     url: data-model/mobly-data-model.yml
-- aid: mobly:mobly-taggroups-api
+- aid: mobly:mobly-tag-groups-api
   name: Mob.ly Tag Groups API
-  description: The TagGroups API from Mob.ly — 2 operation(s) for taggroups.
+  description: The Tag Groups API from Mob.ly — 2 operation(s) for tag groups.
   humanURL: https://help.getmobly.com/api-reference
   baseURL: https://core-api.getmobly.com/api/v0
   tags:
   - Tag Groups
-  tags_raw:
-  - TagGroups
   properties:
   - type: OpenAPI
-    url: openapi/mobly-taggroups-api-openapi.yml
+    url: openapi/mobly-tag-groups-api-openapi.yml
   - type: Documentation
     url: https://help.getmobly.com/documentation/rest-api/rest-api-v0
   - type: APIReference
