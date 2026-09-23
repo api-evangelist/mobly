@@ -9,9 +9,7 @@ info:
 
     - Authenticated via API key
 
-    - Versioned under `/v0`
-
-    '
+    - Versioned under `/v0`'
 servers:
 - url: https://core-api.getmobly.com/api/v0
 security:
@@ -76,6 +74,8 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       tags:
       - Events
+      operationId: getEvents
+      x-operation-id-source: derived
     post:
       summary: Create event
       description: Create an event for the authenticated organization.
@@ -108,6 +108,8 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       tags:
       - Events
+      operationId: postEvents
+      x-operation-id-source: derived
   /events/{eventId}:
     get:
       summary: Get event
@@ -136,6 +138,8 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       tags:
       - Events
+      operationId: getEventsByEventId
+      x-operation-id-source: derived
     put:
       summary: Update event
       description: Update the full event record for the authenticated organization.
@@ -169,6 +173,8 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       tags:
       - Events
+      operationId: putEventsByEventId
+      x-operation-id-source: derived
     delete:
       summary: Delete event
       description: Delete an event for the authenticated organization.
@@ -205,6 +211,8 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       tags:
       - Events
+      operationId: deleteEventsByEventId
+      x-operation-id-source: derived
   /events/{eventId}/leads:
     get:
       summary: List event leads
@@ -238,6 +246,8 @@ paths:
                 $ref: '#/components/schemas/EventLeadsListResponse'
       tags:
       - Events
+      operationId: getEventsByEventIdLeads
+      x-operation-id-source: derived
     put:
       summary: Add or update event leads
       description: 'Associate existing leads with an event and optionally update their `registered` and `checkedIn` status.
@@ -245,9 +255,7 @@ paths:
 
         - Creates association if missing.
 
-        - Updates flags if association exists.
-
-        '
+        - Updates flags if association exists.'
       security:
       - ApiKeyAuth: []
       parameters:
@@ -272,6 +280,8 @@ paths:
                 $ref: '#/components/schemas/EventLeadsUpdateResponse'
       tags:
       - Events
+      operationId: putEventsByEventIdLeads
+      x-operation-id-source: derived
   /events/{eventId}/leads/{leadId}:
     delete:
       summary: Remove lead from event
@@ -309,6 +319,8 @@ paths:
                 - results
       tags:
       - Events
+      operationId: deleteEventsByEventIdLeadsByLeadId
+      x-operation-id-source: derived
   /events/{eventId}/users:
     get:
       summary: List event users
@@ -342,253 +354,10 @@ paths:
                 $ref: '#/components/schemas/EventUsersListResponse'
       tags:
       - Events
+      operationId: getEventsByEventIdUsers
+      x-operation-id-source: derived
 components:
   schemas:
-    EventLeadV0Response:
-      type: object
-      properties:
-        leadId:
-          type: string
-          format: uuid
-        registered:
-          type: boolean
-        checkedIn:
-          type: boolean
-      required:
-      - leadId
-      - registered
-      - checkedIn
-    UserV0Response:
-      type: object
-      properties:
-        id:
-          type: integer
-        email:
-          type:
-          - string
-          - 'null'
-        firstName:
-          type:
-          - string
-          - 'null'
-        lastName:
-          type:
-          - string
-          - 'null'
-      required:
-      - id
-      - email
-      - firstName
-      - lastName
-    EventUsersListResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          example: 200
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        results:
-          type: object
-          properties:
-            users:
-              type: array
-              items:
-                $ref: '#/components/schemas/UserV0Response'
-            total:
-              type: integer
-      required:
-      - status
-      - pagination
-      - results
-    EventUpdateV0Input:
-      type: object
-      properties:
-        eventName:
-          type: string
-        eventType:
-          $ref: '#/components/schemas/EventType'
-        startDate:
-          type: string
-          format: date
-        endDate:
-          type: string
-          format: date
-        registrationEnabled:
-          type: boolean
-      required:
-      - eventName
-      - eventType
-      - startDate
-      - endDate
-    EventListResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          example: 200
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        results:
-          type: object
-          properties:
-            events:
-              type: array
-              items:
-                $ref: '#/components/schemas/Event'
-            total:
-              type: integer
-      required:
-      - status
-      - pagination
-      - results
-    Location:
-      type: object
-      properties:
-        streetAddress:
-          type:
-          - string
-          - 'null'
-        city:
-          type:
-          - string
-          - 'null'
-        state:
-          type:
-          - string
-          - 'null'
-        zip:
-          type:
-          - string
-          - 'null'
-        country:
-          type:
-          - string
-          - 'null'
-        latitude:
-          type:
-          - string
-          - 'null'
-        longitude:
-          type:
-          - string
-          - 'null'
-        timeZone:
-          type:
-          - string
-          - 'null'
-    EventSingleResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          example: 200
-        results:
-          $ref: '#/components/schemas/Event'
-      required:
-      - status
-      - results
-    EventType:
-      type: string
-      description: Event type classification.
-      enum:
-      - CONFERENCE
-      - TRADE_SHOW
-      - EVENT
-      - SIDECAR
-      - DINNER_MEAL
-      - HAPPY_HOUR
-      - OTHER
-    EventLeadsListResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          example: 200
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        results:
-          type: object
-          properties:
-            eventLeads:
-              type: array
-              items:
-                $ref: '#/components/schemas/EventLeadV0Response'
-            total:
-              type: integer
-      required:
-      - status
-      - pagination
-      - results
-    EventAddLeadsV0Input:
-      type: object
-      properties:
-        eventLeads:
-          type: array
-          items:
-            type: object
-            properties:
-              leadId:
-                type: string
-                format: uuid
-              registered:
-                type: boolean
-              checkedIn:
-                type: boolean
-            required:
-            - leadId
-      required:
-      - eventLeads
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        error:
-          type: string
-      required:
-      - status
-      - error
-    EventLeadsUpdateResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          example: 200
-        results:
-          type: object
-          properties:
-            eventLeads:
-              type: array
-              items:
-                $ref: '#/components/schemas/EventLeadV0Response'
-      required:
-      - status
-      - results
-    EventCreateV0Input:
-      type: object
-      properties:
-        eventName:
-          type: string
-        eventType:
-          $ref: '#/components/schemas/EventType'
-        startDate:
-          type: string
-          format: date
-        endDate:
-          type: string
-          format: date
-        createdByEmail:
-          type: string
-          format: email
-        registrationEnabled:
-          type: boolean
-      required:
-      - eventName
-      - eventType
-      - startDate
-      - endDate
-      - createdByEmail
     Event:
       type: object
       properties:
@@ -629,6 +398,219 @@ components:
       - registrationEnabled
       - createdAt
       - tagGroups
+    EventListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        results:
+          type: object
+          properties:
+            events:
+              type: array
+              items:
+                $ref: '#/components/schemas/Event'
+            total:
+              type: integer
+      required:
+      - status
+      - pagination
+      - results
+    EventCreateV0Input:
+      type: object
+      properties:
+        eventName:
+          type: string
+        eventType:
+          $ref: '#/components/schemas/EventType'
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        createdByEmail:
+          type: string
+          format: email
+        registrationEnabled:
+          type: boolean
+      required:
+      - eventName
+      - eventType
+      - startDate
+      - endDate
+      - createdByEmail
+    EventLeadsListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        results:
+          type: object
+          properties:
+            eventLeads:
+              type: array
+              items:
+                $ref: '#/components/schemas/EventLeadV0Response'
+            total:
+              type: integer
+      required:
+      - status
+      - pagination
+      - results
+    EventType:
+      type: string
+      description: Event type classification.
+      enum:
+      - CONFERENCE
+      - TRADE_SHOW
+      - EVENT
+      - SIDECAR
+      - DINNER_MEAL
+      - HAPPY_HOUR
+      - OTHER
+    Location:
+      type: object
+      properties:
+        streetAddress:
+          type:
+          - string
+          - 'null'
+        city:
+          type:
+          - string
+          - 'null'
+        state:
+          type:
+          - string
+          - 'null'
+        zip:
+          type:
+          - string
+          - 'null'
+        country:
+          type:
+          - string
+          - 'null'
+        latitude:
+          type:
+          - string
+          - 'null'
+        longitude:
+          type:
+          - string
+          - 'null'
+        timeZone:
+          type:
+          - string
+          - 'null'
+    EventUpdateV0Input:
+      type: object
+      properties:
+        eventName:
+          type: string
+        eventType:
+          $ref: '#/components/schemas/EventType'
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        registrationEnabled:
+          type: boolean
+      required:
+      - eventName
+      - eventType
+      - startDate
+      - endDate
+    EventLeadV0Response:
+      type: object
+      properties:
+        leadId:
+          type: string
+          format: uuid
+        registered:
+          type: boolean
+        checkedIn:
+          type: boolean
+      required:
+      - leadId
+      - registered
+      - checkedIn
+    EventAddLeadsV0Input:
+      type: object
+      properties:
+        eventLeads:
+          type: array
+          items:
+            type: object
+            properties:
+              leadId:
+                type: string
+                format: uuid
+              registered:
+                type: boolean
+              checkedIn:
+                type: boolean
+            required:
+            - leadId
+      required:
+      - eventLeads
+    EventLeadsUpdateResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        results:
+          type: object
+          properties:
+            eventLeads:
+              type: array
+              items:
+                $ref: '#/components/schemas/EventLeadV0Response'
+      required:
+      - status
+      - results
+    UserV0Response:
+      type: object
+      properties:
+        id:
+          type: integer
+        email:
+          type:
+          - string
+          - 'null'
+        firstName:
+          type:
+          - string
+          - 'null'
+        lastName:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - email
+      - firstName
+      - lastName
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+      required:
+      - status
+      - error
     Pagination:
       type: object
       properties:
@@ -641,6 +623,38 @@ components:
       required:
       - limit
       - offset
+    EventSingleResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        results:
+          $ref: '#/components/schemas/Event'
+      required:
+      - status
+      - results
+    EventUsersListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        results:
+          type: object
+          properties:
+            users:
+              type: array
+              items:
+                $ref: '#/components/schemas/UserV0Response'
+            total:
+              type: integer
+      required:
+      - status
+      - pagination
+      - results
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

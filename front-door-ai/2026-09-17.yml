@@ -1,0 +1,25 @@
+# Front Door AI Index — mobly — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: mobly
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.getmobly.com
+  final_host: www.getmobly.com
+  ownership: own
+  owner: mobly
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 2
+  host_score: 2
+  density: 0.85
+  words: 2361
+  tiers:
+    agentic: 0
+    core: 2
+    model: 0
+  ambiguous: 0
+  top_terms:
+    AI: 2

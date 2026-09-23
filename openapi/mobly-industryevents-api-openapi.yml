@@ -9,9 +9,7 @@ info:
 
     - Authenticated via API key
 
-    - Versioned under `/v0`
-
-    '
+    - Versioned under `/v0`'
 servers:
 - url: https://core-api.getmobly.com/api/v0
 security:
@@ -30,9 +28,7 @@ paths:
         - `q` — full-text search across name, venueCity, venueState, venueCountry, description, keywords, industries, personas
 
 
-        If `eventUrl` is provided, `q` is ignored. If neither is provided, all industry events are returned (paginated).
-
-        '
+        If `eventUrl` is provided, `q` is ignored. If neither is provided, all industry events are returned (paginated).'
       security:
       - ApiKeyAuth: []
       parameters:
@@ -72,6 +68,8 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       tags:
       - IndustryEvents
+      operationId: getIndustryEvents
+      x-operation-id-source: derived
     post:
       summary: Create industry event
       description: 'Create an industry event with automatic deduplication:
@@ -79,9 +77,7 @@ paths:
 
         1. If an event with the same `eventUrl` already exists, the existing record is returned (`created: false`).
 
-        2. If no URL match but `name` and `startDate` match, the event is still created but `potentialDuplicates` are returned.
-
-        '
+        2. If no URL match but `name` and `startDate` match, the event is still created but `potentialDuplicates` are returned.'
       security:
       - ApiKeyAuth: []
       requestBody:
@@ -105,6 +101,8 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       tags:
       - IndustryEvents
+      operationId: postIndustryEvents
+      x-operation-id-source: derived
   /industryEvents/bookmarks:
     get:
       summary: List bookmarked industry events
@@ -131,6 +129,8 @@ paths:
                           $ref: '#/components/schemas/IndustryEvent'
       tags:
       - IndustryEvents
+      operationId: getIndustryEventsBookmarks
+      x-operation-id-source: derived
   /industryEvents/{industryEventId}:
     get:
       summary: Get industry event
@@ -160,6 +160,8 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       tags:
       - IndustryEvents
+      operationId: getIndustryEventsByIndustryEventId
+      x-operation-id-source: derived
     put:
       summary: Update industry event
       description: Partially update an industry event. Only fields included in the body are modified.
@@ -194,6 +196,8 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       tags:
       - IndustryEvents
+      operationId: putIndustryEventsByIndustryEventId
+      x-operation-id-source: derived
   /industryEvents/{industryEventId}/bookmark:
     post:
       summary: Bookmark industry event
@@ -232,6 +236,8 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       tags:
       - IndustryEvents
+      operationId: postIndustryEventsByIndustryEventIdBookmark
+      x-operation-id-source: derived
     delete:
       summary: Unbookmark industry event
       description: Remove an industry event from the authenticated organization's bookmarks.
@@ -269,8 +275,24 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       tags:
       - IndustryEvents
+      operationId: deleteIndustryEventsByIndustryEventIdBookmark
+      x-operation-id-source: derived
 components:
   schemas:
+    IndustryEventSingleResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        results:
+          type: object
+          properties:
+            industryEvent:
+              $ref: '#/components/schemas/IndustryEvent'
+      required:
+      - status
+      - results
     IndustryEventCreateResponse:
       type: object
       properties:
@@ -292,124 +314,6 @@ components:
                 $ref: '#/components/schemas/IndustryEvent'
       required:
       - status
-      - results
-    IndustryEventUpdateV0Input:
-      type: object
-      properties:
-        name:
-          type: string
-        startDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        endDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        sourceType:
-          type:
-          - string
-          - 'null'
-        sourceId:
-          type:
-          - string
-          - 'null'
-        eventType:
-          type:
-          - string
-          - 'null'
-        venueCity:
-          type:
-          - string
-          - 'null'
-        venueState:
-          type:
-          - string
-          - 'null'
-        venueCountry:
-          type:
-          - string
-          - 'null'
-        venueName:
-          type:
-          - string
-          - 'null'
-        venueFullAddress:
-          type:
-          - string
-          - 'null'
-        venueCoordinates:
-          type:
-          - string
-          - 'null'
-        numberOfAttendees:
-          type:
-          - integer
-          - 'null'
-        numberOfExhibitors:
-          type:
-          - integer
-          - 'null'
-        attendeeCost:
-          type:
-          - string
-          - 'null'
-        boothCost:
-          type:
-          - string
-          - 'null'
-        exhibitorIndustries:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        attendeePersonas:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        keywords:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        website:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        eventUrl:
-          type:
-          - string
-          - 'null'
-    IndustryEventListResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          example: 200
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        results:
-          type: object
-          properties:
-            industryEvents:
-              type: array
-              items:
-                $ref: '#/components/schemas/IndustryEvent'
-            total:
-              type: integer
-      required:
-      - status
-      - pagination
       - results
     IndustryEvent:
       type: object
@@ -525,16 +429,6 @@ components:
       - createdAt
       - updatedAt
       - name
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        error:
-          type: string
-      required:
-      - status
-      - error
     IndustryEventCreateV0Input:
       type: object
       properties:
@@ -634,20 +528,16 @@ components:
           - 'null'
       required:
       - name
-    IndustryEventSingleResponse:
+    ErrorResponse:
       type: object
       properties:
         status:
           type: integer
-          example: 200
-        results:
-          type: object
-          properties:
-            industryEvent:
-              $ref: '#/components/schemas/IndustryEvent'
+        error:
+          type: string
       required:
       - status
-      - results
+      - error
     Pagination:
       type: object
       properties:
@@ -660,6 +550,124 @@ components:
       required:
       - limit
       - offset
+    IndustryEventListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        results:
+          type: object
+          properties:
+            industryEvents:
+              type: array
+              items:
+                $ref: '#/components/schemas/IndustryEvent'
+            total:
+              type: integer
+      required:
+      - status
+      - pagination
+      - results
+    IndustryEventUpdateV0Input:
+      type: object
+      properties:
+        name:
+          type: string
+        startDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        endDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        sourceType:
+          type:
+          - string
+          - 'null'
+        sourceId:
+          type:
+          - string
+          - 'null'
+        eventType:
+          type:
+          - string
+          - 'null'
+        venueCity:
+          type:
+          - string
+          - 'null'
+        venueState:
+          type:
+          - string
+          - 'null'
+        venueCountry:
+          type:
+          - string
+          - 'null'
+        venueName:
+          type:
+          - string
+          - 'null'
+        venueFullAddress:
+          type:
+          - string
+          - 'null'
+        venueCoordinates:
+          type:
+          - string
+          - 'null'
+        numberOfAttendees:
+          type:
+          - integer
+          - 'null'
+        numberOfExhibitors:
+          type:
+          - integer
+          - 'null'
+        attendeeCost:
+          type:
+          - string
+          - 'null'
+        boothCost:
+          type:
+          - string
+          - 'null'
+        exhibitorIndustries:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        attendeePersonas:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        keywords:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        website:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        eventUrl:
+          type:
+          - string
+          - 'null'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

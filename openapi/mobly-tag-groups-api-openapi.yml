@@ -9,15 +9,13 @@ info:
 
     - Authenticated via API key
 
-    - Versioned under `/v0`
-
-    '
+    - Versioned under `/v0`'
 servers:
 - url: https://core-api.getmobly.com/api/v0
 security:
 - ApiKeyAuth: []
 tags:
-- name: TagGroups
+- name: Tag Groups
 paths:
   /tagGroups:
     get:
@@ -45,7 +43,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/TagGroupsListResponse'
       tags:
-      - TagGroups
+      - Tag Groups
+      operationId: getTagGroups
+      x-operation-id-source: derived
   /tagGroups/{tagGroupId}:
     get:
       summary: Get tag group
@@ -73,9 +73,86 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
       tags:
-      - TagGroups
+      - Tag Groups
+      operationId: getTagGroupsByTagGroupId
+      x-operation-id-source: derived
 components:
   schemas:
+    TagGroupsListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        results:
+          type: object
+          properties:
+            tagGroups:
+              type: array
+              items:
+                $ref: '#/components/schemas/TagGroupV0Response'
+            total:
+              type: integer
+      required:
+      - status
+      - pagination
+      - results
+    TagGroupSingleResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        results:
+          $ref: '#/components/schemas/TagGroupV0Response'
+      required:
+      - status
+      - results
+    TagOption:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        displayOrder:
+          type: integer
+        value:
+          type: string
+      required:
+      - id
+      - displayOrder
+      - value
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+      required:
+      - status
+      - error
+    Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+          format: int32
+        offset:
+          type: integer
+          format: int32
+      required:
+      - limit
+      - offset
+    TagGroupStatus:
+      type: string
+      description: Tag group publication status.
+      enum:
+      - ARCHIVED
+      - DRAFT
+      - PUBLISHED
     TagGroupV0Response:
       type: object
       properties:
@@ -111,81 +188,6 @@ components:
       - required
       - allEvents
       - tagOptions
-    Pagination:
-      type: object
-      properties:
-        limit:
-          type: integer
-          format: int32
-        offset:
-          type: integer
-          format: int32
-      required:
-      - limit
-      - offset
-    TagGroupSingleResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          example: 200
-        results:
-          $ref: '#/components/schemas/TagGroupV0Response'
-      required:
-      - status
-      - results
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        error:
-          type: string
-      required:
-      - status
-      - error
-    TagGroupStatus:
-      type: string
-      description: Tag group publication status.
-      enum:
-      - ARCHIVED
-      - DRAFT
-      - PUBLISHED
-    TagGroupsListResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          example: 200
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        results:
-          type: object
-          properties:
-            tagGroups:
-              type: array
-              items:
-                $ref: '#/components/schemas/TagGroupV0Response'
-            total:
-              type: integer
-      required:
-      - status
-      - pagination
-      - results
-    TagOption:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        displayOrder:
-          type: integer
-        value:
-          type: string
-      required:
-      - id
-      - displayOrder
-      - value
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -1,0 +1,70 @@
+{
+  "provider": "mobly",
+  "sources": [
+    "_original/mobly-rest-api-v0-openapi-original.yml"
+  ],
+  "outputs": [
+    "mobly-activations-api-openapi.yml",
+    "mobly-events-api-openapi.yml",
+    "mobly-industryevents-api-openapi.yml",
+    "mobly-leadactivityevents-api-openapi.yml",
+    "mobly-leads-api-openapi.yml",
+    "mobly-taggroups-api-openapi.yml"
+  ],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
+  "errors": [
+    "mobly-rest-api-v0-openapi-original.yml: dangling $ref: #/components/schemas/IntegrationType"
+  ],
+  "warnings": [],
+  "notes": [
+    "1 archived document(s) dropped as subsets of other archived documents",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "mobly-rest-api-v0-openapi-original.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "mobly-rest-api-v0-openapi-original.yml: tagged paths GET /events -> Events",
+    "mobly-rest-api-v0-openapi-original.yml: tagged paths POST /events -> Events",
+    "mobly-rest-api-v0-openapi-original.yml: tagged paths GET /events/{eventId} -> Events",
+    "mobly-rest-api-v0-openapi-original.yml: tagged paths PUT /events/{eventId} -> Events",
+    "mobly-rest-api-v0-openapi-original.yml: tagged paths DELETE /events/{eventId} -> Events",
+    "mobly-rest-api-v0-openapi-original.yml: tagged paths GET /events/{eventId}/leads -> Events",
+    "mobly-rest-api-v0-openapi-original.yml: tagged paths PUT /events/{eventId}/leads -> Events",
+    "mobly-rest-api-v0-openapi-original.yml: tagged paths DELETE /events/{eventId}/leads/{leadId} -> Events",
+    "mobly-rest-api-v0-openapi-original.yml: tagged paths GET /events/{eventId}/users -> Events",
+    "mobly-rest-api-v0-openapi-original.yml: tagged paths GET /leads -> Leads",
+    "mobly-rest-api-v0-openapi-original.yml: tagged paths POST /leads -> Leads",
+    "mobly-rest-api-v0-openapi-original.yml: tagged paths GET /leads/{leadId} -> Leads",
+    "mobly-rest-api-v0-openapi-original.yml: tagged paths PATCH /leads/{leadId} -> Leads",
+    "mobly-rest-api-v0-openapi-original.yml: tagged paths DELETE /leads/{leadId} -> Leads",
+    "mobly-rest-api-v0-openapi-original.yml: tagged paths GET /leadActivityEvents -> LeadActivityEvents",
+    "mobly-rest-api-v0-openapi-original.yml: tagged paths GET /leadActivityEvents/{leadActivityEventId} -> LeadActivityEvents",
+    "mobly-rest-api-v0-openapi-original.yml: tagged paths GET /activations -> Activations",
+    "mobly-rest-api-v0-openapi-original.yml: tagged paths GET /activations/{activationId} -> Activations",
+    "mobly-rest-api-v0-openapi-original.yml: tagged paths GET /tagGroups -> TagGroups",
+    "mobly-rest-api-v0-openapi-original.yml: tagged paths GET /tagGroups/{tagGroupId} -> TagGroups",
+    "mobly-rest-api-v0-openapi-original.yml: tagged paths GET /industryEvents -> IndustryEvents",
+    "mobly-rest-api-v0-openapi-original.yml: tagged paths POST /industryEvents -> IndustryEvents",
+    "mobly-rest-api-v0-openapi-original.yml: tagged paths GET /industryEvents/bookmarks -> IndustryEvents",
+    "mobly-rest-api-v0-openapi-original.yml: tagged paths GET /industryEvents/{industryEventId} -> IndustryEvents",
+    "mobly-rest-api-v0-openapi-original.yml: tagged paths PUT /industryEvents/{industryEventId} -> IndustryEvents",
+    "mobly-rest-api-v0-openapi-original.yml: tagged paths POST /industryEvents/{industryEventId}/bookmark -> IndustryEvents",
+    "mobly-rest-api-v0-openapi-original.yml: tagged paths DELETE /industryEvents/{industryEventId}/bookmark -> IndustryEvents",
+    "mobly-rest-api-v0-openapi-original.yml: declared missing tag: Activations",
+    "mobly-rest-api-v0-openapi-original.yml: declared missing tag: Events",
+    "mobly-rest-api-v0-openapi-original.yml: declared missing tag: IndustryEvents",
+    "mobly-rest-api-v0-openapi-original.yml: declared missing tag: LeadActivityEvents",
+    "mobly-rest-api-v0-openapi-original.yml: declared missing tag: Leads",
+    "mobly-rest-api-v0-openapi-original.yml: declared missing tag: TagGroups",
+    "superseded outputs removed: mobly-tag-groups-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 6 total)"
+  ],
+  "skipped": [
+    "_original/mobly-rest-api-v0-openapi.yml: archived document superseded by a larger archived document",
+    "mobly-activations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mobly-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mobly-industryevents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mobly-leadactivityevents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mobly-leads-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mobly-tag-groups-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
+}

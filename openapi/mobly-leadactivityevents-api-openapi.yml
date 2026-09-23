@@ -9,9 +9,7 @@ info:
 
     - Authenticated via API key
 
-    - Versioned under `/v0`
-
-    '
+    - Versioned under `/v0`'
 servers:
 - url: https://core-api.getmobly.com/api/v0
 security:
@@ -55,6 +53,8 @@ paths:
                 $ref: '#/components/schemas/LeadActivityEventsListResponse'
       tags:
       - LeadActivityEvents
+      operationId: getLeadActivityEvents
+      x-operation-id-source: derived
   /leadActivityEvents/{leadActivityEventId}:
     get:
       summary: Get lead activity event
@@ -83,47 +83,10 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       tags:
       - LeadActivityEvents
+      operationId: getLeadActivityEventsByLeadActivityEventId
+      x-operation-id-source: derived
 components:
   schemas:
-    LeadActivityEventSingleResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          example: 200
-        results:
-          $ref: '#/components/schemas/LeadActivityEventV0Response'
-      required:
-      - status
-      - results
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        error:
-          type: string
-      required:
-      - status
-      - error
-    LeadActivityEventType:
-      type: string
-      description: Lead activity event type.
-      enum:
-      - NOTE
-      - FACEBOOK
-      - LINKEDIN
-      - TWITTER
-      - CALENDAR
-      - PHONE
-      - EMAIL
-      - SMS
-      - CAMPAIGN_ASSOCIATION
-      - CSV_UPLOAD
-      - MOBLY_API
-      - EMAIL_CONTENT
-      - SMS_CONTENT
-      - OTHER_CONTENT
     LeadActivityEventsListResponse:
       type: object
       properties:
@@ -145,6 +108,18 @@ components:
       - status
       - pagination
       - results
+    Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+          format: int32
+        offset:
+          type: integer
+          format: int32
+      required:
+      - limit
+      - offset
     LeadActivityEventV0Response:
       type: object
       properties:
@@ -193,18 +168,45 @@ components:
       - createdAt
       - eventType
       - associatedLead
-    Pagination:
+    LeadActivityEventSingleResponse:
       type: object
       properties:
-        limit:
+        status:
           type: integer
-          format: int32
-        offset:
-          type: integer
-          format: int32
+          example: 200
+        results:
+          $ref: '#/components/schemas/LeadActivityEventV0Response'
       required:
-      - limit
-      - offset
+      - status
+      - results
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+      required:
+      - status
+      - error
+    LeadActivityEventType:
+      type: string
+      description: Lead activity event type.
+      enum:
+      - NOTE
+      - FACEBOOK
+      - LINKEDIN
+      - TWITTER
+      - CALENDAR
+      - PHONE
+      - EMAIL
+      - SMS
+      - CAMPAIGN_ASSOCIATION
+      - CSV_UPLOAD
+      - MOBLY_API
+      - EMAIL_CONTENT
+      - SMS_CONTENT
+      - OTHER_CONTENT
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

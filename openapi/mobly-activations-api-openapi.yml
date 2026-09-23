@@ -9,9 +9,7 @@ info:
 
     - Authenticated via API key
 
-    - Versioned under `/v0`
-
-    '
+    - Versioned under `/v0`'
 servers:
 - url: https://core-api.getmobly.com/api/v0
 security:
@@ -46,6 +44,8 @@ paths:
                 $ref: '#/components/schemas/ActivationsListResponse'
       tags:
       - Activations
+      operationId: getActivations
+      x-operation-id-source: derived
   /activations/{activationId}:
     get:
       summary: Get activation
@@ -74,33 +74,31 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       tags:
       - Activations
+      operationId: getActivationsByActivationId
+      x-operation-id-source: derived
 components:
   schemas:
-    ActivationType:
-      type: string
-      description: Activation type.
-      enum:
-      - CONFERENCE
-      - TRADE_SHOW
-      - EVENT
-      - SIDECAR
-      - DINNER_MEAL
-      - HAPPY_HOUR
-      - BREAKFAST
-      - LUNCH
-      - COFFEE_CHAT
-      - RECEPTION
-      - SPEAKING_SESSION
-      - PANEL_DISCUSSION
-      - WORKSHOP
-      - DEMO
-      - SPORTS_GAME
-      - PARTY
-      - BOOTH
-      - GIVEAWAY
-      - NETWORKING_MIXER
-      - ONSITE_OFFICE_VISIT
-      - OTHER
+    ActivationsListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        results:
+          type: object
+          properties:
+            activations:
+              type: array
+              items:
+                $ref: '#/components/schemas/ActivationV0Response'
+            total:
+              type: integer
+      required:
+      - status
+      - pagination
+      - results
     ActivationV0Response:
       type: object
       properties:
@@ -202,6 +200,31 @@ components:
       required:
       - status
       - results
+    ActivationType:
+      type: string
+      description: Activation type.
+      enum:
+      - CONFERENCE
+      - TRADE_SHOW
+      - EVENT
+      - SIDECAR
+      - DINNER_MEAL
+      - HAPPY_HOUR
+      - BREAKFAST
+      - LUNCH
+      - COFFEE_CHAT
+      - RECEPTION
+      - SPEAKING_SESSION
+      - PANEL_DISCUSSION
+      - WORKSHOP
+      - DEMO
+      - SPORTS_GAME
+      - PARTY
+      - BOOTH
+      - GIVEAWAY
+      - NETWORKING_MIXER
+      - ONSITE_OFFICE_VISIT
+      - OTHER
     ErrorResponse:
       type: object
       properties:
@@ -212,27 +235,6 @@ components:
       required:
       - status
       - error
-    ActivationsListResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          example: 200
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        results:
-          type: object
-          properties:
-            activations:
-              type: array
-              items:
-                $ref: '#/components/schemas/ActivationV0Response'
-            total:
-              type: integer
-      required:
-      - status
-      - pagination
-      - results
     Pagination:
       type: object
       properties:
