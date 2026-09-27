@@ -87,6 +87,47 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+          format: int32
+        offset:
+          type: integer
+          format: int32
+      required:
+      - limit
+      - offset
+    LeadActivityEventType:
+      type: string
+      description: Lead activity event type.
+      enum:
+      - NOTE
+      - FACEBOOK
+      - LINKEDIN
+      - TWITTER
+      - CALENDAR
+      - PHONE
+      - EMAIL
+      - SMS
+      - CAMPAIGN_ASSOCIATION
+      - CSV_UPLOAD
+      - MOBLY_API
+      - EMAIL_CONTENT
+      - SMS_CONTENT
+      - OTHER_CONTENT
+    LeadActivityEventSingleResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        results:
+          $ref: '#/components/schemas/LeadActivityEventV0Response'
+      required:
+      - status
+      - results
     LeadActivityEventsListResponse:
       type: object
       properties:
@@ -108,18 +149,6 @@ components:
       - status
       - pagination
       - results
-    Pagination:
-      type: object
-      properties:
-        limit:
-          type: integer
-          format: int32
-        offset:
-          type: integer
-          format: int32
-      required:
-      - limit
-      - offset
     LeadActivityEventV0Response:
       type: object
       properties:
@@ -168,17 +197,6 @@ components:
       - createdAt
       - eventType
       - associatedLead
-    LeadActivityEventSingleResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          example: 200
-        results:
-          $ref: '#/components/schemas/LeadActivityEventV0Response'
-      required:
-      - status
-      - results
     ErrorResponse:
       type: object
       properties:
@@ -189,24 +207,6 @@ components:
       required:
       - status
       - error
-    LeadActivityEventType:
-      type: string
-      description: Lead activity event type.
-      enum:
-      - NOTE
-      - FACEBOOK
-      - LINKEDIN
-      - TWITTER
-      - CALENDAR
-      - PHONE
-      - EMAIL
-      - SMS
-      - CAMPAIGN_ASSOCIATION
-      - CSV_UPLOAD
-      - MOBLY_API
-      - EMAIL_CONTENT
-      - SMS_CONTENT
-      - OTHER_CONTENT
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

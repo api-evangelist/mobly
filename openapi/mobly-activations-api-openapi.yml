@@ -78,27 +78,18 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ActivationsListResponse:
+    Pagination:
       type: object
       properties:
-        status:
+        limit:
           type: integer
-          example: 200
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        results:
-          type: object
-          properties:
-            activations:
-              type: array
-              items:
-                $ref: '#/components/schemas/ActivationV0Response'
-            total:
-              type: integer
+          format: int32
+        offset:
+          type: integer
+          format: int32
       required:
-      - status
-      - pagination
-      - results
+      - limit
+      - offset
     ActivationV0Response:
       type: object
       properties:
@@ -154,6 +145,52 @@ components:
       - endTime
       - users
       - numberOfScans
+    ActivationType:
+      type: string
+      description: Activation type.
+      enum:
+      - CONFERENCE
+      - TRADE_SHOW
+      - EVENT
+      - SIDECAR
+      - DINNER_MEAL
+      - HAPPY_HOUR
+      - BREAKFAST
+      - LUNCH
+      - COFFEE_CHAT
+      - RECEPTION
+      - SPEAKING_SESSION
+      - PANEL_DISCUSSION
+      - WORKSHOP
+      - DEMO
+      - SPORTS_GAME
+      - PARTY
+      - BOOTH
+      - GIVEAWAY
+      - NETWORKING_MIXER
+      - ONSITE_OFFICE_VISIT
+      - OTHER
+    ActivationSingleResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        results:
+          $ref: '#/components/schemas/ActivationV0Response'
+      required:
+      - status
+      - results
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+      required:
+      - status
+      - error
     Location:
       type: object
       properties:
@@ -189,64 +226,27 @@ components:
           type:
           - string
           - 'null'
-    ActivationSingleResponse:
+    ActivationsListResponse:
       type: object
       properties:
         status:
           type: integer
           example: 200
+        pagination:
+          $ref: '#/components/schemas/Pagination'
         results:
-          $ref: '#/components/schemas/ActivationV0Response'
+          type: object
+          properties:
+            activations:
+              type: array
+              items:
+                $ref: '#/components/schemas/ActivationV0Response'
+            total:
+              type: integer
       required:
       - status
+      - pagination
       - results
-    ActivationType:
-      type: string
-      description: Activation type.
-      enum:
-      - CONFERENCE
-      - TRADE_SHOW
-      - EVENT
-      - SIDECAR
-      - DINNER_MEAL
-      - HAPPY_HOUR
-      - BREAKFAST
-      - LUNCH
-      - COFFEE_CHAT
-      - RECEPTION
-      - SPEAKING_SESSION
-      - PANEL_DISCUSSION
-      - WORKSHOP
-      - DEMO
-      - SPORTS_GAME
-      - PARTY
-      - BOOTH
-      - GIVEAWAY
-      - NETWORKING_MIXER
-      - ONSITE_OFFICE_VISIT
-      - OTHER
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        error:
-          type: string
-      required:
-      - status
-      - error
-    Pagination:
-      type: object
-      properties:
-        limit:
-          type: integer
-          format: int32
-        offset:
-          type: integer
-          format: int32
-      required:
-      - limit
-      - offset
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

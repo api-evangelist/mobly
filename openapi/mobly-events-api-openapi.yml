@@ -358,6 +358,156 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+          format: int32
+        offset:
+          type: integer
+          format: int32
+      required:
+      - limit
+      - offset
+    EventSingleResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        results:
+          $ref: '#/components/schemas/Event'
+      required:
+      - status
+      - results
+    EventType:
+      type: string
+      description: Event type classification.
+      enum:
+      - CONFERENCE
+      - TRADE_SHOW
+      - EVENT
+      - SIDECAR
+      - DINNER_MEAL
+      - HAPPY_HOUR
+      - OTHER
+    EventLeadV0Response:
+      type: object
+      properties:
+        leadId:
+          type: string
+          format: uuid
+        registered:
+          type: boolean
+        checkedIn:
+          type: boolean
+      required:
+      - leadId
+      - registered
+      - checkedIn
+    EventCreateV0Input:
+      type: object
+      properties:
+        eventName:
+          type: string
+        eventType:
+          $ref: '#/components/schemas/EventType'
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        createdByEmail:
+          type: string
+          format: email
+        registrationEnabled:
+          type: boolean
+      required:
+      - eventName
+      - eventType
+      - startDate
+      - endDate
+      - createdByEmail
+    EventAddLeadsV0Input:
+      type: object
+      properties:
+        eventLeads:
+          type: array
+          items:
+            type: object
+            properties:
+              leadId:
+                type: string
+                format: uuid
+              registered:
+                type: boolean
+              checkedIn:
+                type: boolean
+            required:
+            - leadId
+      required:
+      - eventLeads
+    UserV0Response:
+      type: object
+      properties:
+        id:
+          type: integer
+        email:
+          type:
+          - string
+          - 'null'
+        firstName:
+          type:
+          - string
+          - 'null'
+        lastName:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - email
+      - firstName
+      - lastName
+    EventLeadsUpdateResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        results:
+          type: object
+          properties:
+            eventLeads:
+              type: array
+              items:
+                $ref: '#/components/schemas/EventLeadV0Response'
+      required:
+      - status
+      - results
+    EventLeadsListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        results:
+          type: object
+          properties:
+            eventLeads:
+              type: array
+              items:
+                $ref: '#/components/schemas/EventLeadV0Response'
+            total:
+              type: integer
+      required:
+      - status
+      - pagination
+      - results
     Event:
       type: object
       properties:
@@ -398,7 +548,7 @@ components:
       - registrationEnabled
       - createdAt
       - tagGroups
-    EventListResponse:
+    EventUsersListResponse:
       type: object
       properties:
         status:
@@ -409,17 +559,27 @@ components:
         results:
           type: object
           properties:
-            events:
+            users:
               type: array
               items:
-                $ref: '#/components/schemas/Event'
+                $ref: '#/components/schemas/UserV0Response'
             total:
               type: integer
       required:
       - status
       - pagination
       - results
-    EventCreateV0Input:
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+      required:
+      - status
+      - error
+    EventUpdateV0Input:
       type: object
       properties:
         eventName:
@@ -432,9 +592,6 @@ components:
         endDate:
           type: string
           format: date
-        createdByEmail:
-          type: string
-          format: email
         registrationEnabled:
           type: boolean
       required:
@@ -442,39 +599,6 @@ components:
       - eventType
       - startDate
       - endDate
-      - createdByEmail
-    EventLeadsListResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          example: 200
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        results:
-          type: object
-          properties:
-            eventLeads:
-              type: array
-              items:
-                $ref: '#/components/schemas/EventLeadV0Response'
-            total:
-              type: integer
-      required:
-      - status
-      - pagination
-      - results
-    EventType:
-      type: string
-      description: Event type classification.
-      enum:
-      - CONFERENCE
-      - TRADE_SHOW
-      - EVENT
-      - SIDECAR
-      - DINNER_MEAL
-      - HAPPY_HOUR
-      - OTHER
     Location:
       type: object
       properties:
@@ -510,131 +634,7 @@ components:
           type:
           - string
           - 'null'
-    EventUpdateV0Input:
-      type: object
-      properties:
-        eventName:
-          type: string
-        eventType:
-          $ref: '#/components/schemas/EventType'
-        startDate:
-          type: string
-          format: date
-        endDate:
-          type: string
-          format: date
-        registrationEnabled:
-          type: boolean
-      required:
-      - eventName
-      - eventType
-      - startDate
-      - endDate
-    EventLeadV0Response:
-      type: object
-      properties:
-        leadId:
-          type: string
-          format: uuid
-        registered:
-          type: boolean
-        checkedIn:
-          type: boolean
-      required:
-      - leadId
-      - registered
-      - checkedIn
-    EventAddLeadsV0Input:
-      type: object
-      properties:
-        eventLeads:
-          type: array
-          items:
-            type: object
-            properties:
-              leadId:
-                type: string
-                format: uuid
-              registered:
-                type: boolean
-              checkedIn:
-                type: boolean
-            required:
-            - leadId
-      required:
-      - eventLeads
-    EventLeadsUpdateResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          example: 200
-        results:
-          type: object
-          properties:
-            eventLeads:
-              type: array
-              items:
-                $ref: '#/components/schemas/EventLeadV0Response'
-      required:
-      - status
-      - results
-    UserV0Response:
-      type: object
-      properties:
-        id:
-          type: integer
-        email:
-          type:
-          - string
-          - 'null'
-        firstName:
-          type:
-          - string
-          - 'null'
-        lastName:
-          type:
-          - string
-          - 'null'
-      required:
-      - id
-      - email
-      - firstName
-      - lastName
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        error:
-          type: string
-      required:
-      - status
-      - error
-    Pagination:
-      type: object
-      properties:
-        limit:
-          type: integer
-          format: int32
-        offset:
-          type: integer
-          format: int32
-      required:
-      - limit
-      - offset
-    EventSingleResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          example: 200
-        results:
-          $ref: '#/components/schemas/Event'
-      required:
-      - status
-      - results
-    EventUsersListResponse:
+    EventListResponse:
       type: object
       properties:
         status:
@@ -645,10 +645,10 @@ components:
         results:
           type: object
           properties:
-            users:
+            events:
               type: array
               items:
-                $ref: '#/components/schemas/UserV0Response'
+                $ref: '#/components/schemas/Event'
             total:
               type: integer
       required:
