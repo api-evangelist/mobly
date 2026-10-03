@@ -279,39 +279,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    IndustryEventListResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          example: 200
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        results:
-          type: object
-          properties:
-            industryEvents:
-              type: array
-              items:
-                $ref: '#/components/schemas/IndustryEvent'
-            total:
-              type: integer
-      required:
-      - status
-      - pagination
-      - results
-    Pagination:
-      type: object
-      properties:
-        limit:
-          type: integer
-          format: int32
-        offset:
-          type: integer
-          format: int32
-      required:
-      - limit
-      - offset
     IndustryEventCreateResponse:
       type: object
       properties:
@@ -334,226 +301,6 @@ components:
       required:
       - status
       - results
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        error:
-          type: string
-      required:
-      - status
-      - error
-    IndustryEventCreateV0Input:
-      type: object
-      properties:
-        name:
-          type: string
-        startDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        endDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        sourceType:
-          type:
-          - string
-          - 'null'
-        sourceId:
-          type:
-          - string
-          - 'null'
-        eventType:
-          type:
-          - string
-          - 'null'
-        venueCity:
-          type:
-          - string
-          - 'null'
-        venueState:
-          type:
-          - string
-          - 'null'
-        venueCountry:
-          type:
-          - string
-          - 'null'
-        venueName:
-          type:
-          - string
-          - 'null'
-        venueFullAddress:
-          type:
-          - string
-          - 'null'
-        venueCoordinates:
-          type:
-          - string
-          - 'null'
-        numberOfAttendees:
-          type:
-          - integer
-          - 'null'
-        numberOfExhibitors:
-          type:
-          - integer
-          - 'null'
-        attendeeCost:
-          type:
-          - string
-          - 'null'
-        boothCost:
-          type:
-          - string
-          - 'null'
-        exhibitorIndustries:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        attendeePersonas:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        keywords:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        website:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        eventUrl:
-          type:
-          - string
-          - 'null'
-      required:
-      - name
-    IndustryEventSingleResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          example: 200
-        results:
-          type: object
-          properties:
-            industryEvent:
-              $ref: '#/components/schemas/IndustryEvent'
-      required:
-      - status
-      - results
-    IndustryEventUpdateV0Input:
-      type: object
-      properties:
-        name:
-          type: string
-        startDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        endDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        sourceType:
-          type:
-          - string
-          - 'null'
-        sourceId:
-          type:
-          - string
-          - 'null'
-        eventType:
-          type:
-          - string
-          - 'null'
-        venueCity:
-          type:
-          - string
-          - 'null'
-        venueState:
-          type:
-          - string
-          - 'null'
-        venueCountry:
-          type:
-          - string
-          - 'null'
-        venueName:
-          type:
-          - string
-          - 'null'
-        venueFullAddress:
-          type:
-          - string
-          - 'null'
-        venueCoordinates:
-          type:
-          - string
-          - 'null'
-        numberOfAttendees:
-          type:
-          - integer
-          - 'null'
-        numberOfExhibitors:
-          type:
-          - integer
-          - 'null'
-        attendeeCost:
-          type:
-          - string
-          - 'null'
-        boothCost:
-          type:
-          - string
-          - 'null'
-        exhibitorIndustries:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        attendeePersonas:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        keywords:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        website:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        eventUrl:
-          type:
-          - string
-          - 'null'
     IndustryEvent:
       type: object
       properties:
@@ -668,6 +415,259 @@ components:
       - createdAt
       - updatedAt
       - name
+    IndustryEventCreateV0Input:
+      type: object
+      properties:
+        name:
+          type: string
+        startDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        endDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        sourceType:
+          type:
+          - string
+          - 'null'
+        sourceId:
+          type:
+          - string
+          - 'null'
+        eventType:
+          type:
+          - string
+          - 'null'
+        venueCity:
+          type:
+          - string
+          - 'null'
+        venueState:
+          type:
+          - string
+          - 'null'
+        venueCountry:
+          type:
+          - string
+          - 'null'
+        venueName:
+          type:
+          - string
+          - 'null'
+        venueFullAddress:
+          type:
+          - string
+          - 'null'
+        venueCoordinates:
+          type:
+          - string
+          - 'null'
+        numberOfAttendees:
+          type:
+          - integer
+          - 'null'
+        numberOfExhibitors:
+          type:
+          - integer
+          - 'null'
+        attendeeCost:
+          type:
+          - string
+          - 'null'
+        boothCost:
+          type:
+          - string
+          - 'null'
+        exhibitorIndustries:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        attendeePersonas:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        keywords:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        website:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        eventUrl:
+          type:
+          - string
+          - 'null'
+      required:
+      - name
+    IndustryEventUpdateV0Input:
+      type: object
+      properties:
+        name:
+          type: string
+        startDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        endDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        sourceType:
+          type:
+          - string
+          - 'null'
+        sourceId:
+          type:
+          - string
+          - 'null'
+        eventType:
+          type:
+          - string
+          - 'null'
+        venueCity:
+          type:
+          - string
+          - 'null'
+        venueState:
+          type:
+          - string
+          - 'null'
+        venueCountry:
+          type:
+          - string
+          - 'null'
+        venueName:
+          type:
+          - string
+          - 'null'
+        venueFullAddress:
+          type:
+          - string
+          - 'null'
+        venueCoordinates:
+          type:
+          - string
+          - 'null'
+        numberOfAttendees:
+          type:
+          - integer
+          - 'null'
+        numberOfExhibitors:
+          type:
+          - integer
+          - 'null'
+        attendeeCost:
+          type:
+          - string
+          - 'null'
+        boothCost:
+          type:
+          - string
+          - 'null'
+        exhibitorIndustries:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        attendeePersonas:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        keywords:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        website:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        eventUrl:
+          type:
+          - string
+          - 'null'
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+      required:
+      - status
+      - error
+    IndustryEventListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        results:
+          type: object
+          properties:
+            industryEvents:
+              type: array
+              items:
+                $ref: '#/components/schemas/IndustryEvent'
+            total:
+              type: integer
+      required:
+      - status
+      - pagination
+      - results
+    IndustryEventSingleResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        results:
+          type: object
+          properties:
+            industryEvent:
+              $ref: '#/components/schemas/IndustryEvent'
+      required:
+      - status
+      - results
+    Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+          format: int32
+        offset:
+          type: integer
+          format: int32
+      required:
+      - limit
+      - offset
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
