@@ -64,6 +64,7 @@ tags:
 - CRM
 - Marketing Automation
 - Trade Shows
+- Data Enrichment
 tags_raw:
 - Company
 - Events
@@ -77,6 +78,7 @@ tags_raw:
 - CRM
 - Marketing Automation
 - Trade Shows
+- Data Enrichment
 apis:
 - aid: mobly:mobly-activations-api
   name: Mob.ly Activations API
@@ -225,6 +227,9 @@ apis:
   - type: DataModel
     url: data-model/mobly-data-model.yml
 common:
+- type: CapabilityMap
+  url: capabilities/mobly-capability-edges.yml
+  name: Mob.ly Business Capability Map
 - type: Overlay
   url: overlays/mobly-rest-api-v0-overlay.yaml
 - type: AgenticAccess

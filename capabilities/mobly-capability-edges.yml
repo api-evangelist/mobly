@@ -1,0 +1,26 @@
+slug: mobly
+provider: Mob.ly
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Events
+  spec_file: mobly-events-api-openapi.yml
+  capability_id: BC-400.40
+  capability_id_l1: BC-400
+  capability_name: Demand Generation Management
+  confidence: 0.7
+  evidence: '''Create event'', ''List event leads'', ''Add or update event leads'', schemas EventLeadV0Response,
+    EventAddLeadsV0Input'
+  reason: Event records managed together with the leads captured at them — event-based lead generation,
+    i.e. demand generation marketing. Some chance a grader would prefer sales lead/pipeline management,
+    hence not higher.
