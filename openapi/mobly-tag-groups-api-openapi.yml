@@ -78,13 +78,18 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    TagGroupStatus:
-      type: string
-      description: Tag group publication status.
-      enum:
-      - ARCHIVED
-      - DRAFT
-      - PUBLISHED
+    Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+          format: int32
+        offset:
+          type: integer
+          format: int32
+      required:
+      - limit
+      - offset
     TagGroupV0Response:
       type: object
       properties:
@@ -120,20 +125,6 @@ components:
       - required
       - allEvents
       - tagOptions
-    TagOption:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        displayOrder:
-          type: integer
-        value:
-          type: string
-      required:
-      - id
-      - displayOrder
-      - value
     TagGroupsListResponse:
       type: object
       properties:
@@ -155,6 +146,37 @@ components:
       - status
       - pagination
       - results
+    TagOption:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        displayOrder:
+          type: integer
+        value:
+          type: string
+      required:
+      - id
+      - displayOrder
+      - value
+    TagGroupStatus:
+      type: string
+      description: Tag group publication status.
+      enum:
+      - ARCHIVED
+      - DRAFT
+      - PUBLISHED
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+      required:
+      - status
+      - error
     TagGroupSingleResponse:
       type: object
       properties:
@@ -166,28 +188,6 @@ components:
       required:
       - status
       - results
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        error:
-          type: string
-      required:
-      - status
-      - error
-    Pagination:
-      type: object
-      properties:
-        limit:
-          type: integer
-          format: int32
-        offset:
-          type: integer
-          format: int32
-      required:
-      - limit
-      - offset
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

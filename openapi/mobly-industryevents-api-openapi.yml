@@ -279,28 +279,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    IndustryEventCreateResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          example: 200
-        results:
-          type: object
-          properties:
-            industryEvent:
-              $ref: '#/components/schemas/IndustryEvent'
-            created:
-              type: boolean
-              description: Whether a new record was created (false if matched by eventUrl).
-            potentialDuplicates:
-              type: array
-              description: Existing events with matching name + startDate.
-              items:
-                $ref: '#/components/schemas/IndustryEvent'
-      required:
-      - status
-      - results
     IndustryEvent:
       type: object
       properties:
@@ -415,6 +393,54 @@ components:
       - createdAt
       - updatedAt
       - name
+    Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+          format: int32
+        offset:
+          type: integer
+          format: int32
+      required:
+      - limit
+      - offset
+    IndustryEventSingleResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        results:
+          type: object
+          properties:
+            industryEvent:
+              $ref: '#/components/schemas/IndustryEvent'
+      required:
+      - status
+      - results
+    IndustryEventCreateResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        results:
+          type: object
+          properties:
+            industryEvent:
+              $ref: '#/components/schemas/IndustryEvent'
+            created:
+              type: boolean
+              description: Whether a new record was created (false if matched by eventUrl).
+            potentialDuplicates:
+              type: array
+              description: Existing events with matching name + startDate.
+              items:
+                $ref: '#/components/schemas/IndustryEvent'
+      required:
+      - status
+      - results
     IndustryEventCreateV0Input:
       type: object
       properties:
@@ -642,32 +668,6 @@ components:
       - status
       - pagination
       - results
-    IndustryEventSingleResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          example: 200
-        results:
-          type: object
-          properties:
-            industryEvent:
-              $ref: '#/components/schemas/IndustryEvent'
-      required:
-      - status
-      - results
-    Pagination:
-      type: object
-      properties:
-        limit:
-          type: integer
-          format: int32
-        offset:
-          type: integer
-          format: int32
-      required:
-      - limit
-      - offset
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
