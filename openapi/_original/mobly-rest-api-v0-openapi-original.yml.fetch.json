@@ -1,0 +1,12 @@
+{
+ "url": "https://openapi.gitbook.com/o/jaPKDvV3e46vsYDXzb4V/spec/mobly-rest-api-v0.yaml",
+ "requested_url": "https://openapi.gitbook.com/o/jaPKDvV3e46vsYDXzb4V/spec/mobly-rest-api-v0.yaml",
+ "status": 200,
+ "content_type": "application/yaml",
+ "bytes": 50625,
+ "sha256": "6d5c8992a24cb737f77b83b37f3f05b6cdcb4f77b385de0a06688182a8c401ef",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}
