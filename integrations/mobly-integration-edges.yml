@@ -1,5 +1,5 @@
 generated: '2026-10-12'
-method: none
+method: searched
 source:
 - https://zapier.com/apps/mobly/integrations
 - https://zapier.com/apps/mob-ly/integrations
@@ -12,7 +12,25 @@ checked:
 - https://n8n.io/integrations/mobly/
 - https://zapier.com/apps/mob-ly/integrations
 - https://zapier.com/apps/mobly/integrations
+- hubspot/integrations/hubspot-integration-edges.yml
 summary: null
 marketplace_apps: []
-edges: []
+edges:
+- partner_name: HubSpot (own)
+  partner: hubspot
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://ecosystem.hubspot.com/marketplace/listing/mobly-by-mobly-15384025
+  mirror_of: hubspot/integrations/hubspot-integration-edges.yml
+  apps:
+  - Mobly
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: EVENT_MANAGEMENT
 templates: []
