@@ -64,6 +64,140 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Mob.ly is a company surfaced as a portfolio company of uncork-capital and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Mob.ly (Mobly) is an AI-powered in-person go-to-market platform — "The Event Marketer's Operating System" — that helps B2B teams plan events, capture and enrich leads in person, engage prospects, and measure pipeline across trade shows and in-real-life (IRL) marketing experiences. Its product suite spans Capture (universal lead capture and OCR badge/business-card scanning), Host (self-run activations, registration pages and Stripe-backed ticketing), Insights (dashboards and reporting), Pulse (speed-to-lead sequences and lead routing) and Scout (event discovery), with native integrations into HubSpot, Salesforce, Pardot, Marketo, Pipedrive, Zoho, Slack, Calendly and generic webhook destinations. Mobly publishes a JSON REST API (v0) at core-api.getmobly.com covering events, leads, lead activity events, activations, tag groups and industry events, authenticated with an organization API key issued by its customer success team. Headquartered in Lehi, Utah and backed by Uncork Capital and Jump Capital.
 
-Backed by: uncork-capital
+**Areas:** Company · Event · Event Marketing · Lead Capture · Lead Enrichment · B2B · Marketing · Go-To-Market · Artificial Intelligence · CRM · Marketing Automation · Trade Shows
+
+## Mob.ly on APIs.io
+
+Everything profiled for Mob.ly is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/mobly/](https://apis.io/providers/mobly/)** — or go straight to one of the APIs or properties below.
+
+### APIs (6)
+
+- [Mob.ly Activations API](https://apis.io/apis/mobly/mobly-activations-api/) — The Activations API from Mob.ly — 2 operation(s) for activations.
+- [Mob.ly Events API](https://apis.io/apis/mobly/mobly-events-api/) — The Events API from Mob.ly — 5 operation(s) for events.
+- [Mob.ly Industry Events API](https://apis.io/apis/mobly/mobly-industryevents-api/) — The IndustryEvents API from Mob.ly — 4 operation(s) for industryevents.
+- [Mob.ly Lead Activity Events API](https://apis.io/apis/mobly/mobly-leadactivityevents-api/) — The LeadActivityEvents API from Mob.ly — 2 operation(s) for leadactivityevents.
+- [Mob.ly Leads API](https://apis.io/apis/mobly/mobly-leads-api/) — The Leads API from Mob.ly — 2 operation(s) for leads.
+- [Mob.ly Tag Groups API](https://apis.io/apis/mobly/mobly-tag-groups-api/) — The Tag Groups API from Mob.ly — 2 operation(s) for tag groups.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Mobly Webhooks](https://apis.io/asyncapis/mobly/mobly-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [mobly](https://apis.io/servers/mobly/mobly/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Mobly Agentic Access](https://apis.io/agentic-access/mobly/mobly-agentic-access/)
+
+#### Collections (1)
+
+Postman and Open Collection request collections.
+
+- [Mobly REST API](https://apis.io/collections/mobly/open-mobly-rest-api-v0/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Mobly Rest Api V0 Overlay](https://apis.io/overlays/mobly/mobly-rest-api-v0-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Mobly Authentication](https://apis.io/security/mobly/mobly-authentication/)
+- [Mobly Domain Security](https://apis.io/security/mobly/mobly-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Mobly Plans Pricing](https://apis.io/plans/mobly/mobly-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Mobly Rate Limits](https://apis.io/rate-limits/mobly/mobly-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.getmobly.com/)
+- [Documentation](https://help.getmobly.com/documentation)
+- [Getting started](https://help.getmobly.com/help-center/getting-started/getting-started)
+- [API reference](https://help.getmobly.com/api-reference)
+- [Support](https://help.getmobly.com/help-center)
+- [Blog](https://www.getmobly.com/resources/)
+- [Terms of service](https://www.getmobly.com/termsofuse)
+- [Privacy policy](https://www.getmobly.com/privacy-policy)
+
+## API Evangelist rating
+
+**Kin Score 52.6** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 60.3 |
+| Contract governance | 4.5 |
+| Operational transparency | 44.7 |
+| Developer ergonomics | 58.9 |
+| Access clarity | 27.6 |
+
+**Agent readiness 34.7** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 22.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/mobly/](https://apis.io/providers/mobly/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Mob.ly: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/mobly/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
